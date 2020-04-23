@@ -1,6 +1,8 @@
 import 'package:built_value/serializer.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/standard_json_plugin.dart';
 
+import 'models.dart';
 import 'serializers/date_serializer_plugin.dart';
 
 part 'serializers.g.dart';
@@ -20,7 +22,8 @@ part 'serializers.g.dart';
 ///
 /// {@category Network}
 @SerializersFor(const [
-  ///
+  Category,
+  Photographer,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DateTimeSerializer())
