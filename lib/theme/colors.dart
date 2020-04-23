@@ -6,45 +6,36 @@ part of './theme.dart';
 /// {@category Resources}
 //TODO: place here colors
 class PLColors {
-  /// #143C47 primary text
-  static const primary = Color(0xFF143C47);
+  /// #FF2854 primary text
+  static const primary = Color(0xFFFF2854);
 
-  /// #466D78
-  static const secondary1 = Color(0xFF466D78);
+  /// #FFFFFF text
+  static const text = white;
 
-  /// #859A9F
-  static const secondary2 = Color(0xFF859A9F);
+  /// #888888 secondary text
+  static const secondary = Color(0xFF888888);
 
-  /// #B7C6CA
-  static const secondary3 = Color(0xFFB7C6CA);
-
-  /// #D4F2EE accent bg green
-  static const accentBg = Color(0xFFD4F2EE);
-
-  /// #A5DCD4 icon light green
-  static const iconLightGreen = Color(0xFFA5DCD4);
+  /// #A0A0A0 secondary2 text
+  static const secondary2 = Color(0xFFA0A0A0);
 
   /// #FFFFFF
   static const white = Color(0xFFFFFFFF);
 
+  /// #000000
+  static const black = Color(0xFF000000);
+
   /// #FF2854 brand bright red
   static const accent = Color(0xFFFF2854);
 
-  /// #F1F5F8
-  static const bg = Color(0xFFF1F5F8);
+  /// #000000
+  static const bg = black;
 
-  /// #DDE5EB
-  static const bgGrey = Color(0xFFDDE5EB);
+  /// #333333
+  static const grey = Color(0xFF333333);
 
-  /// #BDBDBD
-  static const grey = Color(0xFFBDBDBD);
+  /// #FF2854
+  static const red = Color(0xFFFF2854);
 
-  /// #EB5757
-  static const red = Color(0xFFEB5757);
-
-  /// #27AE60
-  static const green = Color(0xFF27AE60);
-
-  /// #416AB6
-  static const facebook = Color(0xFF416AB6);
+  /// #28FF68
+  static const green = Color(0xFF28FF68);
 }
