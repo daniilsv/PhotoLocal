@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/explore/providers/slider.dart';
+import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'photo.dart';
@@ -39,7 +40,7 @@ class PhotographerView extends ViewModelWidget<SliderProvider> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                   child: Text(
                     photographer.name,
-                    style: TextStyle(
+                    style: PLStyle.create(
                       color: Colors.white,
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
