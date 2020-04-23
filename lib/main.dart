@@ -13,6 +13,7 @@ import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 import 'global/i18n.dart';
 import 'providers/init.dart';
 import 'screens/boarding/index.dart';
+import 'screens/explore/index.dart';
 import 'screens/main/index.dart';
 import 'screens/splash/index.dart';
 
@@ -80,6 +81,7 @@ startHome() {
         },
         home: Consumer<InitProvider>(
           builder: (_, InitProvider p, __) {
+            return ExploreScreen();
             switch (p.state) {
               case InitState.boarding:
                 return BoardingScreen();

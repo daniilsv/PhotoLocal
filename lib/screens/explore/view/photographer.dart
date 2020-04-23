@@ -11,7 +11,7 @@ class PhotographerView extends ViewModelWidget<SliderProvider> {
 
   @override
   Widget build(BuildContext context, SliderProvider provider) {
-    Photo photo = provider.photos[photographer.id].first;
+    String photo = photographer.photos.first;
     return Container(
       margin: EdgeInsets.all(10.0),
       child: ClipRRect(

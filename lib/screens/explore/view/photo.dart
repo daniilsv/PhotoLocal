@@ -5,13 +5,13 @@ import 'package:photolocal/screens/explore/providers/slider.dart';
 import 'package:stacked/stacked.dart';
 
 class PhotoView extends ViewModelWidget<SliderProvider> {
-  PhotoView(this.photo);
-  final Photo photo;
+  PhotoView(this.photoUrl);
+  final String photoUrl;
 
   @override
   Widget build(BuildContext context, SliderProvider provider) {
     return PLImage(
-      photo.url,
+      photoUrl,
       fit: BoxFit.cover,
       borderRadius: 24,
     );
