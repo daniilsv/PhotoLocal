@@ -1,0 +1,56 @@
+name: photolocal
+description: A new Flutter project.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  dio:
+  cached_network_image:
+  photo_view:
+  path_provider:
+  url_launcher:
+  sembast:
+  location:
+  sliding_up_panel:
+  shimmer:
+  http:
+  encrypt:
+  crypto:
+  flutter_spinkit:
+  flutter_svg:
+  permission_handler:
+  auto_size_text:
+  provider:
+  stacked:
+  i18n_extension:
+  cupertino_back_gesture:
+  eva_icons_flutter:
+  page_transition:
+  google_fonts:
+
+
+dev_dependencies:
+  build:
+  build_config:
+  built_value_generator:
+  json_serializable:
+  build_runner:
+
+
+flutter:
+  uses-material-design: true
+  # assets:
+    # Images
+    
+    # Icons
+    
