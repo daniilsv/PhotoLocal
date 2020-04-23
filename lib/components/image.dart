@@ -12,7 +12,7 @@ import 'package:shimmer/shimmer.dart';
 class PLImage extends StatelessWidget {
   final double height;
   final double width;
-  final double borderRadius;
+  final dynamic borderRadius;
   final String url;
   final BoxFit fit;
   final Color color;
@@ -28,7 +28,11 @@ class PLImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: borderRadius != null
+          ? borderRadius is BorderRadius
+              ? borderRadius
+              : BorderRadius.circular((borderRadius as num).toDouble())
+          : null,
       child: CachedNetworkImage(
         imageUrl: url,
         fit: fit,
@@ -51,7 +55,8 @@ class PLImage extends StatelessWidget {
           height: height,
           width: width,
           alignment: Alignment.topCenter,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
           child: Shimmer.fromColors(
             baseColor: Colors.grey,
             highlightColor: Colors.grey[100],
