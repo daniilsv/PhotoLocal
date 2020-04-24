@@ -22,7 +22,6 @@ dependencies:
   sembast:
   location:
   sliding_up_panel:
-  carousel_slider:
   shimmer:
   http:
   encrypt:
