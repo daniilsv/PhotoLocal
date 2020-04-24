@@ -47,7 +47,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
+              vertical: 15,
             ),
             child: Text(
               "Выберите интересные вам жанры",

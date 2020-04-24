@@ -18,6 +18,7 @@ import 'providers/init.dart';
 import 'screens/boarding/index.dart';
 import 'screens/explore/index.dart';
 import 'screens/main/index.dart';
+import 'screens/personalization/index.dart';
 import 'screens/photographer/index.dart';
 import 'screens/splash/index.dart';
 
@@ -33,8 +34,7 @@ void main() async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runZonedGuarded(() {
     startHome();
@@ -91,7 +91,7 @@ startHome() {
         },
         home: Consumer<InitProvider>(
           builder: (_, InitProvider p, __) {
-            return PhotographerScreen(photographers[0]);
+            return PersonalizationScreen();
             switch (p.state) {
               case InitState.boarding:
                 return BoardingScreen();

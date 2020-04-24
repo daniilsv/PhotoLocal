@@ -36,7 +36,7 @@ class _NamePageState extends State<NamePage> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
+              vertical: 15,
             ),
             child: Text(
               "Давайте создадим новую ленту фотографий",

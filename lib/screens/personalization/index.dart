@@ -46,6 +46,8 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                       GestureDetector(
                         onTap: () {
                           FocusScope.of(context).unfocus();
+                          submited = false;
+                          setState(() {});
                           pageController.previousPage(
                             duration: Duration(milliseconds: 500),
                             curve: Curves.easeIn,
@@ -59,6 +61,8 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                       GestureDetector(
                         onTap: () {
                           FocusScope.of(context).unfocus();
+                          submited = false;
+                          setState(() {});
                           pageController.nextPage(
                             duration: Duration(milliseconds: 500),
                             curve: Curves.easeIn,
