@@ -7,8 +7,7 @@ import 'package:sembast/sembast.dart';
 enum TinderStatus { answering, loading, answered }
 
 class TinderProvider with ChangeNotifier {
-  static final TinderProvider _singleton = TinderProvider._internal();
-  factory TinderProvider() => _singleton;
+  TinderProvider();
 
   List<TinderImage> tinderImages = [
     {"image": "https://sun9-48.userapi.com/kyfcmCVHmWZmlgh_6crn4hGULeGkzsnEglGQUw/tj08Mblmqwk.jpg"},
