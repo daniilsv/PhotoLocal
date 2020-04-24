@@ -7,10 +7,7 @@ import '../../../theme/theme.dart';
 class TinderPage extends StatefulWidget {
   TinderPage({
     Key key,
-    @required this.changeSubmited,
   }) : super(key: key);
-
-  final void Function(bool submited) changeSubmited;
 
   @override
   _TinderPageState createState() => _TinderPageState();
@@ -27,7 +24,6 @@ class _TinderPageState extends State<TinderPage> {
   void initState() {
     controller = TextEditingController();
     focusNode = FocusNode();
-    widget.changeSubmited(true);
     super.initState();
   }
 

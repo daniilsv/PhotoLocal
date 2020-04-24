@@ -3,6 +3,7 @@ import 'package:photolocal/screens/personalization/pages/categories.dart';
 
 import '../../theme/theme.dart';
 import 'pages/name.dart';
+import 'pages/result.dart';
 import 'pages/tinder.dart';
 
 class PersonalizationScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class PersonalizationScreen extends StatefulWidget {
 }
 
 class _PersonalizationScreenState extends State<PersonalizationScreen> {
-  PageController pageController = PageController(initialPage: 2);
+  PageController pageController = PageController(initialPage: 0);
   int page = 0;
   bool submited = false;
 
@@ -47,7 +48,7 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                       GestureDetector(
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          submited = false;
+                          if (page <= 2) submited = false;
                           setState(() {});
                           pageController.previousPage(
                             duration: Duration(milliseconds: 500),
@@ -62,7 +63,7 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                       GestureDetector(
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          submited = false;
+                          if (page == 0) submited = false;
                           setState(() {});
                           pageController.nextPage(
                             duration: Duration(milliseconds: 500),
@@ -72,8 +73,7 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                         child: Opacity(
                           opacity: submited ? 1.0 : 0.4,
                           child: Text(
-                            // (page ?? 0) < 2 ? "Далее" : (page == 2 ? "Результаты" : "Готово"),
-                            "Готово",
+                            (page ?? 0) < 2 ? "Далее" : (page == 2 ? "Результаты" : "Готово"),
                             style: PLStyle.subheader,
                           ),
                         ),
@@ -81,40 +81,8 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                     ],
                   ),
                 ),
-                // Container(
-                //   padding: EdgeInsets.symmetric(
-                //     horizontal: 30,
-                //     vertical: 10,
-                //   ),
-                //   child: Text(
-                //     [
-                //       "Давайте создадим новую ленту фотографий",
-                //       "Выберите интересные вам жанры",
-                //       "Давайте персонализируем вашу ленту",
-                //       "Вам должны понравиться эти фотографы",
-                //     ][page],
-                //     style: PLStyle.druk,
-                //   ),
-                // ),
-                // Container(
-                //   padding: EdgeInsets.symmetric(
-                //     horizontal: 30,
-                //   ),
-                //   child: Text(
-                //     [
-                //       "В PhotoLocal у вас не одна лента, а несколько, ведь вы можете искать фотографа для разных целей.",
-                //       "После этого мы покажем вам фото из этих категорий, но вы сможете вернуться",
-                //       "Свайпайте, пока фотографии не станут похожими на то, что вы ищете",
-                //       "А если не понравились, можете вернуться назад и поискать ещё",
-                //     ][page],
-                //     style: PLStyle.text,
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 Expanded(
-                  child: ListView(
+                  child: PageView(
                     controller: pageController,
                     physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -131,13 +99,8 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                           setState(() {});
                         },
                       ),
-                      TinderPage(
-                        changeSubmited: (bool value) {
-                          submited = value;
-                          setState(() {});
-                        },
-                      ),
-                      Container(),
+                      TinderPage(),
+                      ResultPage(),
                     ],
                   ),
                 ),
