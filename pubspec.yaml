@@ -66,8 +66,8 @@ flutter:
       fonts:
         - asset: assets/fonts/druk-reg.ttf
           weight: 400
-  # assets:
+  assets:
     # Images
-    
+    - assets/images/logo.svg
     # Icons
     

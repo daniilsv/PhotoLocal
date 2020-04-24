@@ -35,7 +35,12 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: PLColors.bg,
+    systemNavigationBarIconBrightness: Brightness.dark,
+  ));
   runZonedGuarded(() {
     startHome();
   }, (error, stackTrace) async {
