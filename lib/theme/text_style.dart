@@ -33,4 +33,5 @@ class PLStyle {
   static TextStyle button = create(fontSize: 20, fontWeight: FontWeight.w500);
   static TextStyle druk = create(fontSize: 24, fontFamily: fontFamilyDruk)
       .copyWith(height: 0.83, letterSpacing: -0.24);
+  static TextStyle drukBig = create(fontSize: 50, fontFamily: fontFamilyDruk);
 }

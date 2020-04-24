@@ -35,7 +35,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: PLColors.bg,
+    systemNavigationBarIconBrightness: Brightness.dark,
+  ));
   runZonedGuarded(() {
     startHome();
   }, (error, stackTrace) async {
@@ -91,7 +96,8 @@ startHome() {
         },
         home: Consumer<InitProvider>(
           builder: (_, InitProvider p, __) {
-            return PhotographerScreen(photographers[0]);
+            return SplashScreen();
+            // return PhotographerScreen(photographers[0]);
             switch (p.state) {
               case InitState.boarding:
                 return BoardingScreen();
