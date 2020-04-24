@@ -45,6 +45,7 @@ dev_dependencies:
   build:
   build_config:
   built_value_generator:
+  flutter_launcher_icons:
   json_serializable:
   build_runner:
 
@@ -70,4 +71,11 @@ flutter:
     # Images
     - assets/images/logo.svg
     # Icons
-    
+
+flutter_icons:
+  image_path_ios: icon/full_icon.png
+  image_path_android: icon/full_icon.png
+  adaptive_icon_background: icon/background.png
+  adaptive_icon_foreground: icon/full_icon.png
+  android: true
+  ios: true

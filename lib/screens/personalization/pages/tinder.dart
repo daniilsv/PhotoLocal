@@ -45,7 +45,7 @@ class _TinderPageState extends State<TinderPage> {
             ),
             child: Text(
               "Давайте персонализируем вашу ленту",
-              style: PLStyle.title,
+              style: PLStyle.druk,
             ),
           ),
           Container(

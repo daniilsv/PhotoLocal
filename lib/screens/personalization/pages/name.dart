@@ -40,7 +40,7 @@ class _NamePageState extends State<NamePage> {
             ),
             child: Text(
               "Давайте создадим новую ленту фотографий",
-              style: PLStyle.title,
+              style: PLStyle.druk,
             ),
           ),
           Text(
@@ -62,7 +62,7 @@ class _NamePageState extends State<NamePage> {
           ),
           TextField(
             controller: controller,
-            style: PLStyle.title,
+            style: PLStyle.textMed,
             autofocus: true,
             cursorColor: PLColors.text,
             maxLines: 1,

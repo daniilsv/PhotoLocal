@@ -6,8 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:photolocal/models/models.dart';
-import 'package:photolocal/providers/tinder.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:i18n_extension/i18n_widget.dart';
@@ -15,9 +13,6 @@ import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 
 import 'global/i18n.dart';
 import 'providers/init.dart';
-import 'screens/boarding/index.dart';
-import 'screens/main/index.dart';
-import 'screens/personalization/index.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -32,7 +27,8 @@ void main() async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.light,
@@ -48,6 +44,7 @@ void main() async {
 }
 
 startHome() {
+  InitProvider().init();
   runApp(
     BackGestureWidthTheme(
       backGestureWidth: BackGestureWidth.fraction(1 / 2),
@@ -88,27 +85,11 @@ startHome() {
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => InitProvider()),
-              ChangeNotifierProvider(create: (_) => TinderProvider()),
             ],
             child: I18n(child: child),
           );
         },
-        home: Consumer<InitProvider>(
-          builder: (_, InitProvider p, __) {
-            return PersonalizationScreen();
-            switch (p.state) {
-              case InitState.boarding:
-                return BoardingScreen();
-              case InitState.auth:
-                return MainScreen();
-              case InitState.inited:
-                return MainScreen();
-              case InitState.loading:
-              default:
-                return SplashScreen();
-            }
-          },
-        ),
+        home: SplashScreen(),
       ),
     ),
   );

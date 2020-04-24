@@ -5,7 +5,7 @@ final List<Photographer> photographers = [
   {
     "username": "babich_tema",
     "name": "Тёма Бабич",
-    "category": "Портрет",
+    "category": "Portrait",
     "photos": [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/94839105_115295450149245_5057036106748308570_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=Nm9sjRmJ9pYAX_n2vIe&oh=f801b6fc5a49e7723a6dda38d46d2ad0&oe=5EC9921A",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/93834537_542252053376016_6249639787834416087_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=D8gqMaLySlYAX_t_kYv&oh=fc4f40176f23a354d248b5f80a2223b5&oe=5ECBC9DB",
@@ -220,7 +220,7 @@ final List<Photographer> photographers = [
   },
   {
     "name": "Станислава Викторова",
-    "category": "lovestory",
+    "category": "Love Story",
     "photos": [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.129.1034.1034a/s640x640/94011600_685952345524211_1845270508491306997_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=n0cT8oDG44MAX8uLSTc&oh=5a9d43dab72cfc5308986e39ef43cde1&oe=5EC9D4BD",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/94022131_2051954614940397_1174796416980835082_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=a68tIEl7F2MAX9xwLNE&oh=e8e38ef1890b1785917d4929b03efb07&oe=5EA41B8E",

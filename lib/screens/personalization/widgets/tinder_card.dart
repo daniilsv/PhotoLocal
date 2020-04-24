@@ -8,14 +8,14 @@ List<Alignment> _cardAligns = new List();
 
 /// A Tinder-Like Widget.
 class TinderSwapCard extends StatefulWidget {
-  CardBuilder _cardBuilder;
-  int _totalNum;
-  int _stackNum;
-  int _animDuration;
-  double _swipeEdge;
-  CardSwipeCompleteCallback swipeCompleteCallback;
-  CardDragUpdateCallback swipeUpdateCallback;
-  CardController cardController;
+  final CardBuilder _cardBuilder;
+  final int _totalNum;
+  final int _stackNum;
+  final int _animDuration;
+  final double _swipeEdge;
+  final CardSwipeCompleteCallback swipeCompleteCallback;
+  final CardDragUpdateCallback swipeUpdateCallback;
+  final CardController cardController;
 
 //  double _maxWidth;
 //  double _minWidth;

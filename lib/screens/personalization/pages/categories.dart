@@ -51,7 +51,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             ),
             child: Text(
               "Выберите интересные вам жанры",
-              style: PLStyle.title,
+              style: PLStyle.druk,
             ),
           ),
           Text(

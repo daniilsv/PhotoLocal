@@ -13,7 +13,7 @@ class PersonalizationScreen extends StatefulWidget {
 }
 
 class _PersonalizationScreenState extends State<PersonalizationScreen> {
-  PageController pageController = PageController(initialPage: 2);
+  PageController pageController = PageController(initialPage: 0);
   int page = 0;
   bool submited = false;
 
@@ -92,7 +92,7 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                 //       "Давайте персонализируем вашу ленту",
                 //       "Вам должны понравиться эти фотографы",
                 //     ][page],
-                //     style: PLStyle.title,
+                //     style: PLStyle.druk,
                 //   ),
                 // ),
                 // Container(

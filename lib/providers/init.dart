@@ -1,17 +1,21 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:photolocal/main.dart';
 import 'package:photolocal/api/api.dart';
 import 'package:photolocal/global/database.dart';
 import 'package:flutter/foundation.dart';
+import 'package:photolocal/screens/boarding/index.dart';
+import 'package:photolocal/screens/main/index.dart';
+import 'package:photolocal/screens/personalization/index.dart';
+import 'package:photolocal/screens/splash/index.dart';
 import 'package:sembast/sembast.dart';
 
-enum InitState { loading, boarding, auth, inited }
+enum InitState { loading, boarding, inited }
 
 class InitProvider with ChangeNotifier {
   static final InitProvider _singleton = InitProvider._internal();
   factory InitProvider() => _singleton;
-  InitProvider._internal() {
-    init();
-  }
+  InitProvider._internal();
   InitState state = InitState.loading;
 
   init() async {
@@ -35,6 +39,23 @@ class InitProvider with ChangeNotifier {
 
   setState(InitState _state) {
     state = _state;
+    Widget home;
+    switch (state) {
+      case InitState.boarding:
+        home = PersonalizationScreen();
+        break;
+      case InitState.inited:
+        home = MainScreen();
+        break;
+      case InitState.loading:
+      default:
+        home = SplashScreen();
+        return;
+    }
+    globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
+    globalNavigatorKey.currentState.pushReplacement(
+      CupertinoPageRoute(builder: (c) => home),
+    );
     notifyListeners();
   }
 
@@ -42,7 +63,7 @@ class InitProvider with ChangeNotifier {
     var store = stringMapStoreFactory.store("blocs");
     store.delete(DataBase.db);
     Api.init();
-    setState(InitState.auth);
+    setState(InitState.boarding);
     globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
   }
 }
