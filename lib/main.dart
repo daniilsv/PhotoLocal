@@ -7,18 +7,17 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:photolocal/models/models.dart';
+import 'package:photolocal/providers/tinder.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 
 import 'global/i18n.dart';
-import 'mock/photographers.dart';
 import 'providers/init.dart';
 import 'screens/boarding/index.dart';
-import 'screens/explore/index.dart';
 import 'screens/main/index.dart';
-import 'screens/photographer/index.dart';
+import 'screens/personalization/index.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -33,8 +32,7 @@ void main() async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.light,
@@ -90,14 +88,14 @@ startHome() {
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => InitProvider()),
+              ChangeNotifierProvider(create: (_) => TinderProvider()),
             ],
             child: I18n(child: child),
           );
         },
         home: Consumer<InitProvider>(
           builder: (_, InitProvider p, __) {
-            return SplashScreen();
-            // return PhotographerScreen(photographers[0]);
+            return PersonalizationScreen();
             switch (p.state) {
               case InitState.boarding:
                 return BoardingScreen();
