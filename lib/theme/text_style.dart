@@ -1,6 +1,5 @@
 part of './theme.dart';
 
-//TODO: place here text styles
 class PLStyle {
   static TextStyle create({
     double fontSize,
@@ -19,6 +18,7 @@ class PLStyle {
 
   static TextStyle text = create(fontSize: 14);
   static TextStyle subheader = create(fontSize: 16, fontWeight: FontWeight.bold);
+  static TextStyle textFieldHeader = create(fontSize: 16);
   static TextStyle header = create(fontSize: 24);
   static TextStyle headerBlack = create(fontSize: 24, color: PLColors.black);
   static TextStyle title = create(fontSize: 24, fontWeight: FontWeight.w500);
