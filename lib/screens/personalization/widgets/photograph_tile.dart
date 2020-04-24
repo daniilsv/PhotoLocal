@@ -23,7 +23,7 @@ class PhotographTileWidget extends StatelessWidget {
                 height: 56,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: PLImage("https://sun9-10.userapi.com/EyG4XVnbi7fqaRm2_dMIWqa-tRAVO3tNu4sDow/oAm1SDdpAbI.jpg"),
+                  child: PLImage("https://sun9-50.userapi.com/c629107/v629107914/3f9de/TmUlsK04qxw.jpg"),
                 ),
               ),
               SizedBox(
@@ -59,7 +59,7 @@ class PhotographTileWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4.5),
                   child: PLImage(
-                    "https://sun9-10.userapi.com/EyG4XVnbi7fqaRm2_dMIWqa-tRAVO3tNu4sDow/oAm1SDdpAbI.jpg",
+                    "https://sun9-50.userapi.com/c629107/v629107914/3f9de/TmUlsK04qxw.jpg",
                     fit: BoxFit.fitHeight,
                   ),
                 ),
