@@ -21,6 +21,9 @@ class PLColors {
   /// #191919 secondary2 text
   static const secondary3 = Color(0xFF191919);
 
+  /// #363636 divider
+  static const divider = Color(0xFF363636);
+
   /// #FFFFFF
   static const white = Color(0xFFFFFFFF);
 
