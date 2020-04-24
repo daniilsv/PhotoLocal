@@ -26,6 +26,7 @@ class PLStyle {
       create(fontSize: 20, fontWeight: FontWeight.bold);
   static TextStyle textMed = create(fontSize: 14, fontWeight: FontWeight.w500);
   static TextStyle header = create(fontSize: 24);
+  static TextStyle headerBlack = create(fontSize: 24, color: PLColors.black);
   static TextStyle title = create(fontSize: 24, fontWeight: FontWeight.w500);
   static TextStyle secondary = create(
       fontSize: 12, color: PLColors.secondary2, fontWeight: FontWeight.w500);

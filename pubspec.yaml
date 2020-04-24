@@ -38,6 +38,7 @@ dependencies:
   eva_icons_flutter:
   page_transition:
   google_fonts:
+  flutter_staggered_animations:
 
 
 dev_dependencies:
