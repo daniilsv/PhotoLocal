@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:photolocal/screens/personalization/pages/categories.dart';
 
 import '../../theme/theme.dart';
-import '../../theme/theme.dart';
+import 'pages/name.dart';
 
 class PersonalizationScreen extends StatefulWidget {
   PersonalizationScreen({Key key}) : super(key: key);
@@ -13,9 +13,22 @@ class PersonalizationScreen extends StatefulWidget {
 
 class _PersonalizationScreenState extends State<PersonalizationScreen> {
   PageController pageController = PageController(initialPage: 0);
+  int page = 0;
+  bool submited = false;
+
+  @override
+  void initState() {
+    pageController.addListener(() {
+      page = pageController.page.floor();
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: Container(
           color: PLColors.bg,
@@ -30,57 +43,88 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_back,
-                            color: PLColors.white,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "К категориям",
+                      GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          pageController.previousPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: PLColors.white,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          pageController.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: Opacity(
+                          opacity: submited ? 1.0 : 0.4,
+                          child: Text(
+                            "Готово",
                             style: PLStyle.subheader,
                           ),
-                        ],
-                      ),
-                      Text(
-                        "Готово",
-                        style: PLStyle.subheader,
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                  child: Text(
-                    "Давайте персонализируем вашу ленту",
-                    style: PLStyle.title,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Text(
-                    "После этого мы покажем вам фото из этих категорий, но вы сможете вернуться",
-                    style: PLStyle.text,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(
+                //     horizontal: 30,
+                //     vertical: 10,
+                //   ),
+                //   child: Text(
+                //     [
+                //       "Давайте создадим новую ленту фотографий",
+                //       "Выберите интересные вам жанры",
+                //       "Давайте персонализируем вашу ленту",
+                //       "Вам должны понравиться эти фотографы",
+                //     ][page],
+                //     style: PLStyle.title,
+                //   ),
+                // ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(
+                //     horizontal: 30,
+                //   ),
+                //   child: Text(
+                //     [
+                //       "В PhotoLocal у вас не одна лента, а несколько, ведь вы можете искать фотографа для разных целей.",
+                //       "После этого мы покажем вам фото из этих категорий, но вы сможете вернуться",
+                //       "Свайпайте, пока фотографии не станут похожими на то, что вы ищете",
+                //       "А если не понравились, можете вернуться назад и поискать ещё",
+                //     ][page],
+                //     style: PLStyle.text,
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 Expanded(
                   child: ListView(
                     controller: pageController,
                     physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     children: [
-                      CategoriesPage(),
+                      NamePage(
+                        changeSubmited: (bool value) {
+                          submited = value;
+                          setState(() {});
+                        },
+                      ),
+                      CategoriesPage(
+                        changeSubmited: (bool value) {
+                          submited = value;
+                          setState(() {});
+                        },
+                      ),
                       Container(),
                       Container(),
                     ],

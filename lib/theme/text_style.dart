@@ -23,7 +23,8 @@ class PLStyle {
 
   static TextStyle text = create(fontSize: 14);
   static TextStyle subheader =
-      create(fontSize: 20, fontWeight: FontWeight.bold);
+      create(fontSize: 16, fontWeight: FontWeight.bold);
+  static TextStyle textFieldHeader = create(fontSize: 16);
   static TextStyle textMed = create(fontSize: 14, fontWeight: FontWeight.w500);
   static TextStyle header = create(fontSize: 24);
   static TextStyle headerBlack = create(fontSize: 24, color: PLColors.black);
