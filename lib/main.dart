@@ -13,6 +13,7 @@ import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 
 import 'global/i18n.dart';
 import 'providers/init.dart';
+import 'screens/chat/index.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -89,7 +90,7 @@ startHome() {
             child: I18n(child: child),
           );
         },
-        home: SplashScreen(),
+        home: ChatScreen(),
       ),
     ),
   );

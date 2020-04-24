@@ -15,11 +15,11 @@ class PLColors {
   /// #888888 secondary text
   static const secondary = Color(0xFF888888);
 
-  /// #A0A0A0 secondary2 text
-  static const secondary2 = Color(0xFFA0A0A0);
-
   /// #191919 secondary2 text
-  static const secondary3 = Color(0xFF191919);
+  static const secondary2 = Color(0xFF191919);
+
+  /// #2F2F2F secondary3 text
+  static const secondary3 = Color(0xFF2F2F2F);
 
   /// #FFFFFF
   static const white = Color(0xFFFFFFFF);
