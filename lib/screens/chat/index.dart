@@ -12,6 +12,7 @@ import 'package:stacked/stacked.dart';
 
 import 'providers/chat.dart';
 import 'widgets/self_message.dart';
+import 'widgets/user_contract.dart';
 import 'widgets/user_message.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -47,33 +48,31 @@ class _ChatScreenState extends State<ChatScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: ListView.builder(
-                        controller: provider.scrollController,
-                        reverse: true,
-                        itemCount:
-                            10, //provider.messages.length +(provider.isLoading ? 1 : 0),
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              SelfMessage("Йоу"),
-                              SelfMessage(
-                                  "Привет!\nМожно завтра пофотографироваться?"),
-                              UserMessage("Йоу"),
-                              UserMessage("Готов платить бабки?"),
-                              SelfMessage("Да изи, бабки не проблема"),
-                            ],
-                          );
-                          if (provider.isLoading &&
-                              index == provider.messages.length)
-                            return PLLoading();
-                          Message msg = provider.messages[index];
-                          if (msg.isMyMessage == true)
-                            return SelfMessage(msg.message);
-                          return UserMessage(msg.message);
-                        },
-                      ),
+                    child: ListView.builder(
+                      controller: provider.scrollController,
+                      reverse: true,
+                      itemCount:
+                          10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            SelfMessage("Йоу"),
+                            SelfMessage(
+                                "Привет!\nМожно завтра пофотографироваться?"),
+                            UserMessage("Йоу"),
+                            UserMessage("Готов платить бабки?"),
+                            SelfMessage("Да изи, бабки не проблема"),
+                            UserContract(photographers[1]),
+                          ],
+                        );
+                        if (provider.isLoading &&
+                            index == provider.messages.length)
+                          return PLLoading();
+                        Message msg = provider.messages[index];
+                        if (msg.isMyMessage == true)
+                          return SelfMessage(msg.message);
+                        return UserMessage(msg.message);
+                      },
                     ),
                   ),
                   SizedBox(height: 2),
