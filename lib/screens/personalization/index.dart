@@ -72,6 +72,7 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                         child: Opacity(
                           opacity: submited ? 1.0 : 0.4,
                           child: Text(
+                            // (page ?? 0) < 2 ? "Далее" : (page == 2 ? "Результаты" : "Готово"),
                             "Готово",
                             style: PLStyle.subheader,
                           ),
@@ -131,7 +132,10 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                         },
                       ),
                       TinderPage(
-                        changeSubmited: (value) {},
+                        changeSubmited: (bool value) {
+                          submited = value;
+                          setState(() {});
+                        },
                       ),
                       Container(),
                     ],

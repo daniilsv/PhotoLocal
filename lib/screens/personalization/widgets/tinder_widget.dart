@@ -51,7 +51,7 @@ class TinderWidget extends StatelessWidget {
                         ),
                         child: Icon(
                           Icons.check,
-                          color: PLColors.white,
+                          color: PLColors.black.withOpacity(0.64),
                           size: 35,
                         ),
                       ),
