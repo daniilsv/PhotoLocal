@@ -11,13 +11,15 @@ class UserMessage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
+          margin: EdgeInsets.symmetric(vertical: 4),
           padding: EdgeInsets.symmetric(vertical: 7, horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: PLBorders.all12,
             color: PLColors.secondary3,
           ),
           constraints: BoxConstraints(maxWidth: size.width * .8 - 32),
-          child: Text(text, style: PLStyle.textMed, textAlign: TextAlign.start),
+          child: Text(text,
+              style: PLStyle.textFieldHeader, textAlign: TextAlign.start),
         ),
       ],
     );

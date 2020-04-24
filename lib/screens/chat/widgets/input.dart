@@ -17,27 +17,35 @@ class _ChatInputState extends State<ChatInput> {
       ),
       child: Row(
         children: [
-          IconButton(
-            color: PLColors.secondary,
-            iconSize: 20,
-            icon: Icon(Icons.attach_file),
-            onPressed: () {
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child:
+                  Icon(Icons.attach_file, color: PLColors.secondary, size: 20),
+            ),
+            onTap: () {
               ///
             },
           ),
           Expanded(
             child: TextField(
+              style: PLStyle.textFieldHeader.copyWith(color: PLColors.white),
               decoration: InputDecoration(
+                border: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
                 isDense: true,
+                hintText: "Сообщение",
+                hintStyle:
+                    PLStyle.textFieldHeader.copyWith(color: PLColors.secondary),
               ),
             ),
           ),
-          IconButton(
-            color: PLColors.secondary,
-            iconSize: 20,
-            icon: Icon(Icons.send),
-            onPressed: () {
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(Icons.send, color: PLColors.secondary, size: 20),
+            ),
+            onTap: () {
               ///
             },
           ),

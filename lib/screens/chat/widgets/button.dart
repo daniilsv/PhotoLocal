@@ -6,6 +6,7 @@ class ContractButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         color: PLColors.secondary2,
         borderRadius: PLBorders.all12,
@@ -13,7 +14,7 @@ class ContractButton extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         "Предложить контракт",
-        style: PLStyle.textMed,
+        style: PLStyle.textFieldHeader,
         textAlign: TextAlign.center,
       ),
     );
