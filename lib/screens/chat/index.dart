@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photolocal/components/loading.dart';
 import 'package:photolocal/global/utils.dart';
+import 'package:photolocal/mock/photographers.dart';
+import 'package:photolocal/screens/chat/widgets/app_bar.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';
 import 'package:photolocal/screens/chat/widgets/input.dart';
 import 'package:photolocal/theme/theme.dart';
@@ -32,46 +34,55 @@ class _ChatScreenState extends State<ChatScreen> {
     return ViewModelBuilder<ChatProvider>.reactive(
       viewModelBuilder: () => ChatProvider(),
       onModelReady: startPooling,
-      builder: (context, provider, child) => Scaffold(
-        resizeToAvoidBottomPadding: true,
-        backgroundColor: PLColors.bg,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: ListView.builder(
-                      controller: provider.scrollController,
-                      reverse: true,
-                      itemCount: provider.messages.length +
-                          (provider.isLoading ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (provider.isLoading &&
-                            index == provider.messages.length)
-                          return PLLoading();
-                        Message msg = provider.messages[index];
-                        if (msg.isMyMessage == true)
-                          return SelfMessage(msg.message);
-                        return UserMessage(msg.message);
-                      },
+      builder: (context, provider, child) => SafeArea(
+        top: true,
+        child: Scaffold(
+          resizeToAvoidBottomPadding: true,
+          backgroundColor: PLColors.bg,
+          appBar: ChatAppBar(photographers[1]),
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: ListView.builder(
+                        controller: provider.scrollController,
+                        reverse: true,
+                        itemCount:
+                            10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              SelfMessage("Йоу"),
+                              SelfMessage(
+                                  "Привет!\nМожно завтра пофотографироваться?"),
+                              UserMessage("Йоу"),
+                              UserMessage("Готов платить бабки?"),
+                              SelfMessage("Да изи, бабки не проблема"),
+                            ],
+                          );
+                          if (provider.isLoading &&
+                              index == provider.messages.length)
+                            return PLLoading();
+                          Message msg = provider.messages[index];
+                          if (msg.isMyMessage == true)
+                            return SelfMessage(msg.message);
+                          return UserMessage(msg.message);
+                        },
+                      ),
                     ),
                   ),
-                ),
-                SelfMessage("Йоу"),
-                SelfMessage("Привет!\nМожно завтра пофотографироваться?"),
-                UserMessage("Йоу"),
-                UserMessage("Готов платить бабки?"),
-                SelfMessage("Да изи, бабки не проблема"),
-                SizedBox(height: 24),
-                ContractButton(),
-                SizedBox(height: 8),
-                ChatInput(),
-                SizedBox(height: 20),
-              ],
+                  SizedBox(height: 2),
+                  ContractButton(),
+                  SizedBox(height: 8),
+                  ChatInput(),
+                  SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),
