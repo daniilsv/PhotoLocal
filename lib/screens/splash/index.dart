@@ -29,8 +29,7 @@ class SplashScreen extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/images/logo.svg",
                 fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height * .35,
-                width: MediaQuery.of(context).size.width * .9,
+                width: MediaQuery.of(context).size.width,
               ),
             ),
           ),
