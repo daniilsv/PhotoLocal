@@ -47,7 +47,7 @@ class PLImage extends StatelessWidget {
           color: PLColors.primary,
           child: Text(
             "Не удалось загрузить изображение",
-            style: PLStyle.create(fontSize: 12, color: Colors.white),
+            style: PLStyle.text,
             textAlign: TextAlign.center,
           ),
         ),
@@ -55,8 +55,12 @@ class PLImage extends StatelessWidget {
           height: height,
           width: width,
           alignment: Alignment.topCenter,
-          decoration:
-              BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
+          decoration: BoxDecoration(
+              borderRadius: borderRadius != null
+                  ? borderRadius is BorderRadius
+                      ? borderRadius
+                      : BorderRadius.circular((borderRadius as num).toDouble())
+                  : null),
           child: Shimmer.fromColors(
             baseColor: Colors.grey,
             highlightColor: Colors.grey[100],

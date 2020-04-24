@@ -16,7 +16,7 @@ class PhotographerView extends ViewModelWidget<SliderProvider> {
     return Container(
       margin: EdgeInsets.all(10.0),
       child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: PLBorders.all12,
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
@@ -40,11 +40,7 @@ class PhotographerView extends ViewModelWidget<SliderProvider> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                   child: Text(
                     photographer.name,
-                    style: PLStyle.create(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: PLStyle.subheader,
                   ),
                 ),
               ),

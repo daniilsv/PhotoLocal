@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui' as UI;
 
 import 'package:flutter/material.dart';
+import 'package:photolocal/theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -66,7 +67,7 @@ class Utils {
         child: Container(
           padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: PLBorders.all12,
           ),
           constraints: BoxConstraints(maxWidth: 300),
           child: Column(

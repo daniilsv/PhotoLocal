@@ -32,11 +32,7 @@ class RowSlider extends ViewModelWidget<SliderProvider> {
         right: 0,
         child: Text(
           category.title,
-          style: PLStyle.create(
-            color: PLColors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+          style: PLStyle.subheader,
           textAlign: TextAlign.center,
         ),
       ),

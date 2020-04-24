@@ -1,6 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/components/image.dart';
+import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/theme/theme.dart';
 
@@ -18,33 +19,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: PLColors.bg,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: PLColors.bg,
-        selectedItemColor: PLColors.accent,
-        unselectedItemColor: PLColors.grey,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: PLColors.bg,
-            icon: Icon(Icons.fiber_smart_record),
-            title: Text("Лента"),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: PLColors.bg,
-            icon: Icon(Icons.grid_on),
-            title: Text("Сетка"),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: PLColors.bg,
-            icon: Icon(Icons.mail),
-            title: Text("Сообщения"),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: PLColors.bg,
-            icon: Icon(Icons.face),
-            title: Text("Профиль"),
-          ),
-        ],
-      ),
+      bottomNavigationBar: NavigationBar(0),
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
@@ -58,7 +33,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                     Positioned.fill(
                       child: PLImage(
                         photographer.photos.first,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: PLBorders.all12,
                       ),
                     ),
                     Positioned(
@@ -85,12 +60,8 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Icon(Icons.star, color: PLColors.white),
-                                  Text(
-                                    "4.8",
-                                    style: PLStyle.create(
-                                      color: PLColors.white,
-                                    ),
-                                  ),
+                                  SizedBox(width: 2),
+                                  Text("4.8", style: PLStyle.text),
                                 ],
                               ),
                             ),
@@ -111,9 +82,12 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                             child: Container(
                               height: 40,
                               alignment: Alignment.center,
-                              child: Text(
-                                "8 съёмок",
-                                style: PLStyle.create(color: PLColors.white),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text("8", style: PLStyle.textMed),
+                                  Text(" съёмок", style: PLStyle.text),
+                                ],
                               ),
                             ),
                           ),
@@ -127,11 +101,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
               Text(
                 photographer.name,
                 textAlign: TextAlign.center,
-                style: PLStyle.create(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: PLStyle.subheader,
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
@@ -148,14 +118,15 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
-                height: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width - 32,
                 child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
+                  padding: EdgeInsets.zero,
                   itemCount: 9,
                   itemBuilder: (context, index) {
                     Widget image = PLImage(
@@ -180,10 +151,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                       },
                       child: image,
                     );
-                    return buildRadius(
-                      index,
-                      image,
-                    );
+                    return buildRadius(index, image);
                   },
                 ),
               ),
@@ -197,7 +165,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   padding: EdgeInsets.symmetric(vertical: 12),
                   decoration: BoxDecoration(
                     color: PLColors.accent,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: PLBorders.all12,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -205,11 +173,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                       Icon(Icons.mail, color: PLColors.white, size: 42),
                       Text(
                         "Заказать съёмку",
-                        style: PLStyle.create(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: PLStyle.button,
                       ),
                     ],
                   ),

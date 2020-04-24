@@ -24,7 +24,7 @@ class CheckButtonWidget extends StatelessWidget {
             width: 1,
             color: PLColors.primary,
           ),
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: PLBorders.all12,
         ),
         child: Icon(
           Icons.check,

@@ -50,12 +50,7 @@ class PLLoading extends StatelessWidget {
                     margin: EdgeInsets.only(top: 24),
                     child: Text(
                       text ?? "Loading... please wait".i18n,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: PLColors.primary.withOpacity(.7),
-                        fontFamily: 'Circe',
-                      ),
+                      style: PLStyle.textMed,
                     ),
                   )
                 ],
