@@ -27,6 +27,7 @@ class _TinderPageState extends State<TinderPage> {
   void initState() {
     controller = TextEditingController();
     focusNode = FocusNode();
+    widget.changeSubmited(true);
     super.initState();
   }
 
@@ -55,13 +56,72 @@ class _TinderPageState extends State<TinderPage> {
               style: PLStyle.text,
             ),
           ),
+          Container(
+            height: MediaQuery.of(context).size.height * .58,
+            child: TinderWidget(),
+          ),
           SizedBox(
             height: 20,
           ),
-          SizedBox(
-            height: 30,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: PLColors.white.withOpacity(0.1),
+                ),
+                child: Icon(
+                  Icons.undo,
+                  color: PLColors.secondary,
+                  size: 24,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: PLColors.accent,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.close,
+                  color: PLColors.white,
+                  size: 35,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: PLColors.green,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.check,
+                  color: PLColors.black.withOpacity(0.64),
+                  size: 35,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: PLColors.white.withOpacity(0.1),
+                ),
+                child: Icon(
+                  Icons.bookmark_border,
+                  color: PLColors.secondary,
+                  size: 24,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+            ],
           ),
-          TinderWidget(),
         ],
       ),
     );

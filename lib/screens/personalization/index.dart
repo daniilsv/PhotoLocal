@@ -13,7 +13,7 @@ class PersonalizationScreen extends StatefulWidget {
 }
 
 class _PersonalizationScreenState extends State<PersonalizationScreen> {
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 2);
   int page = 0;
   bool submited = false;
 
