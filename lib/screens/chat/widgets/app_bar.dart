@@ -24,23 +24,25 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               Navigator.pop(context);
             },
           ),
-          Expanded(
-            child: Text(
-              photographer.name,
-              style: PLStyle.textFieldHeader,
-              textAlign: TextAlign.center,
+          if (photographer != null)
+            Expanded(
+              child: Text(
+                photographer.name,
+                style: PLStyle.textFieldHeader,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          GestureDetector(
-            child: Container(
-                padding: const EdgeInsets.all(8.0),
-                alignment: Alignment.center,
-                child: PLImage(photographer.profilePic,
-                    width: 24, height: 24, borderRadius: 12)),
-            onTap: () {
-              ///
-            },
-          )
+          if (photographer != null)
+            GestureDetector(
+              child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  alignment: Alignment.center,
+                  child: PLImage(photographer.profilePic,
+                      width: 24, height: 24, borderRadius: 12)),
+              onTap: () {
+                ///
+              },
+            )
         ],
       ),
     );
