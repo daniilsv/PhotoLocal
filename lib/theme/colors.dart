@@ -33,8 +33,8 @@ class PLColors {
   /// #000000
   static const bg = black;
 
-  /// #333333
-  static const grey = Color(0xFF333333);
+  /// #414141
+  static const grey = Color(0xFF414141);
 
   /// #FF2854
   static const red = Color(0xFFFF2854);

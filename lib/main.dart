@@ -6,15 +6,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:photolocal/models/models.dart';
+import 'package:photolocal/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 
 import 'global/i18n.dart';
+import 'mock/photographers.dart';
 import 'providers/init.dart';
 import 'screens/boarding/index.dart';
+import 'screens/explore/index.dart';
 import 'screens/main/index.dart';
-import 'screens/personalization/index.dart';
+import 'screens/photographer/index.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -29,7 +33,8 @@ void main() async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runZonedGuarded(() {
     startHome();
@@ -48,7 +53,16 @@ startHome() {
         navigatorKey: globalNavigatorKey,
         showSemanticsDebugger: false,
         debugShowCheckedModeBanner: false,
-        theme: CupertinoThemeData(),
+        theme: CupertinoThemeData(
+          brightness: Brightness.dark,
+          barBackgroundColor: PLColors.black,
+          scaffoldBackgroundColor: PLColors.bg,
+          primaryColor: PLColors.white,
+          primaryContrastingColor: PLColors.white,
+          textTheme: CupertinoTextThemeData(
+            textStyle: PLStyle.text,
+          ),
+        ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -63,8 +77,8 @@ startHome() {
             return Container(
               color: Colors.black,
               child: Text(
-                "Unexpected error. Please try later".i18n,
-                style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white),
+                "Error".i18n,
+                style: PLStyle.text,
               ),
             );
           };
@@ -77,18 +91,18 @@ startHome() {
         },
         home: Consumer<InitProvider>(
           builder: (_, InitProvider p, __) {
-            // switch (p.state) {
-            //   case InitState.boarding:
-            //     return BoardingScreen();
-            //   case InitState.auth:
-            //     return MainScreen();
-            //   case InitState.inited:
-            //     return MainScreen();
-            //   case InitState.loading:
-            //   default:
-            //     return SplashScreen();
-            // }
-            return PersonalizationScreen();
+            return PhotographerScreen(photographers[0]);
+            switch (p.state) {
+              case InitState.boarding:
+                return BoardingScreen();
+              case InitState.auth:
+                return MainScreen();
+              case InitState.inited:
+                return MainScreen();
+              case InitState.loading:
+              default:
+                return SplashScreen();
+            }
           },
         ),
       ),

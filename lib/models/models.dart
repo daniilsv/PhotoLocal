@@ -1,3 +1,5 @@
 library models;
 
-// export 'some_model.dart';
+export 'category.dart';
+export 'photographer.dart';
+export 'photo.dart';
