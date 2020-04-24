@@ -3,6 +3,7 @@ import 'package:photolocal/screens/personalization/pages/categories.dart';
 
 import '../../theme/theme.dart';
 import 'pages/name.dart';
+import 'pages/tinder.dart';
 
 class PersonalizationScreen extends StatefulWidget {
   PersonalizationScreen({Key key}) : super(key: key);
@@ -12,7 +13,7 @@ class PersonalizationScreen extends StatefulWidget {
 }
 
 class _PersonalizationScreenState extends State<PersonalizationScreen> {
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 2);
   int page = 0;
   bool submited = false;
 
@@ -129,7 +130,9 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                           setState(() {});
                         },
                       ),
-                      Container(),
+                      TinderPage(
+                        changeSubmited: (value) {},
+                      ),
                       Container(),
                     ],
                   ),

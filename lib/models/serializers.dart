@@ -24,6 +24,7 @@ part 'serializers.g.dart';
 @SerializersFor(const [
   Category,
   Photographer,
+  TinderImage,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DateTimeSerializer())
