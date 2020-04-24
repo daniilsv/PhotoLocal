@@ -6,7 +6,6 @@ class UserMessage extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -17,7 +16,7 @@ class UserMessage extends StatelessWidget {
             borderRadius: PLBorders.all12,
             color: PLColors.secondary3,
           ),
-          constraints: BoxConstraints(maxWidth: size.width * .8 - 32),
+          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8 - 32),
           child: Text(text,
               style: PLStyle.textFieldHeader, textAlign: TextAlign.start),
         ),

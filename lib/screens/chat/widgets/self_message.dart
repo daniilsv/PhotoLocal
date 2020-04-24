@@ -6,7 +6,6 @@ class SelfMessage extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -17,8 +16,10 @@ class SelfMessage extends StatelessWidget {
             borderRadius: PLBorders.all12,
             color: PLColors.accent,
           ),
-          constraints: BoxConstraints(maxWidth: size.width * .8 - 32),
-          child: Text(text, style: PLStyle.textFieldHeader, textAlign: TextAlign.start),
+          constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * .8 - 32),
+          child: Text(text,
+              style: PLStyle.textFieldHeader, textAlign: TextAlign.start),
         ),
       ],
     );
