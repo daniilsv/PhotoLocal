@@ -13,7 +13,8 @@ class SelfMessage extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 4),
           padding: EdgeInsets.symmetric(vertical: 7, horizontal: 12),
           decoration: BoxDecoration(
-            borderRadius: PLBorders.all12,
+            borderRadius:
+                text.contains("\n") ? PLBorders.all12 : PLBorders.all24,
             color: PLColors.accent,
           ),
           constraints: BoxConstraints(
