@@ -37,7 +37,12 @@ dependencies:
   eva_icons_flutter:
   page_transition:
   google_fonts:
+  line_icons:
   flutter_staggered_animations:
+  mapbox_gl:
+    git:
+      url: git://github.com/daniilsv/flutter-mapbox-gl.git
+      ref: 04208b74e56aa085bd8904c2dce83b6669e040d9
 
 
 dev_dependencies:

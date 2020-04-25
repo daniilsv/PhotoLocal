@@ -25,11 +25,11 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
     }
-    if (object.username != null) {
+    if (object.userId != null) {
       result
-        ..add('username')
-        ..add(serializers.serialize(object.username,
-            specifiedType: const FullType(String)));
+        ..add('userId')
+        ..add(serializers.serialize(object.userId,
+            specifiedType: const FullType(int)));
     }
     if (object.name != null) {
       result
@@ -37,10 +37,16 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
         ..add(serializers.serialize(object.name,
             specifiedType: const FullType(String)));
     }
-    if (object.category != null) {
+    if (object.inn != null) {
       result
-        ..add('category')
-        ..add(serializers.serialize(object.category,
+        ..add('inn')
+        ..add(serializers.serialize(object.inn,
+            specifiedType: const FullType(String)));
+    }
+    if (object.picture != null) {
+      result
+        ..add('picture')
+        ..add(serializers.serialize(object.picture,
             specifiedType: const FullType(String)));
     }
     if (object.photos != null) {
@@ -48,13 +54,26 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
         ..add('photos')
         ..add(serializers.serialize(object.photos,
             specifiedType:
+                const FullType(BuiltList, const [const FullType(Photo)])));
+    }
+    if (object.rating != null) {
+      result
+        ..add('rating')
+        ..add(serializers.serialize(object.rating,
+            specifiedType: const FullType(double)));
+    }
+    if (object.chips != null) {
+      result
+        ..add('chips')
+        ..add(serializers.serialize(object.chips,
+            specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.profilePic != null) {
+    if (object.liveLocation != null) {
       result
-        ..add('profilePic')
-        ..add(serializers.serialize(object.profilePic,
-            specifiedType: const FullType(String)));
+        ..add('liveLocation')
+        ..add(serializers.serialize(object.liveLocation,
+            specifiedType: const FullType(LatLng)));
     }
     return result;
   }
@@ -74,27 +93,41 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'username':
-          result.username = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'userId':
+          result.userId = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'category':
-          result.category = serializers.deserialize(value,
+        case 'inn':
+          result.inn = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'picture':
+          result.picture = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'photos':
           result.photos.replace(serializers.deserialize(value,
                   specifiedType:
+                      const FullType(BuiltList, const [const FullType(Photo)]))
+              as BuiltList<Object>);
+          break;
+        case 'rating':
+          result.rating = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
+          break;
+        case 'chips':
+          result.chips.replace(serializers.deserialize(value,
+                  specifiedType:
                       const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<Object>);
           break;
-        case 'profilePic':
-          result.profilePic = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'liveLocation':
+          result.liveLocation = serializers.deserialize(value,
+              specifiedType: const FullType(LatLng)) as LatLng;
           break;
       }
     }
@@ -107,26 +140,35 @@ class _$Photographer extends Photographer {
   @override
   final int id;
   @override
-  final String username;
+  final int userId;
   @override
   final String name;
   @override
-  final String category;
+  final String inn;
   @override
-  final BuiltList<String> photos;
+  final String picture;
   @override
-  final String profilePic;
+  final BuiltList<Photo> photos;
+  @override
+  final double rating;
+  @override
+  final BuiltList<String> chips;
+  @override
+  final LatLng liveLocation;
 
   factory _$Photographer([void Function(PhotographerBuilder) updates]) =>
       (new PhotographerBuilder()..update(updates)).build();
 
   _$Photographer._(
       {this.id,
-      this.username,
+      this.userId,
       this.name,
-      this.category,
+      this.inn,
+      this.picture,
       this.photos,
-      this.profilePic})
+      this.rating,
+      this.chips,
+      this.liveLocation})
       : super._();
 
   @override
@@ -141,32 +183,46 @@ class _$Photographer extends Photographer {
     if (identical(other, this)) return true;
     return other is Photographer &&
         id == other.id &&
-        username == other.username &&
+        userId == other.userId &&
         name == other.name &&
-        category == other.category &&
+        inn == other.inn &&
+        picture == other.picture &&
         photos == other.photos &&
-        profilePic == other.profilePic;
+        rating == other.rating &&
+        chips == other.chips &&
+        liveLocation == other.liveLocation;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc($jc(0, id.hashCode), username.hashCode), name.hashCode),
-                category.hashCode),
-            photos.hashCode),
-        profilePic.hashCode));
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, id.hashCode), userId.hashCode),
+                                name.hashCode),
+                            inn.hashCode),
+                        picture.hashCode),
+                    photos.hashCode),
+                rating.hashCode),
+            chips.hashCode),
+        liveLocation.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Photographer')
           ..add('id', id)
-          ..add('username', username)
+          ..add('userId', userId)
           ..add('name', name)
-          ..add('category', category)
+          ..add('inn', inn)
+          ..add('picture', picture)
           ..add('photos', photos)
-          ..add('profilePic', profilePic))
+          ..add('rating', rating)
+          ..add('chips', chips)
+          ..add('liveLocation', liveLocation))
         .toString();
   }
 }
@@ -179,37 +235,51 @@ class PhotographerBuilder
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
+  int _userId;
+  int get userId => _$this._userId;
+  set userId(int userId) => _$this._userId = userId;
 
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  String _category;
-  String get category => _$this._category;
-  set category(String category) => _$this._category = category;
+  String _inn;
+  String get inn => _$this._inn;
+  set inn(String inn) => _$this._inn = inn;
 
-  ListBuilder<String> _photos;
-  ListBuilder<String> get photos =>
-      _$this._photos ??= new ListBuilder<String>();
-  set photos(ListBuilder<String> photos) => _$this._photos = photos;
+  String _picture;
+  String get picture => _$this._picture;
+  set picture(String picture) => _$this._picture = picture;
 
-  String _profilePic;
-  String get profilePic => _$this._profilePic;
-  set profilePic(String profilePic) => _$this._profilePic = profilePic;
+  ListBuilder<Photo> _photos;
+  ListBuilder<Photo> get photos => _$this._photos ??= new ListBuilder<Photo>();
+  set photos(ListBuilder<Photo> photos) => _$this._photos = photos;
+
+  double _rating;
+  double get rating => _$this._rating;
+  set rating(double rating) => _$this._rating = rating;
+
+  ListBuilder<String> _chips;
+  ListBuilder<String> get chips => _$this._chips ??= new ListBuilder<String>();
+  set chips(ListBuilder<String> chips) => _$this._chips = chips;
+
+  LatLng _liveLocation;
+  LatLng get liveLocation => _$this._liveLocation;
+  set liveLocation(LatLng liveLocation) => _$this._liveLocation = liveLocation;
 
   PhotographerBuilder();
 
   PhotographerBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
-      _username = _$v.username;
+      _userId = _$v.userId;
       _name = _$v.name;
-      _category = _$v.category;
+      _inn = _$v.inn;
+      _picture = _$v.picture;
       _photos = _$v.photos?.toBuilder();
-      _profilePic = _$v.profilePic;
+      _rating = _$v.rating;
+      _chips = _$v.chips?.toBuilder();
+      _liveLocation = _$v.liveLocation;
       _$v = null;
     }
     return this;
@@ -235,16 +305,22 @@ class PhotographerBuilder
       _$result = _$v ??
           new _$Photographer._(
               id: id,
-              username: username,
+              userId: userId,
               name: name,
-              category: category,
+              inn: inn,
+              picture: picture,
               photos: _photos?.build(),
-              profilePic: profilePic);
+              rating: rating,
+              chips: _chips?.build(),
+              liveLocation: liveLocation);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'photos';
         _photos?.build();
+
+        _$failedField = 'chips';
+        _chips?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Photographer', _$failedField, e.toString());

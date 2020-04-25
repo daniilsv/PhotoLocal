@@ -13,16 +13,12 @@ abstract class Category implements Built<Category, CategoryBuilder> {
   int get id;
 
   @nullable
-  @BuiltValueField(wireName: 'code')
-  String get code;
+  @BuiltValueField(wireName: 'name')
+  String get name;
 
   @nullable
-  @BuiltValueField(wireName: 'title')
-  String get title;
+  @BuiltValueField(wireName: 'ordering')
+  int get title;
 
   static Serializer<Category> get serializer => _$categorySerializer;
 }
-
-///
-///lovestory
-///

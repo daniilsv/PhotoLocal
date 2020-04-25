@@ -13,6 +13,7 @@ import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 
 import 'global/i18n.dart';
 import 'providers/init.dart';
+import 'providers/location.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -27,8 +28,7 @@ void main() async {
   };
 
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.light,
@@ -85,6 +85,7 @@ startHome() {
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => InitProvider()),
+              ChangeNotifierProvider(create: (_) => LocationProvider()),
             ],
             child: I18n(child: child),
           );

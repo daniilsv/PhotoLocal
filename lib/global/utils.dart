@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui' as UI;
 
 import 'package:flutter/material.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -178,5 +180,13 @@ class Utils {
   static String doubleToTimeString(double seconds) {
     int hours = (seconds / 60).floor();
     return "$hours:${twoDigits(seconds.floor() - hours * 60)}";
+  }
+
+  static double calculateDistance(LatLng from, LatLng to) {
+    double a = pow(sin((to.latitude - from.latitude) * pi / 360), 2) +
+        cos(from.latitude * pi / 180) *
+            cos(to.latitude * pi / 180) *
+            pow(sin((to.longitude - from.longitude) * pi / 360), 2);
+    return 6367 * 2 * atan2(sqrt(a), sqrt(1 - a));
   }
 }

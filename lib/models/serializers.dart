@@ -4,6 +4,7 @@ import 'package:built_value/standard_json_plugin.dart';
 
 import 'models.dart';
 import 'serializers/date_serializer_plugin.dart';
+import 'serializers/latlng_serializer.dart';
 
 part 'serializers.g.dart';
 
@@ -23,10 +24,19 @@ part 'serializers.g.dart';
 /// {@category Network}
 @SerializersFor(const [
   Category,
+  Chat,
+  Favorite,
+  Location,
+  Order,
+  Photo,
   Photographer,
   TinderImage,
+  User,
+  WallSettings,
+  Wall,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DateTimeSerializer())
+      ..add(LatLngSerializer())
       ..addPlugin(StandardJsonPlugin()))
     .build();

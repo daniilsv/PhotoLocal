@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category.dart';
+part of 'user.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Category> _$categorySerializer = new _$CategorySerializer();
+Serializer<User> _$userSerializer = new _$UserSerializer();
 
-class _$CategorySerializer implements StructuredSerializer<Category> {
+class _$UserSerializer implements StructuredSerializer<User> {
   @override
-  final Iterable<Type> types = const [Category, _$Category];
+  final Iterable<Type> types = const [User, _$User];
   @override
-  final String wireName = 'Category';
+  final String wireName = 'User';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Category object,
+  Iterable<Object> serialize(Serializers serializers, User object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     if (object.id != null) {
@@ -24,25 +24,31 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
     }
+    if (object.facebookId != null) {
+      result
+        ..add('facebookId')
+        ..add(serializers.serialize(object.facebookId,
+            specifiedType: const FullType(String)));
+    }
     if (object.name != null) {
       result
         ..add('name')
         ..add(serializers.serialize(object.name,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(int)));
     }
-    if (object.title != null) {
+    if (object.phone != null) {
       result
-        ..add('ordering')
-        ..add(serializers.serialize(object.title,
+        ..add('phone')
+        ..add(serializers.serialize(object.phone,
             specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
-  Category deserialize(Serializers serializers, Iterable<Object> serialized,
+  User deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new CategoryBuilder();
+    final result = new UserBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -54,12 +60,16 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'name':
-          result.name = serializers.deserialize(value,
+        case 'facebookId':
+          result.facebookId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'ordering':
-          result.title = serializers.deserialize(value,
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
       }
@@ -69,93 +79,105 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
   }
 }
 
-class _$Category extends Category {
+class _$User extends User {
   @override
   final int id;
   @override
-  final String name;
+  final String facebookId;
   @override
-  final int title;
+  final int name;
+  @override
+  final int phone;
 
-  factory _$Category([void Function(CategoryBuilder) updates]) =>
-      (new CategoryBuilder()..update(updates)).build();
+  factory _$User([void Function(UserBuilder) updates]) =>
+      (new UserBuilder()..update(updates)).build();
 
-  _$Category._({this.id, this.name, this.title}) : super._();
+  _$User._({this.id, this.facebookId, this.name, this.phone}) : super._();
 
   @override
-  Category rebuild(void Function(CategoryBuilder) updates) =>
+  User rebuild(void Function(UserBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  CategoryBuilder toBuilder() => new CategoryBuilder()..replace(this);
+  UserBuilder toBuilder() => new UserBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Category &&
+    return other is User &&
         id == other.id &&
+        facebookId == other.facebookId &&
         name == other.name &&
-        title == other.title;
+        phone == other.phone;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), title.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, id.hashCode), facebookId.hashCode), name.hashCode),
+        phone.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Category')
+    return (newBuiltValueToStringHelper('User')
           ..add('id', id)
+          ..add('facebookId', facebookId)
           ..add('name', name)
-          ..add('title', title))
+          ..add('phone', phone))
         .toString();
   }
 }
 
-class CategoryBuilder implements Builder<Category, CategoryBuilder> {
-  _$Category _$v;
+class UserBuilder implements Builder<User, UserBuilder> {
+  _$User _$v;
 
   int _id;
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String _facebookId;
+  String get facebookId => _$this._facebookId;
+  set facebookId(String facebookId) => _$this._facebookId = facebookId;
 
-  int _title;
-  int get title => _$this._title;
-  set title(int title) => _$this._title = title;
+  int _name;
+  int get name => _$this._name;
+  set name(int name) => _$this._name = name;
 
-  CategoryBuilder();
+  int _phone;
+  int get phone => _$this._phone;
+  set phone(int phone) => _$this._phone = phone;
 
-  CategoryBuilder get _$this {
+  UserBuilder();
+
+  UserBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
+      _facebookId = _$v.facebookId;
       _name = _$v.name;
-      _title = _$v.title;
+      _phone = _$v.phone;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(Category other) {
+  void replace(User other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Category;
+    _$v = other as _$User;
   }
 
   @override
-  void update(void Function(CategoryBuilder) updates) {
+  void update(void Function(UserBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Category build() {
-    final _$result = _$v ?? new _$Category._(id: id, name: name, title: title);
+  _$User build() {
+    final _$result = _$v ??
+        new _$User._(id: id, facebookId: facebookId, name: name, phone: phone);
     replace(_$result);
     return _$result;
   }
