@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:photolocal/components/masked_text.dart';
 
 import '../../../theme/theme.dart';
@@ -22,6 +23,8 @@ class _PhonePageState extends State<PhonePage> {
   FocusNode codeFocusNode = FocusNode();
 
   bool phoneSubmited = false;
+  bool sendedCode = false;
+  bool loading = false;
 
   @override
   void initState() {
@@ -127,10 +130,44 @@ class _PhonePageState extends State<PhonePage> {
                   onChanged: (value) {
                     if (codeController.unmaskedText.length == 4) {
                       FocusScope.of(context).unfocus();
-                      widget.next();
+                      loading = true;
+                      setState(() {});
+                      Future.delayed(
+                        Duration(seconds: 3),
+                        widget.next,
+                      );
                     }
                   },
                 ),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    sendedCode = true;
+                    setState(() {});
+                    Future.delayed(
+                      Duration(seconds: 3),
+                      () {
+                        sendedCode = false;
+                        setState(() {});
+                      },
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    child: Opacity(
+                      opacity: sendedCode ? 0.4 : 1.0,
+                      child: Text(
+                        "Отправить SMS повторно",
+                        style: PLStyle.accent,
+                      ),
+                    ),
+                  ),
+                ),
+                if (loading)
+                  SpinKitThreeBounce(
+                    color: PLColors.secondary4,
+                    size: 25.0,
+                  ),
               ],
             )
         ],
