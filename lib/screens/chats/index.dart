@@ -46,7 +46,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                       message: Message()..message = "уле=еле",
                       time: DateTime.now(),
                       order: index % 4 == 0
-                          ? serializers.deserializeWith(Order.serializer, {"time": DateTime.now()})
+                          ? serializers.deserializeWith(Order.serializer, {"time": DateTime.now().toIso8601String()})
                           : null),
                 ),
               ),

@@ -49,6 +49,11 @@ class Utils {
     return "${twoDigits(dateTime.hour)}:${twoDigits(dateTime.minute)}";
   }
 
+  static String getDayMonthString({DateTime dateTime, String stringTime}) {
+    DateTime time = dateTime ?? DateTime.parse(stringTime);
+    return "${twoDigits(time.day)}:${twoDigits(time.month)}";
+  }
+
   static showTextInSnackBar(GlobalKey<ScaffoldState> key, String value) {
     if (key == null || key.currentState == null) return;
     key.currentState.showSnackBar(SnackBar(content: Text(value)));

@@ -3,7 +3,7 @@ import 'package:photolocal/models/serializers.dart';
 
 final List<Photographer> photographers = [
   {
-    "username": "babich_tema",
+    "userId": 0,
     "name": "Тёма Бабич",
     "category": "Portrait",
     "photos": [
@@ -41,11 +41,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c213.0.854.854a/s640x640/75601614_166352577924932_8174498157769757900_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=NxMorCyCnF0AX9t8-_S&oh=b6effde4a8b17f527ae3c8533a0d3092&oe=5ECC31AF",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/e35/c160.0.350.350a/76941206_158538942088837_8161406660720905847_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=rUUlOg_SkRgAX8vrreY&oh=6de92cd751cc928c37ec2e0bcc37817e&oe=5ECC25B3"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/87317396_863963827387896_4889235979145052160_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=7CUcb8BqHE0AX-8nYR_&oh=75bf413aed5a3e15e304bc367cd74173&oe=5ECC0A79"
   },
   {
-    "username": "iamphotographyusa",
+    "userId": 1,
     "name": "Анастасия Мещерякова",
     "category": "Love Story",
     "photos": [
@@ -83,11 +83,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/83618491_557742618420618_4794992520804956492_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=s6mVG8gs0poAX_au0XE&oh=e8882e8e184277f569d55772df98095b&oe=5ECA68D4",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/e35/c160.0.639.639a/85260922_218943606163552_6991848257750449269_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=fdgilB-qDdAAX_o7eUK&oh=690ceb91a19a5629d9726d2564b7423d&oe=5ECC4066"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/62231764_405998580128467_5707914671986573312_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=9Xpkd7oGHtAAX9iRZa1&oh=7b0f2fda19f6eb1b7e93dec7720c1fbb&oe=5ECBCECC"
   },
   {
-    "username": "s.chubaev",
+    "userId": 2,
     "name": "Stepan Chubaev",
     "category": "Art",
     "photos": [
@@ -116,11 +116,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/81398355_713331792527103_5495886769513505165_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=MTpGdVFyQycAX9hhdP0&oh=69760e383018af4eee659c1238c011b6&oe=5EC9EB2B",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/81993841_2487616998034822_4493772937080731134_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=oDp74f_cRiAAX8tZkQD&oh=eb7fa2209ffdf637c04ee6a2948748ba&oe=5ECB46C7"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/83058251_165075621387696_1043994451011174400_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=Mw4XhbTgCrIAX_gQ1xE&oh=c9b9bc99053ec2150c5293e2c7e12803&oe=5ECA2AE8"
   },
   {
-    "username": "alexilgi",
+    "userId": 3,
     "name": "Александр Чернышёв",
     "category": "Architecture",
     "photos": [
@@ -149,11 +149,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c135.0.809.809a/s640x640/56848258_388243982025425_4251275457559916649_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=zRtb7fgP4KgAX920CM3&oh=81022ed490525486f8d0d10e8ebd0a26&oe=5ECC02FD",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.135.1080.1080a/s640x640/56260410_371724576888176_3111050711135983085_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=VYyO--_tkVYAX-ULgHe&oh=61ac08b9446e9a3bef11dded726d9b58&oe=5EC9AEE2"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/73247866_2500405616706037_5355103690103455744_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=6SaMCdh4HecAX9nmiD6&oh=f28f55339240a59985e2e389376160de&oe=5ECBE7A4"
   },
   {
-    "username": "danfilatoff",
+    "userId": 4,
     "name": "Dan Filatov",
     "category": "Fashion",
     "photos": [
@@ -182,11 +182,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/31338708_732989790240928_7909528668991389696_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=yZCipNgodX0AX9nGkUm&oh=98e587be8f9ab23be9cfcf2e342645f3&oe=5ECB39D4",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.135.1080.1080a/s640x640/31384564_168251267196110_2478461820763897856_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=rPGbEjNLhcgAX8jDB_y&oh=e8fc8973bf14b961e2c4d3cc33a17da5&oe=5ECCD9B6"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/83186681_185390986030289_2437096767397822464_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=YBjhS162_4QAX-RRZ4L&oh=ee9c68e8fa8106dacfba705ea7c2e3f9&oe=5ECBC002"
   },
   {
-    "username": "e1337e",
+    "userId": 5,
     "name": "Alexey Orlovsky",
     "category": "Travel",
     "photos": [
@@ -215,10 +215,11 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11250091_394062664133269_1641338939_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=VaXLlUCy8p0AX-VSBQV&oh=e69dcc94e9a3561952399169737113e2&oe=5EC996A9",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11381361_1637643673161154_303404666_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=tfjaL6Efxh4AX88pi6i&oh=1d2342ebb911ac5273be185c7df7d90f&oe=5ECBCA11"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/11352361_1478524245776500_845823794_a.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=ggCkX-2_apQAX8zY_8E&oh=884898c5c9fa43c467c4c3bfd57b01c6&oe=5ECC7831"
   },
   {
+    "userId": 6,
     "name": "Станислава Викторова",
     "category": "Love Story",
     "photos": [
@@ -247,7 +248,7 @@ final List<Photographer> photographers = [
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.100.1440.1440a/s640x640/71110900_2313581202104643_7470790385032951330_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=MKkvDfX8BfEAX8mc4fJ&oh=7d25c319525acd3de28db0f0f4f6bbb3&oe=5ECAA281",
       "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/e35/c69.0.427.427a/67287149_148654096238885_8298959758734416250_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=Mbtlb3sKoXQAX-CAqt3&oh=56769d7e6e87f0c2d65aabb769551557&oe=5ECB81A0"
     ],
-    "profilePic":
+    "picture":
         "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/90831974_535776747351610_6369198206592483328_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_ohc=xJ3fANV3S98AX9SZOMI&oh=dec8dfb7a8575aeb6537342807319823&oe=5ECC5467"
   }
 ].map((_) => serializers.deserializeWith(Photographer.serializer, _)).toList();

@@ -54,7 +54,13 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
         ..add('photos')
         ..add(serializers.serialize(object.photos,
             specifiedType:
-                const FullType(BuiltList, const [const FullType(Photo)])));
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    if (object.category != null) {
+      result
+        ..add('category')
+        ..add(serializers.serialize(object.category,
+            specifiedType: const FullType(String)));
     }
     if (object.rating != null) {
       result
@@ -112,8 +118,12 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
         case 'photos':
           result.photos.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(Photo)]))
+                      const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<Object>);
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case 'rating':
           result.rating = serializers.deserialize(value,
@@ -148,7 +158,9 @@ class _$Photographer extends Photographer {
   @override
   final String picture;
   @override
-  final BuiltList<Photo> photos;
+  final BuiltList<String> photos;
+  @override
+  final String category;
   @override
   final double rating;
   @override
@@ -166,6 +178,7 @@ class _$Photographer extends Photographer {
       this.inn,
       this.picture,
       this.photos,
+      this.category,
       this.rating,
       this.chips,
       this.liveLocation})
@@ -188,6 +201,7 @@ class _$Photographer extends Photographer {
         inn == other.inn &&
         picture == other.picture &&
         photos == other.photos &&
+        category == other.category &&
         rating == other.rating &&
         chips == other.chips &&
         liveLocation == other.liveLocation;
@@ -201,11 +215,13 @@ class _$Photographer extends Photographer {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, id.hashCode), userId.hashCode),
-                                name.hashCode),
-                            inn.hashCode),
-                        picture.hashCode),
-                    photos.hashCode),
+                            $jc(
+                                $jc($jc($jc(0, id.hashCode), userId.hashCode),
+                                    name.hashCode),
+                                inn.hashCode),
+                            picture.hashCode),
+                        photos.hashCode),
+                    category.hashCode),
                 rating.hashCode),
             chips.hashCode),
         liveLocation.hashCode));
@@ -220,6 +236,7 @@ class _$Photographer extends Photographer {
           ..add('inn', inn)
           ..add('picture', picture)
           ..add('photos', photos)
+          ..add('category', category)
           ..add('rating', rating)
           ..add('chips', chips)
           ..add('liveLocation', liveLocation))
@@ -251,9 +268,14 @@ class PhotographerBuilder
   String get picture => _$this._picture;
   set picture(String picture) => _$this._picture = picture;
 
-  ListBuilder<Photo> _photos;
-  ListBuilder<Photo> get photos => _$this._photos ??= new ListBuilder<Photo>();
-  set photos(ListBuilder<Photo> photos) => _$this._photos = photos;
+  ListBuilder<String> _photos;
+  ListBuilder<String> get photos =>
+      _$this._photos ??= new ListBuilder<String>();
+  set photos(ListBuilder<String> photos) => _$this._photos = photos;
+
+  String _category;
+  String get category => _$this._category;
+  set category(String category) => _$this._category = category;
 
   double _rating;
   double get rating => _$this._rating;
@@ -277,6 +299,7 @@ class PhotographerBuilder
       _inn = _$v.inn;
       _picture = _$v.picture;
       _photos = _$v.photos?.toBuilder();
+      _category = _$v.category;
       _rating = _$v.rating;
       _chips = _$v.chips?.toBuilder();
       _liveLocation = _$v.liveLocation;
@@ -310,6 +333,7 @@ class PhotographerBuilder
               inn: inn,
               picture: picture,
               photos: _photos?.build(),
+              category: category,
               rating: rating,
               chips: _chips?.build(),
               liveLocation: liveLocation);

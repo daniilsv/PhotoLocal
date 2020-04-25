@@ -34,7 +34,7 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
       result
         ..add('ordering')
         ..add(serializers.serialize(object.title,
-            specifiedType: const FullType(int)));
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -60,7 +60,7 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
           break;
         case 'ordering':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -75,7 +75,7 @@ class _$Category extends Category {
   @override
   final String name;
   @override
-  final int title;
+  final String title;
 
   factory _$Category([void Function(CategoryBuilder) updates]) =>
       (new CategoryBuilder()..update(updates)).build();
@@ -124,9 +124,9 @@ class CategoryBuilder implements Builder<Category, CategoryBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  int _title;
-  int get title => _$this._title;
-  set title(int title) => _$this._title = title;
+  String _title;
+  String get title => _$this._title;
+  set title(String title) => _$this._title = title;
 
   CategoryBuilder();
 

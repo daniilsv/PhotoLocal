@@ -12,6 +12,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="PhotoLocal"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.mapbox.token" android:value="sk.eyJ1IjoicmVkbGlnaHRzIiwiYSI6ImNrN3o4NTk0NTAzMGMza3J1Y3lmZ2Q5MG8ifQ.iq7-I1DuoC9G8qWOA3SIpg" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -19,8 +19,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Wall.serializer)
       ..add(WallSettings.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Photo)]),
-          () => new ListBuilder<Photo>())
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

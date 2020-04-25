@@ -3,7 +3,6 @@ import 'package:photolocal/components/image.dart';
 import 'package:photolocal/global/utils.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/providers/chat.dart';
-import 'package:photolocal/screens/chats/providers/chats.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class ChatWidget extends StatelessWidget {
@@ -66,12 +65,12 @@ class ChatWidget extends StatelessWidget {
                       )
                     else
                       Text(
-                        "Подтверждена съёмка ${Utils.getDateTime(dateTime: order.time)}",
+                        "Подтверждена съёмка ${Utils.getDayMonthString(dateTime: order.time)}",
                         overflow: TextOverflow.ellipsis,
                         style: PLStyle.textMed.copyWith(color: PLColors.accent),
                       ),
                     Text(
-                      Utils.getDateTime(dateTime: time),
+                      Utils.getHourMinuteString(time),
                       style: PLStyle.textMed.copyWith(fontSize: 12),
                     ),
                   ],

@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         applicationId "ru.photolocal.app"
-        minSdkVersion 16
+        minSdkVersion 20
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

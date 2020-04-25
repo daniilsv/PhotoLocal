@@ -18,7 +18,7 @@ abstract class Category implements Built<Category, CategoryBuilder> {
 
   @nullable
   @BuiltValueField(wireName: 'ordering')
-  int get title;
+  String get title;
 
   static Serializer<Category> get serializer => _$categorySerializer;
 }

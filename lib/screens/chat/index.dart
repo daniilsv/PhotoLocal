@@ -56,26 +56,21 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: ListView.builder(
                       controller: provider.scrollController,
                       reverse: true,
-                      itemCount:
-                          10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
                             SelfMessage("Йоу"),
-                            SelfMessage(
-                                "Привет!\nМожно завтра пофотографироваться?"),
+                            SelfMessage("Привет!\nМожно завтра пофотографироваться?"),
                             UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
                             SelfMessage("Да изи, бабки не проблема"),
                             UserContract(photographer),
                           ],
                         );
-                        if (provider.isLoading &&
-                            index == provider.messages.length)
-                          return PLLoading();
+                        if (provider.isLoading && index == provider.messages.length) return PLLoading();
                         Message msg = provider.messages[index];
-                        if (msg.isMyMessage == true)
-                          return SelfMessage(msg.message);
+                        if (msg.isMyMessage == true) return SelfMessage(msg.message);
                         return UserMessage(msg.message);
                       },
                     ),

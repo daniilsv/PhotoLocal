@@ -32,7 +32,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   children: <Widget>[
                     Positioned.fill(
                       child: PLImage(
-                        photographer.photos.first.url,
+                        photographer.photos.first,
                         borderRadius: PLBorders.all12,
                       ),
                     ),
@@ -129,7 +129,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   itemCount: 9,
                   itemBuilder: (context, index) {
                     Widget image = PLImage(
-                      photographer.photos[index].url,
+                      photographer.photos[index],
                     );
                     if (index == 8 && photographer.photos.length > 9)
                       image = Stack(

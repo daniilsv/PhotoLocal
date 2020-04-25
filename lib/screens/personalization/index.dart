@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/personalization/pages/categories.dart';
+import 'package:photolocal/screens/photographer/index.dart';
 
 import '../../theme/theme.dart';
 import 'pages/name.dart';
@@ -63,6 +66,11 @@ class _PersonalizationScreenState extends State<PersonalizationScreen> {
                       GestureDetector(
                         onTap: () {
                           FocusScope.of(context).unfocus();
+                          if (page == 3) {
+                            Navigator.of(context).pushReplacement(
+                              CupertinoPageRoute(builder: (_) => PhotographerScreen(Photographer())),
+                            );
+                          }
                           if (page == 0) submited = false;
                           setState(() {});
                           pageController.nextPage(
