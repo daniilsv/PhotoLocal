@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:photolocal/components/loading.dart';
 import 'package:photolocal/global/utils.dart';
 import 'package:photolocal/mock/photographers.dart';
+import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';
 import 'package:photolocal/screens/chat/widgets/input.dart';
@@ -16,13 +17,17 @@ import 'widgets/user_contract.dart';
 import 'widgets/user_message.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen();
-
+  ChatScreen({
+    this.photographer,
+  });
+  final Photographer photographer;
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  Photographer get photographer => widget.photographer;
+
   void startPooling(ChatProvider provider) async {
     //   while (mounted) {
     //     provider.loadNext();
@@ -40,7 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Scaffold(
           resizeToAvoidBottomPadding: true,
           backgroundColor: PLColors.bg,
-          appBar: ChatAppBar(photographers[1]),
+          appBar: ChatAppBar(photographer: photographer),
           body: SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -62,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
                             SelfMessage("Да изи, бабки не проблема"),
-                            UserContract(photographers[1]),
+                            UserContract(photographer),
                           ],
                         );
                         if (provider.isLoading &&
