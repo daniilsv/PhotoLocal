@@ -56,7 +56,7 @@ class InitProvider with ChangeNotifier {
         home = WallCreateScreen();
         break;
       case InitState.inited:
-        home = MainScreen();
+        home = WallScreen();
         break;
     }
     home = MapScreen();
