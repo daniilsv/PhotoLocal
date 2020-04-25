@@ -29,7 +29,7 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
       result
         ..add('live_location')
         ..add(serializers.serialize(object.liveLocation,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(LatLng)));
     }
     if (object.name != null) {
       result
@@ -81,7 +81,7 @@ class _$PhotographerSerializer implements StructuredSerializer<Photographer> {
           break;
         case 'live_location':
           result.liveLocation = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(LatLng)) as LatLng;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
@@ -114,7 +114,7 @@ class _$Photographer extends Photographer {
   @override
   final int id;
   @override
-  final String liveLocation;
+  final LatLng liveLocation;
   @override
   final String name;
   @override
@@ -195,9 +195,9 @@ class PhotographerBuilder
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
-  String _liveLocation;
-  String get liveLocation => _$this._liveLocation;
-  set liveLocation(String liveLocation) => _$this._liveLocation = liveLocation;
+  LatLng _liveLocation;
+  LatLng get liveLocation => _$this._liveLocation;
+  set liveLocation(LatLng liveLocation) => _$this._liveLocation = liveLocation;
 
   String _name;
   String get name => _$this._name;

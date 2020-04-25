@@ -1,6 +1,6 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 
 part 'photographer.g.dart';
 
@@ -16,7 +16,7 @@ abstract class Photographer
 
   @nullable
   @BuiltValueField(wireName: 'live_location')
-  String get liveLocation;
+  LatLng get liveLocation;
 
   @nullable
   @BuiltValueField(wireName: 'name')

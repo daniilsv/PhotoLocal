@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of category;
+part of 'category.dart';
 
 // **************************************************************************
 // BuiltValueGenerator

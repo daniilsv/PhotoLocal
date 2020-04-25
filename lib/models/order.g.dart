@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of order;
+part of 'order.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -70,7 +70,7 @@ class _$OrderSerializer implements StructuredSerializer<Order> {
       result
         ..add('time')
         ..add(serializers.serialize(object.time,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(DateTime)));
     }
     if (object.categoryId != null) {
       result
@@ -144,7 +144,7 @@ class _$OrderSerializer implements StructuredSerializer<Order> {
           break;
         case 'time':
           result.time = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(DateTime)) as DateTime;
           break;
         case 'category_id':
           result.categoryId = serializers.deserialize(value,
@@ -187,7 +187,7 @@ class _$Order extends Order {
   @override
   final String settings;
   @override
-  final String time;
+  final DateTime time;
   @override
   final int categoryId;
   @override
@@ -325,9 +325,9 @@ class OrderBuilder implements Builder<Order, OrderBuilder> {
   String get settings => _$this._settings;
   set settings(String settings) => _$this._settings = settings;
 
-  String _time;
-  String get time => _$this._time;
-  set time(String time) => _$this._time = time;
+  DateTime _time;
+  DateTime get time => _$this._time;
+  set time(DateTime time) => _$this._time = time;
 
   int _categoryId;
   int get categoryId => _$this._categoryId;

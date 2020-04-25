@@ -15,6 +15,10 @@ abstract class ChatItem implements Built<ChatItem, ChatItemBuilder> {
   Chat get chat;
 
   @nullable
+  @BuiltValueField(wireName: 'photographer')
+  Photographer get photographer;
+
+  @nullable
   @BuiltValueField(wireName: 'lastMessage')
   Message get lastMessage;
 

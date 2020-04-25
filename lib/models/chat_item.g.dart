@@ -24,6 +24,12 @@ class _$ChatItemSerializer implements StructuredSerializer<ChatItem> {
         ..add(serializers.serialize(object.chat,
             specifiedType: const FullType(Chat)));
     }
+    if (object.photographer != null) {
+      result
+        ..add('photographer')
+        ..add(serializers.serialize(object.photographer,
+            specifiedType: const FullType(Photographer)));
+    }
     if (object.lastMessage != null) {
       result
         ..add('lastMessage')
@@ -48,6 +54,10 @@ class _$ChatItemSerializer implements StructuredSerializer<ChatItem> {
           result.chat.replace(serializers.deserialize(value,
               specifiedType: const FullType(Chat)) as Chat);
           break;
+        case 'photographer':
+          result.photographer.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Photographer)) as Photographer);
+          break;
         case 'lastMessage':
           result.lastMessage.replace(serializers.deserialize(value,
               specifiedType: const FullType(Message)) as Message);
@@ -63,12 +73,14 @@ class _$ChatItem extends ChatItem {
   @override
   final Chat chat;
   @override
+  final Photographer photographer;
+  @override
   final Message lastMessage;
 
   factory _$ChatItem([void Function(ChatItemBuilder) updates]) =>
       (new ChatItemBuilder()..update(updates)).build();
 
-  _$ChatItem._({this.chat, this.lastMessage}) : super._();
+  _$ChatItem._({this.chat, this.photographer, this.lastMessage}) : super._();
 
   @override
   ChatItem rebuild(void Function(ChatItemBuilder) updates) =>
@@ -82,18 +94,21 @@ class _$ChatItem extends ChatItem {
     if (identical(other, this)) return true;
     return other is ChatItem &&
         chat == other.chat &&
+        photographer == other.photographer &&
         lastMessage == other.lastMessage;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, chat.hashCode), lastMessage.hashCode));
+    return $jf($jc($jc($jc(0, chat.hashCode), photographer.hashCode),
+        lastMessage.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ChatItem')
           ..add('chat', chat)
+          ..add('photographer', photographer)
           ..add('lastMessage', lastMessage))
         .toString();
   }
@@ -106,6 +121,12 @@ class ChatItemBuilder implements Builder<ChatItem, ChatItemBuilder> {
   ChatBuilder get chat => _$this._chat ??= new ChatBuilder();
   set chat(ChatBuilder chat) => _$this._chat = chat;
 
+  PhotographerBuilder _photographer;
+  PhotographerBuilder get photographer =>
+      _$this._photographer ??= new PhotographerBuilder();
+  set photographer(PhotographerBuilder photographer) =>
+      _$this._photographer = photographer;
+
   MessageBuilder _lastMessage;
   MessageBuilder get lastMessage =>
       _$this._lastMessage ??= new MessageBuilder();
@@ -117,6 +138,7 @@ class ChatItemBuilder implements Builder<ChatItem, ChatItemBuilder> {
   ChatItemBuilder get _$this {
     if (_$v != null) {
       _chat = _$v.chat?.toBuilder();
+      _photographer = _$v.photographer?.toBuilder();
       _lastMessage = _$v.lastMessage?.toBuilder();
       _$v = null;
     }
@@ -142,12 +164,16 @@ class ChatItemBuilder implements Builder<ChatItem, ChatItemBuilder> {
     try {
       _$result = _$v ??
           new _$ChatItem._(
-              chat: _chat?.build(), lastMessage: _lastMessage?.build());
+              chat: _chat?.build(),
+              photographer: _photographer?.build(),
+              lastMessage: _lastMessage?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'chat';
         _chat?.build();
+        _$failedField = 'photographer';
+        _photographer?.build();
         _$failedField = 'lastMessage';
         _lastMessage?.build();
       } catch (e) {
