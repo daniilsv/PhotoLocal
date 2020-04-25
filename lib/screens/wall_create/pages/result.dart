@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:photolocal/screens/personalization/widgets/photograph_tile.dart';
-
-import '../../../theme/theme.dart';
+import 'package:photolocal/theme/theme.dart';
+import '../widgets/photograph_tile.dart';
 
 class ResultPage extends StatefulWidget {
   ResultPage({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:photolocal/components/image.dart';
-import 'package:photolocal/screens/personalization/providers/tinder.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'tinder_card.dart';
+import '../providers/tinder.dart';
 
 class TinderWidget extends StatelessWidget {
   const TinderWidget({Key key}) : super(key: key);

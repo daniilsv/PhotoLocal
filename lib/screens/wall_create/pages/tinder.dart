@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:photolocal/screens/personalization/widgets/tinder_card.dart';
-import 'package:photolocal/screens/personalization/widgets/tinder_widget.dart';
-
-import '../../../theme/theme.dart';
+import 'package:photolocal/theme/theme.dart';
+import '../widgets/tinder_card.dart';
+import '../widgets/tinder_widget.dart';
 
 class TinderPage extends StatefulWidget {
   TinderPage({

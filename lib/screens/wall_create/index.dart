@@ -1,22 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/models/models.dart';
-import 'package:photolocal/screens/personalization/pages/categories.dart';
 import 'package:photolocal/screens/photographer/index.dart';
 
 import '../../theme/theme.dart';
 import 'pages/name.dart';
 import 'pages/result.dart';
 import 'pages/tinder.dart';
+import 'pages/categories.dart';
 
-class PersonalizationScreen extends StatefulWidget {
-  PersonalizationScreen({Key key}) : super(key: key);
+class WallCreateScreen extends StatefulWidget {
+  WallCreateScreen({Key key}) : super(key: key);
 
   @override
-  _PersonalizationScreenState createState() => _PersonalizationScreenState();
+  _WallCreateScreenState createState() => _WallCreateScreenState();
 }
 
-class _PersonalizationScreenState extends State<PersonalizationScreen> {
+class _WallCreateScreenState extends State<WallCreateScreen> {
   PageController pageController = PageController(initialPage: 0);
   int page = 0;
   bool submited = false;
