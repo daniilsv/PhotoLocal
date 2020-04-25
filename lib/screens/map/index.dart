@@ -40,7 +40,8 @@ class _MapScreenState extends State<MapScreen> with AutomaticKeepAliveClientMixi
   Widget build(BuildContext context) {
     super.build(context);
     var provider = Provider.of<LocationProvider>(context);
-    return Container(
+    return Scaffold(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -62,7 +63,9 @@ class _MapScreenState extends State<MapScreen> with AutomaticKeepAliveClientMixi
                 ),
               ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 
   @override

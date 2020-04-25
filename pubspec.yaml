@@ -36,7 +36,6 @@ dependencies:
   cupertino_back_gesture:
   eva_icons_flutter:
   page_transition:
-  google_fonts:
   line_icons:
   flutter_staggered_animations:
   mapbox_gl:
