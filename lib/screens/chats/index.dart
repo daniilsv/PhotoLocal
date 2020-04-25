@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/index.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
@@ -23,6 +24,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
         top: true,
         child: Scaffold(
           appBar: ChatAppBar(),
+          bottomNavigationBar: NavigationBar(2),
           backgroundColor: PLColors.bg,
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 32),
