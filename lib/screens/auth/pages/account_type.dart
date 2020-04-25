@@ -49,7 +49,10 @@ class _AccountTypePageState extends State<AccountTypePage> {
                   ),
                   Text(
                     "Photo by Stepan Nesmiyan",
-                    style: PLStyle.secondary.copyWith(color: Color(0xFF818181)),
+                    style: PLStyle.secondary.copyWith(
+                      color: Color(0xFF818181),
+                      fontFamily: "NewYorkRegularItalic",
+                    ),
                   ),
                 ],
               ),

@@ -6,6 +6,7 @@ import 'package:photolocal/global/database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:photolocal/screens/auth/index.dart';
 import 'package:photolocal/screens/main/index.dart';
+import 'package:photolocal/screens/map/index.dart';
 import 'package:photolocal/screens/profile_choose/index.dart';
 import 'package:photolocal/screens/splash/index.dart';
 import 'package:photolocal/screens/wall_create/index.dart';
@@ -58,6 +59,7 @@ class InitProvider with ChangeNotifier {
         home = MainScreen();
         break;
     }
+    home = MapScreen();
     globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
     globalNavigatorKey.currentState.pushReplacement(
       CupertinoPageRoute(builder: (c) => home),

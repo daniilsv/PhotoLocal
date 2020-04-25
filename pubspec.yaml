@@ -71,11 +71,37 @@ flutter:
       fonts:
         - asset: assets/fonts/druk-reg.ttf
           weight: 400
+          
+    - family: NewYorkRegularItalic
+      fonts:
+        - asset: assets/fonts/ny-reg-it.otf
+          weight: 400
   assets:
     # Images
     - assets/images/logo.svg
     - assets/images/account_type.jpeg
     - assets/images/entry_chooser.jpeg
+
+    - assets/images/map/user1_chosen.png
+    - assets/images/map/user1.png
+    - assets/images/map/user2_chosen.png
+    - assets/images/map/user2.png
+    - assets/images/map/user3_chosen.png
+    - assets/images/map/user3.png
+    - assets/images/map/user4_chosen.png
+    - assets/images/map/user4.png
+    - assets/images/map/user5_chosen.png
+    - assets/images/map/user5.png
+    - assets/images/map/user6_chosen.png
+    - assets/images/map/user6.png
+    - assets/images/map/user7_chosen.png
+    - assets/images/map/user7.png
+    - assets/images/map/user8_chosen.png
+    - assets/images/map/user8.png
+    - assets/images/map/user9_chosen.png
+    - assets/images/map/user9.png
+    - assets/images/map/user10_chosen.png
+    - assets/images/map/user10.png
     # Icons
 
 flutter_icons:

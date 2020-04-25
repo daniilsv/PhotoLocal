@@ -16,7 +16,6 @@ class MapWidget extends StatefulWidget {
   final void Function() onMapTap;
   final void Function(LatLng coordinates) animateToPlace;
   final void Function(bool status) setMapLoading;
-  final void Function(BuildContext context) showBottomStopper;
 
   final String styleAsset;
   MapWidget({
@@ -30,7 +29,6 @@ class MapWidget extends StatefulWidget {
     this.centerZoom,
     this.animateToPlace,
     this.setMapLoading,
-    this.showBottomStopper,
   }) : super(key: key);
 
   @override
@@ -47,7 +45,6 @@ class MapWidgetState extends State<MapWidget> {
   Function get onMapTap => widget.onMapTap;
   Function get animateToPlace => widget.animateToPlace;
   Function get setMapLoading => widget.setMapLoading;
-  Function get showBottomStopper => widget.showBottomStopper;
 
   // Set<Marker> markers = Set();
 
@@ -83,38 +80,29 @@ class MapWidgetState extends State<MapWidget> {
         if (onMapCreate != null) onMapCreate(mapController);
       },
       onStyleLoadedCallback: () async {
-        for (Photographer photographer in provider.photographers) {
-          MarkerGenerator([Container()], (_bitmaps) {
-            for (int i = 0; i < _bitmaps.length - 1; i += 2) {
-              // placeBitmaps[MapPhotographerProvider. [(i / 2).floor()].id] =
-              //     BitmapDescriptor.fromBytes(_bitmaps[i]);
-              // choosedPlaceBitmaps[types[(i / 2).floor()].id] =
-              //     BitmapDescriptor.fromBytes(_bitmaps[i + 1]);
-            }
-            // selfBitmap = BitmapDescriptor.fromBytes(_bitmaps[_bitmaps.length - 1]);
-            // buildMarkers(provider.places, provider.placeToPreview);
-            // setState(() {});
-          }).generate(context);
+        // for (Photographer photographer in provider.photographers) {
+        for (int i = 0; i < 10; i++) {
           var _symbol = await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
-              //     ? PhotographLocation.Photograph != null ? 'assets/images/Photograph.png' : 'assets/images/house.png'
-              //     : PhotographLocation.Photograph != null
-              //         ? 'assets/images/Photograph_unactive.png'
-              //         : 'assets/images/house_unactive.png',
+              iconImage: i == 0 ? "assets/images/map/user${i + 1}_chosen.png" : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
-              geometry: photographer.liveLocation,
+              textField: "200 М",
+              textSize: 14,
+              textColor: i == 0 ? "#000000" : "#FFFFFF",
+              textOffset: Offset(0, 1.7),
+              // geometry: photographer.liveLocation,
+              geometry: LatLng(59.901835 + i / 100, 30.298906 + i / 100),
               onTap: (Symbol symbol) {
-                showBottomStopper(context);
-                provider.setSymbolAndPreview(symbol, photographer);
-                animateToPlace(photographer.liveLocation);
+                // provider.setSymbolAndPreview(symbol, photographer);
+                // animateToPlace(photographer.liveLocation);
               },
             ),
           );
-          if (provider.photographerToPreview == photographer)
-            WidgetsBinding.instance.addPostFrameCallback(
-              (timeStamp) => provider.setSymbolAndPreview(_symbol, photographer),
-            );
+          // if (provider.photographerToPreview == photographer)
+          //   WidgetsBinding.instance.addPostFrameCallback(
+          //     (timeStamp) => provider.setSymbolAndPreview(_symbol, photographer),
+          //   );
         }
         setMapLoading(false);
       },

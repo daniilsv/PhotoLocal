@@ -50,7 +50,10 @@ class _EntryChooserPageState extends State<EntryChooserPage> {
                   ),
                   Text(
                     "Photo by Andrei Morozov",
-                    style: PLStyle.secondary.copyWith(color: Color(0xFF818181)),
+                    style: PLStyle.secondary.copyWith(
+                      color: Color(0xFF818181),
+                      fontFamily: "NewYorkRegularItalic",
+                    ),
                   ),
                 ],
               ),
@@ -111,12 +114,7 @@ class _EntryChooserPageState extends State<EntryChooserPage> {
                 onTap: widget.next,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                    bottom: 15,
-                    top: 20,
-                  ),
+                  padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
@@ -125,7 +123,6 @@ class _EntryChooserPageState extends State<EntryChooserPage> {
                     ),
                   ),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         width: 30,

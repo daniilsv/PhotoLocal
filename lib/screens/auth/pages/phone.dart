@@ -169,7 +169,7 @@ class _PhonePageState extends State<PhonePage> {
                     size: 25.0,
                   ),
               ],
-            )
+            ),
         ],
       ),
     );
