@@ -67,12 +67,12 @@ class BottomSheetViewState extends State<BottomSheetView> with TickerProviderSta
             onTap: () {
               MapProvider().openCloseStopper();
             },
-            child: provider?.placeToPreview?.liveLocation == null
-                ? PhotographInfo(place: provider.placeToPreview)
-                : PhotographInfo(place: provider.placeToPreview),
+            child: provider?.photographerToPreview?.liveLocation == null
+                ? PhotographInfo(photographer: provider.photographerToPreview)
+                : PhotographInfo(photographer: provider.photographerToPreview),
           ),
           ExtendedPhotographInfo(
-            photographer: provider.placeToPreview,
+            photographer: provider.photographerToPreview,
             height: MediaQuery.of(context).size.height,
           )
         ],

@@ -14,6 +14,7 @@ import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 import 'global/i18n.dart';
 import 'providers/init.dart';
 import 'providers/location.dart';
+import 'providers/map_photographer.dart';
 import 'screens/splash/index.dart';
 
 final bool isInDebugMode = true;
@@ -86,6 +87,7 @@ startHome() {
             providers: [
               ChangeNotifierProvider(create: (_) => InitProvider()),
               ChangeNotifierProvider(create: (_) => LocationProvider()),
+              ChangeNotifierProvider(create: (_) => MapPhotographerProvider()),
             ],
             child: I18n(child: child),
           );

@@ -85,7 +85,7 @@ class MapWidgetState extends State<MapWidget> {
         for (Photographer photographer in provider.photographers) {
           var _symbol = await mapController.addSymbol(
             SymbolOptions(
-              // iconImage: provider.placeToPreview == PhotographLocation
+              // iconImage: provider.photographerToPreview == PhotographLocation
               //     ? PhotographLocation.Photograph != null ? 'assets/images/Photograph.png' : 'assets/images/house.png'
               //     : PhotographLocation.Photograph != null
               //         ? 'assets/images/Photograph_unactive.png'
@@ -99,7 +99,7 @@ class MapWidgetState extends State<MapWidget> {
               },
             ),
           );
-          if (provider.placeToPreview == photographer)
+          if (provider.photographerToPreview == photographer)
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
               provider.setSymbolAndPreview(_symbol, photographer);
             });

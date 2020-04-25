@@ -10,7 +10,7 @@ class MapPhotographerProvider with found.ChangeNotifier {
   MapPhotographerProvider._internal();
   factory MapPhotographerProvider() => _singleton;
 
-  Photographer placeToPreview;
+  Photographer photographerToPreview;
   Set<Photographer> photographers = Set();
   Symbol choosedSymbol;
 
@@ -25,7 +25,7 @@ class MapPhotographerProvider with found.ChangeNotifier {
   setSymbolAndPreview(Symbol symbol, Photographer photographer) async {
     if (choosedSymbol != null) await disactivateSymbol(choosedSymbol);
     choosedSymbol = symbol;
-    placeToPreview = photographer;
+    photographerToPreview = photographer;
     await activateSymbol(symbol);
     notifyListeners();
   }
@@ -49,7 +49,7 @@ class MapPhotographerProvider with found.ChangeNotifier {
   }
 
   void setPreviewMapPhotographer(Photographer photographer) {
-    this.placeToPreview = photographer;
+    this.photographerToPreview = photographer;
     notifyListeners();
   }
 }
