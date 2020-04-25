@@ -67,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         );
                         if (provider.isLoading && index == provider.messages.length) return PLLoading();
                         Message msg = provider.messages[index];
-                        if (msg.isMyMessage == true) return SelfMessage(msg.message);
+                        // if (msg.isMyMessage == true) return SelfMessage(msg.message);
                         return UserMessage(msg.message);
                       },
                     ),

@@ -6,14 +6,14 @@ import 'package:photolocal/theme/theme.dart';
 
 class PhotographerScreen extends StatefulWidget {
   PhotographerScreen(this.photographer);
-  final Photographer photographer;
+  final PhotographerItem photographer;
 
   @override
   _PhotographerScreenState createState() => _PhotographerScreenState();
 }
 
 class _PhotographerScreenState extends State<PhotographerScreen> {
-  Photographer get photographer => widget.photographer;
+  PhotographerItem get photographer => widget.photographer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   children: <Widget>[
                     Positioned.fill(
                       child: PLImage(
-                        photographer.photos.first,
+                        photographer.photos.first.url,
                         borderRadius: PLBorders.all12,
                       ),
                     ),
@@ -71,7 +71,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                               border: Border.all(color: PLColors.bg, width: 2),
                             ),
                             child: PLImage(
-                              photographer.picture,
+                              photographer.photographer.picture,
                               width: 80,
                               height: 80,
                               borderRadius: 12,
@@ -98,7 +98,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
               ),
               SizedBox(height: 50),
               Text(
-                photographer.name,
+                photographer.photographer.name,
                 textAlign: TextAlign.center,
                 style: PLStyle.subheader,
               ),
@@ -123,19 +123,25 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                 height: MediaQuery.of(context).size.width - 32,
                 child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3),
                   padding: EdgeInsets.zero,
                   itemCount: 9,
                   itemBuilder: (context, index) {
                     Widget image = PLImage(
-                      photographer.photos[index],
+                      photographer.photos[index].url,
                     );
                     if (index == 8 && photographer.photos.length > 9)
                       image = Stack(
                         children: [
                           image,
-                          Positioned.fill(child: Container(color: PLColors.bg.withOpacity(0.3))),
-                          Align(alignment: Alignment.center, child: Icon(Icons.add, color: PLColors.white, size: 42)),
+                          Positioned.fill(
+                              child: Container(
+                                  color: PLColors.bg.withOpacity(0.3))),
+                          Align(
+                              alignment: Alignment.center,
+                              child: Icon(Icons.add,
+                                  color: PLColors.white, size: 42)),
                         ],
                       );
                     image = GestureDetector(
@@ -186,7 +192,8 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
         topLeft: index <= 3 || index == 6 ? radius : Radius.zero,
         topRight: index <= 2 || index == 5 || index == 8 ? radius : Radius.zero,
         bottomRight: index >= 5 || index == 2 ? radius : Radius.zero,
-        bottomLeft: index >= 6 || index == 3 || index == 0 ? radius : Radius.zero,
+        bottomLeft:
+            index >= 6 || index == 3 || index == 0 ? radius : Radius.zero,
       ),
       child: child,
     );

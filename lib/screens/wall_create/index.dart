@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:photolocal/models/models.dart';
 import 'package:photolocal/providers/init.dart';
-import 'package:photolocal/screens/photographer/index.dart';
+import 'package:photolocal/theme/theme.dart';
 
-import '../../theme/theme.dart';
 import 'pages/name.dart';
 import 'pages/result.dart';
 import 'pages/tinder.dart';
