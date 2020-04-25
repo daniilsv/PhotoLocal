@@ -1,8 +1,8 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:photolocal/providers/location.dart';
 import 'package:photolocal/screens/map/widgets/badge.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:photolocal/theme/theme.dart';
 import './premission.i18n.dart';
 
 class PermissionScreen extends StatelessWidget {
@@ -15,8 +15,7 @@ class PermissionScreen extends StatelessWidget {
         children: <Widget>[
           Text(
             'Please allow access to the geolocation for the application to work'.i18n,
-            style: GoogleFonts.ubuntu(fontSize: 14),
-            textAlign: TextAlign.center,
+            style: PLStyle.text,
           ),
           SizedBox(
             height: 24,

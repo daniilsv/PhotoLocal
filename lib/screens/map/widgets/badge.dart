@@ -1,4 +1,3 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/theme/theme.dart';
 
@@ -66,9 +65,8 @@ class BadgeWidget extends StatelessWidget {
                 Text(
                   text,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.ubuntu(
-                    color: !choosed ? PLColors.text.withOpacity(.9) : PLColors.bg,
-                    fontSize: 12,
+                  style: PLStyle.subheader.copyWith(
+                    color: !choosed ? PLColors.text.withOpacity(.9) : PLColors.black,
                   ),
                 ),
               ],
