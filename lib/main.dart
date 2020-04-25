@@ -78,7 +78,7 @@ startHome() {
             return Container(
               color: Colors.black,
               child: Text(
-                "Error".i18n,
+                "Unexpected error. Please try later".i18n,
                 style: PLStyle.text,
               ),
             );
