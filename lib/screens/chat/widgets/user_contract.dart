@@ -11,7 +11,6 @@ class UserContract extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 4),
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
-        color: PLColors.secondary2,
         borderRadius: PLBorders.all16,
         border: Border.all(color: PLColors.accent, width: 0.5),
       ),
