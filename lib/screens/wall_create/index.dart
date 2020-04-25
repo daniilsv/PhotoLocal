@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/models/models.dart';
+import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/screens/photographer/index.dart';
 
 import '../../theme/theme.dart';
@@ -67,9 +68,7 @@ class _WallCreateScreenState extends State<WallCreateScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           if (page == 3) {
-                            Navigator.of(context).pushReplacement(
-                              CupertinoPageRoute(builder: (_) => PhotographerScreen(Photographer())),
-                            );
+                            InitProvider().setState(InitState.inited);
                           }
                           if (page == 0) submited = false;
                           setState(() {});
@@ -81,7 +80,9 @@ class _WallCreateScreenState extends State<WallCreateScreen> {
                         child: Opacity(
                           opacity: submited ? 1.0 : 0.4,
                           child: Text(
-                            (page ?? 0) < 2 ? "Далее" : (page == 2 ? "Результаты" : "Готово"),
+                            (page ?? 0) < 2
+                                ? "Далее"
+                                : (page == 2 ? "Результаты" : "Готово"),
                             style: PLStyle.subheader,
                           ),
                         ),
