@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/global/marker_generator.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/providers/map_photographer.dart';
 import 'package:provider/provider.dart';
@@ -83,6 +84,17 @@ class MapWidgetState extends State<MapWidget> {
       },
       onStyleLoadedCallback: () async {
         for (Photographer photographer in provider.photographers) {
+          MarkerGenerator([Container()], (_bitmaps) {
+            for (int i = 0; i < _bitmaps.length - 1; i += 2) {
+              // placeBitmaps[MapPhotographerProvider. [(i / 2).floor()].id] =
+              //     BitmapDescriptor.fromBytes(_bitmaps[i]);
+              // choosedPlaceBitmaps[types[(i / 2).floor()].id] =
+              //     BitmapDescriptor.fromBytes(_bitmaps[i + 1]);
+            }
+            // selfBitmap = BitmapDescriptor.fromBytes(_bitmaps[_bitmaps.length - 1]);
+            // buildMarkers(provider.places, provider.placeToPreview);
+            // setState(() {});
+          }).generate(context);
           var _symbol = await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
@@ -100,14 +112,14 @@ class MapWidgetState extends State<MapWidget> {
             ),
           );
           if (provider.photographerToPreview == photographer)
-            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              provider.setSymbolAndPreview(_symbol, photographer);
-            });
+            WidgetsBinding.instance.addPostFrameCallback(
+              (timeStamp) => provider.setSymbolAndPreview(_symbol, photographer),
+            );
         }
         setMapLoading(false);
       },
       compassEnabled: false,
-      myLocationEnabled: true,
+      myLocationEnabled: false,
       rotateGesturesEnabled: false,
       tiltGesturesEnabled: false,
     );

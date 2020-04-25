@@ -6,45 +6,27 @@ class BadgeWidget extends StatelessWidget {
     Key key,
     @required this.onTap,
     this.text,
-    this.icon,
-    this.image,
-    this.imageSize,
     this.choosed = false,
+    this.icon,
   }) : super(key: key);
 
   final String text;
-  final IconData icon;
-  final Image image;
-  final double imageSize;
   final Function onTap;
   final bool choosed;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
       decoration: BoxDecoration(
-        boxShadow: [
-          if (choosed)
-            BoxShadow(
-              blurRadius: 4,
-              color: PLColors.primary.withOpacity(0.2),
-              offset: Offset(0, 2),
-            )
-        ],
-        borderRadius: BorderRadius.circular(45),
+        borderRadius: BorderRadius.circular(24),
       ),
       child: GestureDetector(
         onTap: onTap,
         child: Chip(
-          shape: StadiumBorder(
-            side: BorderSide(
-              color: choosed ? PLColors.accent : PLColors.text.withOpacity(0.1),
-              width: .5,
-            ),
-          ),
-          backgroundColor: choosed ? PLColors.accent : PLColors.bg,
-          padding: EdgeInsets.only(right: text != null ? 3 : 0, top: 7, bottom: 7),
+          backgroundColor: choosed ? PLColors.white : PLColors.secondary2,
+          padding: EdgeInsets.only(right: text != null ? 8 : 0, top: 7, bottom: 7),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -54,14 +36,8 @@ class BadgeWidget extends StatelessWidget {
                   color: !choosed ? PLColors.accent : PLColors.bg,
                   size: 18,
                 ),
-              if (image != null)
-                Container(
-                  width: imageSize,
-                  height: imageSize,
-                  child: image,
-                ),
               if (text != null) ...[
-                SizedBox(width: 7),
+                SizedBox(width: 8),
                 Text(
                   text,
                   textAlign: TextAlign.center,
