@@ -9,21 +9,26 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Category.serializer)
       ..add(Chat.serializer)
+      ..add(ChatItem.serializer)
       ..add(Favorite.serializer)
       ..add(Location.serializer)
+      ..add(Message.serializer)
       ..add(Order.serializer)
       ..add(Photo.serializer)
       ..add(Photographer.serializer)
+      ..add(PhotographerItem.serializer)
+      ..add(Session.serializer)
       ..add(TinderImage.serializer)
       ..add(User.serializer)
       ..add(Wall.serializer)
+      ..add(WallItem.serializer)
       ..add(WallSettings.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
+          const FullType(BuiltList, const [const FullType(Photo)]),
+          () => new ListBuilder<Photo>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
+          const FullType(BuiltList, const [const FullType(Photo)]),
+          () => new ListBuilder<Photo>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>()))

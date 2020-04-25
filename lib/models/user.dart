@@ -13,16 +13,16 @@ abstract class User implements Built<User, UserBuilder> {
   int get id;
 
   @nullable
-  @BuiltValueField(wireName: 'facebookId')
+  @BuiltValueField(wireName: 'facebook_id')
   String get facebookId;
 
   @nullable
   @BuiltValueField(wireName: 'name')
-  int get name;
+  String get name;
 
   @nullable
   @BuiltValueField(wireName: 'phone')
-  int get phone;
+  String get phone;
 
   static Serializer<User> get serializer => _$userSerializer;
 }

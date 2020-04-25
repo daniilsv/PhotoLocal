@@ -26,7 +26,7 @@ class _$UserSerializer implements StructuredSerializer<User> {
     }
     if (object.facebookId != null) {
       result
-        ..add('facebookId')
+        ..add('facebook_id')
         ..add(serializers.serialize(object.facebookId,
             specifiedType: const FullType(String)));
     }
@@ -34,13 +34,13 @@ class _$UserSerializer implements StructuredSerializer<User> {
       result
         ..add('name')
         ..add(serializers.serialize(object.name,
-            specifiedType: const FullType(int)));
+            specifiedType: const FullType(String)));
     }
     if (object.phone != null) {
       result
         ..add('phone')
         ..add(serializers.serialize(object.phone,
-            specifiedType: const FullType(int)));
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -60,17 +60,17 @@ class _$UserSerializer implements StructuredSerializer<User> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'facebookId':
+        case 'facebook_id':
           result.facebookId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(String)) as String;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -85,9 +85,9 @@ class _$User extends User {
   @override
   final String facebookId;
   @override
-  final int name;
+  final String name;
   @override
-  final int phone;
+  final String phone;
 
   factory _$User([void Function(UserBuilder) updates]) =>
       (new UserBuilder()..update(updates)).build();
@@ -140,13 +140,13 @@ class UserBuilder implements Builder<User, UserBuilder> {
   String get facebookId => _$this._facebookId;
   set facebookId(String facebookId) => _$this._facebookId = facebookId;
 
-  int _name;
-  int get name => _$this._name;
-  set name(int name) => _$this._name = name;
+  String _name;
+  String get name => _$this._name;
+  set name(String name) => _$this._name = name;
 
-  int _phone;
-  int get phone => _$this._phone;
-  set phone(int phone) => _$this._phone = phone;
+  String _phone;
+  String get phone => _$this._phone;
+  set phone(String phone) => _$this._phone = phone;
 
   UserBuilder();
 

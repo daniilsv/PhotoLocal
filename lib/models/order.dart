@@ -1,6 +1,5 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
 
 part 'order.g.dart';
 
@@ -14,28 +13,8 @@ abstract class Order implements Built<Order, OrderBuilder> {
   int get id;
 
   @nullable
-  @BuiltValueField(wireName: 'parentOrderId')
-  int get parentOrderId;
-
-  @nullable
-  @BuiltValueField(wireName: 'photographerId')
-  int get photographerId;
-
-  @nullable
-  @BuiltValueField(wireName: 'userId')
-  int get userId;
-
-  @nullable
-  @BuiltValueField(wireName: 'categoryId')
-  int get categoryId;
-
-  @nullable
-  @BuiltValueField(wireName: 'time')
-  DateTime get time;
-
-  @nullable
-  @BuiltValueField(wireName: 'location')
-  LatLng get location;
+  @BuiltValueField(wireName: 'accepted_at')
+  String get acceptedAt;
 
   @nullable
   @BuiltValueField(wireName: 'address')
@@ -43,23 +22,43 @@ abstract class Order implements Built<Order, OrderBuilder> {
 
   @nullable
   @BuiltValueField(wireName: 'amount')
-  double get amount;
+  int get amount;
 
   @nullable
-  @BuiltValueField(wireName: 'settings')
-  Object get settings;
-
-  @nullable
-  @BuiltValueField(wireName: 'rights')
-  Object get rights;
-
-  @nullable
-  @BuiltValueField(wireName: 'acceptedAt')
-  DateTime get acceptedAt;
+  @BuiltValueField(wireName: 'location')
+  String get location;
 
   @nullable
   @BuiltValueField(wireName: 'message')
   String get message;
+
+  @nullable
+  @BuiltValueField(wireName: 'rights')
+  String get rights;
+
+  @nullable
+  @BuiltValueField(wireName: 'settings')
+  String get settings;
+
+  @nullable
+  @BuiltValueField(wireName: 'time')
+  DateTime get time;
+
+  @nullable
+  @BuiltValueField(wireName: 'category_id')
+  int get categoryId;
+
+  @nullable
+  @BuiltValueField(wireName: 'order_id')
+  int get orderId;
+
+  @nullable
+  @BuiltValueField(wireName: 'photographer_id')
+  int get photographerId;
+
+  @nullable
+  @BuiltValueField(wireName: 'user_id')
+  int get userId;
 
   static Serializer<Order> get serializer => _$orderSerializer;
 }

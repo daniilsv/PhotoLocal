@@ -4,7 +4,6 @@ part of './theme.dart';
 /// This file contains all colors, provided in app
 ///
 /// {@category Resources}
-//TODO: place here colors
 class PLColors {
   /// #FF2854 primary text
   static const primary = Color(0xFFFF2854);

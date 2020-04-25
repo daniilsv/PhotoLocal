@@ -24,14 +24,19 @@ part 'serializers.g.dart';
 /// {@category Network}
 @SerializersFor(const [
   Category,
+  ChatItem,
   Chat,
   Favorite,
   Location,
   Order,
   Photo,
+  PhotographerItem,
   Photographer,
+  Session,
+  Message,
   TinderImage,
   User,
+  WallItem,
   WallSettings,
   Wall,
 ])

@@ -1,9 +1,5 @@
 import 'package:flutter/widgets.dart';
-
-class Message {
-  String message;
-  bool isMyMessage = false;
-}
+import 'package:photolocal/models/models.dart';
 
 class ChatProvider extends ChangeNotifier {
   // this.reportProvider
@@ -21,7 +17,8 @@ class ChatProvider extends ChangeNotifier {
 
   Message editingMessage;
 
-  ScrollController scrollController = ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
+  ScrollController scrollController =
+      ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
 
   loadLast() async {
     // messages = await ChatApi.getMessages(
@@ -61,7 +58,8 @@ class ChatProvider extends ChangeNotifier {
   }
 
   _scrollListener() {
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
       loadPrevious();
     }
   }

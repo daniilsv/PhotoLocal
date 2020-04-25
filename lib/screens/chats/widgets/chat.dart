@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:photolocal/components/image.dart';
 import 'package:photolocal/global/utils.dart';
 import 'package:photolocal/models/models.dart';
-import 'package:photolocal/screens/chat/providers/chat.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class ChatWidget extends StatelessWidget {
