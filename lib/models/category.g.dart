@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category.dart';
+part of category;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -30,11 +30,11 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
         ..add(serializers.serialize(object.name,
             specifiedType: const FullType(String)));
     }
-    if (object.title != null) {
+    if (object.ordering != null) {
       result
         ..add('ordering')
-        ..add(serializers.serialize(object.title,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(object.ordering,
+            specifiedType: const FullType(int)));
     }
     return result;
   }
@@ -59,8 +59,8 @@ class _$CategorySerializer implements StructuredSerializer<Category> {
               specifiedType: const FullType(String)) as String;
           break;
         case 'ordering':
-          result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.ordering = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
       }
     }
@@ -75,12 +75,12 @@ class _$Category extends Category {
   @override
   final String name;
   @override
-  final String title;
+  final int ordering;
 
   factory _$Category([void Function(CategoryBuilder) updates]) =>
       (new CategoryBuilder()..update(updates)).build();
 
-  _$Category._({this.id, this.name, this.title}) : super._();
+  _$Category._({this.id, this.name, this.ordering}) : super._();
 
   @override
   Category rebuild(void Function(CategoryBuilder) updates) =>
@@ -95,12 +95,12 @@ class _$Category extends Category {
     return other is Category &&
         id == other.id &&
         name == other.name &&
-        title == other.title;
+        ordering == other.ordering;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), title.hashCode));
+    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), ordering.hashCode));
   }
 
   @override
@@ -108,7 +108,7 @@ class _$Category extends Category {
     return (newBuiltValueToStringHelper('Category')
           ..add('id', id)
           ..add('name', name)
-          ..add('title', title))
+          ..add('ordering', ordering))
         .toString();
   }
 }
@@ -124,9 +124,9 @@ class CategoryBuilder implements Builder<Category, CategoryBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  int _ordering;
+  int get ordering => _$this._ordering;
+  set ordering(int ordering) => _$this._ordering = ordering;
 
   CategoryBuilder();
 
@@ -134,7 +134,7 @@ class CategoryBuilder implements Builder<Category, CategoryBuilder> {
     if (_$v != null) {
       _id = _$v.id;
       _name = _$v.name;
-      _title = _$v.title;
+      _ordering = _$v.ordering;
       _$v = null;
     }
     return this;
@@ -155,7 +155,8 @@ class CategoryBuilder implements Builder<Category, CategoryBuilder> {
 
   @override
   _$Category build() {
-    final _$result = _$v ?? new _$Category._(id: id, name: name, title: title);
+    final _$result =
+        _$v ?? new _$Category._(id: id, name: name, ordering: ordering);
     replace(_$result);
     return _$result;
   }

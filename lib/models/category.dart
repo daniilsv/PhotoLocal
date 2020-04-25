@@ -1,3 +1,8 @@
+library category;
+
+import 'dart:convert';
+
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,7 +23,7 @@ abstract class Category implements Built<Category, CategoryBuilder> {
 
   @nullable
   @BuiltValueField(wireName: 'ordering')
-  String get title;
+  int get ordering;
 
   static Serializer<Category> get serializer => _$categorySerializer;
 }

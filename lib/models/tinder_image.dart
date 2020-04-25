@@ -18,7 +18,3 @@ abstract class TinderImage implements Built<TinderImage, TinderImageBuilder> {
 
   static Serializer<TinderImage> get serializer => _$tinderImageSerializer;
 }
-
-///
-///lovestory
-///
