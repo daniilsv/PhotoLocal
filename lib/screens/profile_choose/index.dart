@@ -1,12 +1,12 @@
 import 'package:photolocal/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class BoardingScreen extends StatefulWidget {
+class ProfileChooseScreen extends StatefulWidget {
   @override
-  _BoardingScreenState createState() => _BoardingScreenState();
+  _ProfileChooseScreenState createState() => _ProfileChooseScreenState();
 }
 
-class _BoardingScreenState extends State<BoardingScreen> {
+class _ProfileChooseScreenState extends State<ProfileChooseScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(

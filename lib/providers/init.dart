@@ -6,16 +6,18 @@ import 'package:photolocal/global/database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:photolocal/screens/main/index.dart';
 import 'package:photolocal/screens/map/index.dart';
+import 'package:photolocal/screens/profile_choose/index.dart';
 import 'package:photolocal/screens/splash/index.dart';
+import 'package:photolocal/screens/wall_create/index.dart';
 import 'package:sembast/sembast.dart';
 
-enum InitState { loading, boarding, inited }
+enum InitState { splash, auth, profileChoose, wallCreate, inited }
 
 class InitProvider with ChangeNotifier {
   static final InitProvider _singleton = InitProvider._internal();
   factory InitProvider() => _singleton;
   InitProvider._internal();
-  InitState state = InitState.loading;
+  InitState state = InitState.splash;
 
   init() async {
     await DataBase().open();
@@ -29,7 +31,7 @@ class InitProvider with ChangeNotifier {
     ]);
     if (serialized == null) {
       Api.init();
-      setState(InitState.boarding);
+      setState(InitState.auth);
     } else {
       Api.init(""); //TODO: pass here some token
       setState(InitState.inited);
@@ -40,16 +42,21 @@ class InitProvider with ChangeNotifier {
     state = _state;
     Widget home;
     switch (state) {
-      case InitState.boarding:
-        home = MapScreen();
+      case InitState.splash:
+        home = SplashScreen();
+        return;
+      case InitState.auth:
+        home = AuthScreen(); //TODO: make auth screen
+        break;
+      case InitState.profileChoose:
+        home = ProfileChooseScreen();
+        break;
+      case InitState.wallCreate:
+        home = WallCreateScreen();
         break;
       case InitState.inited:
         home = MainScreen();
         break;
-      case InitState.loading:
-      default:
-        home = SplashScreen();
-        return;
     }
     globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
     globalNavigatorKey.currentState.pushReplacement(
@@ -58,11 +65,14 @@ class InitProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void changeProfile() {
+    setState(InitState.profileChoose);
+  }
+
   void logout() {
     var store = stringMapStoreFactory.store("blocs");
     store.delete(DataBase.db);
     Api.init();
-    setState(InitState.boarding);
-    globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
+    setState(InitState.auth);
   }
 }
