@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:photolocal/components/loading.dart';
-import 'package:photolocal/global/utils.dart';
-import 'package:photolocal/mock/photographers.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';

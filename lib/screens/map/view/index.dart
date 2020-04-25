@@ -18,19 +18,9 @@ class _MapViewState extends State<MapView> {
   double get height => MediaQuery.of(context).size.height;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      provider.showBottomStopper(context);
-    });
-  }
-
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        return true;
-      },
+      onWillPop: () async => true,
       child: Stack(
         children: <Widget>[
           Positioned.fill(
@@ -41,7 +31,6 @@ class _MapViewState extends State<MapView> {
               onCameraMove: provider.onCameraMove,
               animateToPlace: provider.animateToPlace,
               setMapLoading: provider.setMapLoading,
-              showBottomStopper: provider.showBottomStopper,
             ),
           ),
           Positioned(

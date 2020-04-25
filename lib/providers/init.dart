@@ -4,11 +4,8 @@ import 'package:photolocal/main.dart';
 import 'package:photolocal/api/api.dart';
 import 'package:photolocal/global/database.dart';
 import 'package:flutter/foundation.dart';
-import 'package:photolocal/screens/boarding/index.dart';
-import 'package:photolocal/screens/chat/index.dart';
-import 'package:photolocal/screens/chats/index.dart';
 import 'package:photolocal/screens/main/index.dart';
-import 'package:photolocal/screens/personalization/index.dart';
+import 'package:photolocal/screens/map/index.dart';
 import 'package:photolocal/screens/splash/index.dart';
 import 'package:sembast/sembast.dart';
 
@@ -44,7 +41,7 @@ class InitProvider with ChangeNotifier {
     Widget home;
     switch (state) {
       case InitState.boarding:
-        home = ChatsScreen();
+        home = MapScreen();
         break;
       case InitState.inited:
         home = MainScreen();

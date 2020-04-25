@@ -3,8 +3,6 @@ library api;
 import 'dart:convert';
 
 import 'package:photolocal/main.dart';
-import 'package:photolocal/models/models.dart';
-import 'package:photolocal/models/serializers.dart';
 import 'package:dio/dio.dart';
 import 'package:photolocal/global/config.dart';
 import 'package:flutter/foundation.dart' as foundation;
@@ -38,9 +36,7 @@ class Api {
       receiveTimeout: 10000,
     );
     dio = Dio(options);
-    if (isInDebugMode)
-      dio.interceptors
-          .add(LogInterceptor(responseBody: true, responseHeader: false));
+    if (isInDebugMode) dio.interceptors.add(LogInterceptor(responseBody: true, responseHeader: false));
     dio.interceptors.add(
       InterceptorsWrapper(
         onError: (DioError error) {

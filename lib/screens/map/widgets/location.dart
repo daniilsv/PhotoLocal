@@ -1,4 +1,3 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/theme/theme.dart';
 
@@ -14,8 +13,11 @@ class LocationWidget extends StatelessWidget {
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: PLColors.accent,
-          border: Border.all(color: PLColors.text.withOpacity(0.1), width: .5),
+          color: PLColors.secondary2,
+          border: Border.all(
+            color: PLColors.text.withOpacity(0.1),
+            width: .5,
+          ),
           boxShadow: [
             BoxShadow(
               blurRadius: 5,
@@ -26,8 +28,8 @@ class LocationWidget extends StatelessWidget {
         ),
         child: Center(
           child: Icon(
-            EvaIcons.pinOutline,
-            color: PLColors.primary,
+            Icons.navigation,
+            color: PLColors.white,
           ),
         ),
       ),
