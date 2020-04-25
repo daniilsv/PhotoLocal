@@ -39,8 +39,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                   padding: const EdgeInsets.all(8.0),
                   alignment: Alignment.center,
-                  child: PLImage(photographer.profilePic,
-                      width: 24, height: 24, borderRadius: 12)),
+                  child: PLImage(photographer.picture, width: 24, height: 24, borderRadius: 12)),
               onTap: () {
                 ///
               },

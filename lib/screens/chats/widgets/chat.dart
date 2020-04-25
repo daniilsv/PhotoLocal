@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photolocal/components/image.dart';
 import 'package:photolocal/global/utils.dart';
-import 'package:photolocal/mock/photographers.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/providers/chat.dart';
 import 'package:photolocal/screens/chats/providers/chats.dart';
@@ -26,7 +25,7 @@ class ChatWidget extends StatelessWidget {
       child: Row(
         children: [
           PLImage(
-            photographer.profilePic,
+            photographer.picture,
             width: 56,
             height: 56,
             borderRadius: 12,
@@ -43,8 +42,7 @@ class ChatWidget extends StatelessWidget {
                   children: [
                     Text(
                       photographer.name,
-                      style:
-                          PLStyle.button.copyWith(fontWeight: FontWeight.w700),
+                      style: PLStyle.button.copyWith(fontWeight: FontWeight.w700),
                       overflow: TextOverflow.ellipsis,
                     ),
                     if (order != null) ...[
@@ -70,7 +68,7 @@ class ChatWidget extends StatelessWidget {
                       Text(
                         "Подтверждена съёмка ${Utils.getDateTime(dateTime: order.time)}",
                         overflow: TextOverflow.ellipsis,
-                        style: PLStyle.textMed.copyWith(color:PLColors.accent),
+                        style: PLStyle.textMed.copyWith(color: PLColors.accent),
                       ),
                     Text(
                       Utils.getDateTime(dateTime: time),
