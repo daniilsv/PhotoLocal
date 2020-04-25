@@ -52,6 +52,7 @@ class ChatWidget extends StatelessWidget {
                       Icon(
                         Icons.calendar_today,
                         color: PLColors.accent,
+                        size: 16,
                       ),
                     ],
                   ],
