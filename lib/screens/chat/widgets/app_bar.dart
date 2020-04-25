@@ -4,7 +4,9 @@ import 'package:photolocal/models/photographer.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
-  ChatAppBar(this.photographer);
+  ChatAppBar({
+    this.photographer,
+  });
   final Photographer photographer;
   @override
   Widget build(BuildContext context) {
@@ -49,5 +51,5 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => Size.fromHeight(52);
 }
