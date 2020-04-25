@@ -38,6 +38,7 @@ dependencies:
   page_transition:
   line_icons:
   flutter_staggered_animations:
+  google_fonts:
   mapbox_gl:
     git:
       url: git://github.com/daniilsv/flutter-mapbox-gl.git
@@ -73,6 +74,8 @@ flutter:
   assets:
     # Images
     - assets/images/logo.svg
+    - assets/images/account_type.jpeg
+    - assets/images/entry_chooser.jpeg
     # Icons
 
 flutter_icons:

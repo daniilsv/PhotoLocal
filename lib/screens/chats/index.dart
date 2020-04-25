@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/models/models.dart';
-import 'package:photolocal/models/serializers.dart';
 import 'package:photolocal/screens/chat/index.dart';
 import 'package:photolocal/screens/chat/providers/chat.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
@@ -45,9 +44,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                       photographer: provider.photographers[index],
                       message: Message()..message = "уле=еле",
                       time: DateTime.now(),
-                      order: index % 4 == 0
-                          ? (OrderBuilder()..time = DateTime.now()).build()
-                          : null),
+                      order: index % 4 == 0 ? (OrderBuilder()..time = DateTime.now()).build() : null),
                 ),
               ),
             ),

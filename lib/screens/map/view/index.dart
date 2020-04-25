@@ -1,12 +1,9 @@
 import 'package:photolocal/providers/location.dart';
-import 'package:photolocal/providers/map_photographer.dart';
 import 'package:photolocal/screens/map/provider.dart';
-import 'package:photolocal/screens/map/widgets/badge.dart';
 import 'package:photolocal/screens/map/widgets/categories_line.dart';
 import 'package:photolocal/screens/map/widgets/location.dart';
 import 'package:photolocal/screens/map/widgets/map.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MapView extends StatefulWidget {
   const MapView({Key key, @required this.provider}) : super(key: key);
