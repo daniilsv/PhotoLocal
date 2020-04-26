@@ -59,7 +59,7 @@ class InitProvider with ChangeNotifier {
         home = WallScreen();
         break;
     }
-    home = MapScreen();
+    home = WallScreen();
     globalNavigatorKey.currentState.popUntil((route) => route.isFirst);
     globalNavigatorKey.currentState.pushReplacement(
       CupertinoPageRoute(builder: (c) => home),

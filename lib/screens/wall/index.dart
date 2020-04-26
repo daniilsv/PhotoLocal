@@ -1,7 +1,9 @@
 import 'package:photolocal/components/navigation_bar.dart';
+import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/bottomsheet.dart';
 import 'widgets/wall_card.dart';
 
 class WallScreen extends StatefulWidget {
@@ -26,33 +28,52 @@ class _WallScreenState extends State<WallScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.add_circle_outline,
-                    size: 24,
-                    color: PLColors.white,
+                  GestureDetector(
+                    onTap: () => InitProvider().setState(InitState.wallCreate),
+                    child: Icon(
+                      Icons.add_circle_outline,
+                      size: 24,
+                      color: PLColors.white,
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "Свадьбы и портреты",
-                        style: PLStyle.create(fontSize: 20).copyWith(
-                          letterSpacing: -0.24,
+                  GestureDetector(
+                    onTap: () async {
+                      showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 5, left: 5),
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          size: 25,
-                          color: PLColors.white,
+                        elevation: 10,
+                        backgroundColor: Color(0xFF0F0F0F),
+                        builder: (context) => WallBottomSheet(),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "Свадьбы и портреты",
+                          style: PLStyle.create(fontSize: 20).copyWith(
+                            letterSpacing: -0.24,
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          padding: EdgeInsets.only(top: 5, left: 5),
+                          child: Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 25,
+                            color: PLColors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Icon(
-                    Icons.edit,
-                    size: 26,
-                    color: PLColors.white,
+                  GestureDetector(
+                    onTap: () => InitProvider().setState(InitState.wallCreate),
+                    child: Icon(
+                      Icons.edit,
+                      size: 26,
+                      color: PLColors.white,
+                    ),
                   ),
                 ],
               ),
