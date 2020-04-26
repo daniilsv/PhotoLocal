@@ -42,9 +42,9 @@ class PLLoading extends StatelessWidget {
                   if (widget != null)
                     widget
                   else
-                    SpinKitPumpingHeart(
-                      size: 64,
-                      color: PLColors.primary,
+                    SpinKitThreeBounce(
+                      color: PLColors.secondary4,
+                      size: 25.0,
                     ),
                   Container(
                     margin: EdgeInsets.only(top: 24),
