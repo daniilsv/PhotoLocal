@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photolocal/mock/categories.dart';
 import 'package:photolocal/providers/map_photographer.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,7 @@ class _CategoriesLineState extends State<CategoriesLine> {
 
   @override
   void initState() {
-    choosed = List.generate(5, (index) => false);
+    choosed = List.generate(categories.length, (index) => false);
     super.initState();
   }
 
@@ -30,9 +31,9 @@ class _CategoriesLineState extends State<CategoriesLine> {
           child: Consumer<MapPhotographerProvider>(
             builder: (_, provider, child) => Row(
               children: <Widget>[
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < categories.length; i++)
                   BadgeWidget(
-                    text: "Fashion",
+                    text: categories[i].name,
                     choosed: choosed[i],
                     onTap: () {
                       choosed[i] = !choosed[i];
