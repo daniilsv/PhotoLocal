@@ -5,6 +5,7 @@ import 'package:photolocal/providers/location.dart';
 import 'package:photolocal/screens/map/provider.dart';
 import 'package:photolocal/screens/map/widgets/premission.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
@@ -43,6 +44,7 @@ class _MapScreenState extends State<MapScreen> with AutomaticKeepAliveClientMixi
     var provider = Provider.of<LocationProvider>(context);
     return Scaffold(
       bottomNavigationBar: NavigationBar(1),
+      backgroundColor: PLColors.bg,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

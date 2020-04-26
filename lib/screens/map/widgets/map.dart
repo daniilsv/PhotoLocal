@@ -2,7 +2,13 @@ import 'dart:math';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:photolocal/global/utils.dart';
+import 'package:photolocal/mock/generator.dart';
+import 'package:photolocal/models/models.dart';
+import 'package:photolocal/providers/location.dart';
 import 'package:photolocal/providers/map_photographer.dart';
+import 'package:photolocal/screens/photographer/index.dart';
 import 'package:provider/provider.dart';
 
 class MapWidget extends StatefulWidget {
@@ -77,29 +83,40 @@ class MapWidgetState extends State<MapWidget> {
       initialCameraPosition: _initialCameraPosition,
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
-        mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
+        mapController.addListener(() => onCameraMove != null
+            ? onCameraMove(mapController.cameraPosition)
+            : () => {});
 
         if (onMapCreate != null) onMapCreate(mapController);
         setState(() {});
       },
       onStyleLoadedCallback: () async {
         mapController.setMapLanguage("name_ru");
-        // for (Photographer photographer in provider.photographers) {
-        for (int i = 0; i < 10; i++) {
-          var _symbol = await mapController.addSymbol(
+        int i = -1;
+        for (PhotographerItem pgItem in genPhotographerItems()) {
+          ++i;
+          await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
-              iconImage: i == 0 ? "assets/images/map/user${i + 1}_chosen.png" : "assets/images/map/user${i + 1}.png",
+              iconImage: i == 0
+                  ? "assets/images/map/user${i + 1}_chosen.png"
+                  : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
-              textField: "200 М",
+              textField:
+                  "${(Utils.calculateDistance(pgItem.photographer.liveLocation, LocationProvider().position) * 1000).truncate()} М",
               textSize: 14,
               textColor: i == 0 ? "#000000" : "#FFFFFF",
               textOffset: Offset(0, 1.7),
-              // geometry: photographer.liveLocation,
-              geometry: LatLng(59.901835 + i / 100, 30.298906 + i / 100),
+              geometry: pgItem.photographer.liveLocation,
               onTap: (Symbol symbol) {
-                // provider.setSymbolAndPreview(symbol, photographer);
-                // animateToPlace(photographer.liveLocation);
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: PhotographerScreen(pgItem),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+                animateToPlace(pgItem.photographer.liveLocation);
               },
             ),
           );

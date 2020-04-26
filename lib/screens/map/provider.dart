@@ -40,8 +40,12 @@ class MapProvider with found.ChangeNotifier {
   subscribeOnLocation(StreamSubscription locationSubscr) {
     locationSubscr = ln.Location().onLocationChanged.listen(
       (ln.LocationData currentLocation) async {
-        LocationProvider().setPosition(LatLng(currentLocation.latitude, currentLocation.longitude));
-        for (Circle circle in myCircles) controller.removeCircle(circle);
+        LocationProvider().setPosition(
+            LatLng(currentLocation.latitude, currentLocation.longitude));
+        try {
+          for (Circle circle in controller.circles)
+            await controller.removeCircle(circle);
+        } catch (e) {}
         myCircles = Set<Circle>();
         if (controller != null) {
           myCircles.add(
@@ -50,7 +54,8 @@ class MapProvider with found.ChangeNotifier {
                 circleRadius: 17,
                 circleColor: "#FF2854",
                 circleOpacity: 0.15,
-                geometry: LatLng(currentLocation.latitude, currentLocation.longitude),
+                geometry:
+                    LatLng(currentLocation.latitude, currentLocation.longitude),
               ),
             ),
           );
@@ -59,7 +64,8 @@ class MapProvider with found.ChangeNotifier {
               CircleOptions(
                 circleRadius: 7,
                 circleColor: "#FF2854",
-                geometry: LatLng(currentLocation.latitude, currentLocation.longitude),
+                geometry:
+                    LatLng(currentLocation.latitude, currentLocation.longitude),
               ),
             ),
           );
@@ -91,7 +97,8 @@ class MapProvider with found.ChangeNotifier {
     else {
       controller.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: LocationProvider()?.position, zoom: lastPosition?.zoom),
+          CameraPosition(
+              target: LocationProvider()?.position, zoom: lastPosition?.zoom),
         ),
       );
     }

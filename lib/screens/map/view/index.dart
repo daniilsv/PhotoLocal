@@ -50,23 +50,26 @@ class _MapViewState extends State<MapView> {
           Positioned(
             top: 80 + MediaQuery.of(context).viewPadding.bottom,
             left: 31,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Эти фотографы\nготовы снимать\nпрямо сейчас",
-                    style: PLStyle.druk,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    "Напишите им, например, когда вы в путешествии и\nхотите отличных кадров с лучших локаций",
-                    style: PLStyle.text,
-                  ),
-                ],
+            child: IgnorePointer(
+              ignoring: true,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Эти фотографы\nготовы снимать\nпрямо сейчас",
+                      style: PLStyle.druk,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Напишите им, например, когда вы в путешествии и\nхотите отличных кадров с лучших локаций",
+                      style: PLStyle.text,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
