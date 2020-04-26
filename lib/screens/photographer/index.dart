@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:photolocal/components/image.dart';
 import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/models/models.dart';
+import 'package:photolocal/screens/chat/index.dart';
+import 'package:photolocal/screens/chats/providers/chats.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class PhotographerScreen extends StatefulWidget {
@@ -31,7 +34,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   children: <Widget>[
                     Positioned.fill(
                       child: PLImage(
-                        pgItem.photos?.first?.url??"",
+                        pgItem.photos?.first?.url ?? "",
                         borderRadius: PLBorders.all12,
                       ),
                     ),
@@ -60,7 +63,8 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                                 children: [
                                   Icon(Icons.star, color: PLColors.white),
                                   SizedBox(width: 2),
-                                  Text(pgItem.photographer.rating.toString(), style: PLStyle.text),
+                                  Text(pgItem.photographer.rating.toString(),
+                                      style: PLStyle.text),
                                 ],
                               ),
                             ),
@@ -84,7 +88,10 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(pgItem.photographer.ordersCount.toString(), style: PLStyle.textMed),
+                                  Text(
+                                      pgItem.photographer.ordersCount
+                                          .toString(),
+                                      style: PLStyle.textMed),
                                   Text(" съёмок", style: PLStyle.text),
                                 ],
                               ),
@@ -102,21 +109,6 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                 textAlign: TextAlign.center,
                 style: PLStyle.subheader,
               ),
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 16),
-              //   child: Wrap(
-              //     direction: Axis.horizontal,
-              //     spacing: 6,
-              //     children: [
-              //       Chip(label: Text("хороший свет")),
-              //       Chip(label: Text("работа с моделями")),
-              //       Chip(label: Text("зеркалка")),
-              //       Chip(label: Text("разные жанры")),
-              //       Chip(label: Text("зеркалка")),
-              //       Chip(label: Text("KPACUBO")),
-              //     ],
-              //   ),
-              // ),
               SizedBox(height: 20),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
@@ -157,7 +149,24 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
               SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  print("order");
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      child: ChatScreen(
+                          chatProvider: ChatsProvider().getChatProvider(
+                              (ChatItemBuilder()
+                                    ..photographer =
+                                        pgItem.photographer.toBuilder()
+                                    ..chat = (ChatBuilder()
+                                      ..id = 1
+                                      ..createdAt = DateTime.now()
+                                      ..photographerId =
+                                          pgItem.photographer.id.toString()
+                                      ..userId = "1"))
+                                  .build())),
+                      type: PageTransitionType.fade,
+                    ),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 16),

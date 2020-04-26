@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:photolocal/components/image.dart';
+import 'package:photolocal/mock/generator.dart';
 import 'package:photolocal/models/photographer.dart';
+import 'package:photolocal/screens/photographer/index.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -43,7 +46,15 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: PLImage(photographer.picture,
                       width: 24, height: 24, borderRadius: 12)),
               onTap: () {
-                ///
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: PhotographerScreen(genPhotographerItems().firstWhere(
+                        (element) =>
+                            element.photographer.id == photographer.id)),
+                    type: PageTransitionType.fade,
+                  ),
+                );
               },
             )
         ],
