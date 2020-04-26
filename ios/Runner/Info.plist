@@ -29,8 +29,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -41,5 +39,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Мы используем вашу геопозицию для поиска ближайших фотографов</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Мы используем вашу геопозицию для поиска ближайших фотографов</string>
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    <key>MGLMapboxAccessToken</key>
+    <string>pk.eyJ1IjoiZmlsYXRvdmR2IiwiYSI6IkEtSXRRODQifQ.oX3C5GWTHsIIxvzB7b9c6A</string>
 </dict>
 </plist>

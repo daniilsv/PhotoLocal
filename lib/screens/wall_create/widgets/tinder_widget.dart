@@ -19,7 +19,7 @@ class TinderWidget extends StatelessWidget {
         child: TinderSwapCard(
           cardController: controller,
           orientation: AmassOrientation.BOTTOM,
-          totalNum: provider.tinderImages.length,
+          totalNum: provider.items.length,
           stackNum: 2,
           swipeEdge: 4.0,
           maxHeight: MediaQuery.of(context).size.height * .55,
@@ -32,7 +32,7 @@ class TinderWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(24),
                   child: PLImage(
-                    provider.tinderImages[index].image,
+                    provider.items[index].photos.first.url,
                   ),
                 ),
               ),
@@ -83,11 +83,11 @@ class TinderWidget extends StatelessWidget {
             CardSwipeOrientation orientation,
             int index,
           ) {
-            if (orientation != CardSwipeOrientation.RECOVER)
-              provider.answerTinder(
-                // index,
-                orientation == CardSwipeOrientation.RIGHT,
-              );
+            // if (orientation != CardSwipeOrientation.RECOVER)
+            // provider.answerTinder(
+            //   // index,
+            //   orientation == CardSwipeOrientation.RIGHT,
+            // );
           },
           swipeUpdateCallback: (
             DragUpdateDetails details,

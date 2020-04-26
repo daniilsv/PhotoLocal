@@ -75,7 +75,7 @@ class _TinderPageState extends State<TinderPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    provider.answerTinder(false);
+                    // provider.answerTinder(false);
                     cardController.triggerLeft();
                   },
                   child: Container(
@@ -93,7 +93,7 @@ class _TinderPageState extends State<TinderPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    provider.answerTinder(true);
+                    // provider.answerTinder(true);
                     cardController.triggerRight();
                   },
                   child: Container(

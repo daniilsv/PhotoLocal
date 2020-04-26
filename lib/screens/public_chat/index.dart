@@ -6,16 +6,16 @@ import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/screens/chat/providers/chat.dart';
 import 'package:photolocal/screens/chat/widgets/accept_message.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';
+import 'package:photolocal/screens/chat/widgets/contact_message.dart';
 import 'package:photolocal/screens/chat/widgets/input.dart';
 import 'package:photolocal/screens/chat/widgets/self_message.dart';
+import 'package:photolocal/screens/chat/widgets/start_message.dart';
+import 'package:photolocal/screens/chat/widgets/user_contract.dart';
 import 'package:photolocal/screens/chat/widgets/user_message.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'widgets/app_bar.dart';
-import 'widgets/contact_message.dart';
-import 'widgets/start_message.dart';
-import 'widgets/user_contract.dart';
 
 class PublicChatScreen extends StatefulWidget {
   PublicChatScreen({

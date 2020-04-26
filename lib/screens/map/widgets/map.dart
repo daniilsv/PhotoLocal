@@ -83,9 +83,7 @@ class MapWidgetState extends State<MapWidget> {
       initialCameraPosition: _initialCameraPosition,
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
-        mapController.addListener(() => onCameraMove != null
-            ? onCameraMove(mapController.cameraPosition)
-            : () => {});
+        mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
 
         if (onMapCreate != null) onMapCreate(mapController);
         setState(() {});
@@ -98,12 +96,10 @@ class MapWidgetState extends State<MapWidget> {
           await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
-              iconImage: i == 0
-                  ? "assets/images/map/user${i + 1}_chosen.png"
-                  : "assets/images/map/user${i + 1}.png",
+              iconImage: i == 0 ? "assets/images/map/user${i + 1}_chosen.png" : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
               textField:
-                  "${Utils.calculateDistance(pgItem.photographer.liveLocation, LocationProvider().position).truncate()} КМ",
+                  "${Utils.calculateDistance(pgItem.photographer.liveLocation ?? LatLng(59.914143, 30.317016), LocationProvider().position ?? LatLng(59.913143, 30.327016)).truncate()} КМ",
               textSize: 14,
               textColor: i == 0 ? "#000000" : "#FFFFFF",
               textOffset: Offset(0, 1.7),
