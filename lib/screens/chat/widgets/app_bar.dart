@@ -17,15 +17,16 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: Row(
         children: [
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(Icons.arrow_back, color: PLColors.white, size: 24),
+          if (Navigator.canPop(context))
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Icon(Icons.arrow_back, color: PLColors.white, size: 24),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
           if (photographer != null)
             Expanded(
               child: Text(
@@ -39,7 +40,8 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Container(
                   padding: const EdgeInsets.all(8.0),
                   alignment: Alignment.center,
-                  child: PLImage(photographer.picture, width: 24, height: 24, borderRadius: 12)),
+                  child: PLImage(photographer.picture,
+                      width: 24, height: 24, borderRadius: 12)),
               onTap: () {
                 ///
               },
