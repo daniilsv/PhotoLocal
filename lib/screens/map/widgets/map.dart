@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:flutter/material.dart';
-import 'package:photolocal/global/marker_generator.dart';
-import 'package:photolocal/models/models.dart';
+import 'package:photolocal/providers/location.dart';
 import 'package:photolocal/providers/map_photographer.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +21,7 @@ class MapWidget extends StatefulWidget {
     Key key,
     @required this.center,
     this.selfPosition,
-    this.styleAsset = 'assets/map/style.txt',
+    this.styleAsset,
     this.onCameraMove,
     this.onMapCreate,
     this.onMapTap,
@@ -69,6 +68,7 @@ class MapWidgetState extends State<MapWidget> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MapPhotographerProvider>(context);
+    var locationProvider = Provider.of<LocationProvider>(context);
     return MapboxMap(
       onMapClick: (point, lat) {
         if (onMapTap != null) onMapTap();
@@ -80,7 +80,7 @@ class MapWidgetState extends State<MapWidget> {
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
         mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
-        mapController.setMapLanguage("name_ru");
+        // mapController.setMapLanguage("name_ru");
         if (onMapCreate != null) onMapCreate(mapController);
       },
       onStyleLoadedCallback: () async {
@@ -103,10 +103,6 @@ class MapWidgetState extends State<MapWidget> {
               },
             ),
           );
-          // if (provider.photographerToPreview == photographer)
-          //   WidgetsBinding.instance.addPostFrameCallback(
-          //     (timeStamp) => provider.setSymbolAndPreview(_symbol, photographer),
-          //   );
         }
         setMapLoading(false);
       },

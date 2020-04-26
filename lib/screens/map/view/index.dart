@@ -4,6 +4,7 @@ import 'package:photolocal/screens/map/widgets/categories_line.dart';
 import 'package:photolocal/screens/map/widgets/location.dart';
 import 'package:photolocal/screens/map/widgets/map.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/theme/theme.dart';
 
 class MapView extends StatefulWidget {
   const MapView({Key key, @required this.provider}) : super(key: key);
@@ -35,8 +36,8 @@ class _MapViewState extends State<MapView> {
             ),
           ),
           Positioned(
-            bottom: 160 + MediaQuery.of(context).viewPadding.bottom,
-            right: 12,
+            bottom: 80 + MediaQuery.of(context).viewPadding.bottom,
+            right: 20,
             child: Container(
               margin: EdgeInsets.only(left: 8, bottom: 8),
               child: LocationWidget(onTap: provider.animateToLocation),
@@ -45,6 +46,29 @@ class _MapViewState extends State<MapView> {
           Positioned(
             bottom: 10 + MediaQuery.of(context).viewPadding.bottom,
             child: CategoriesLine(),
+          ),
+          Positioned(
+            top: 80 + MediaQuery.of(context).viewPadding.bottom,
+            left: 31,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Эти фотографы\nготовы снимать\nпрямо сейчас",
+                    style: PLStyle.druk,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    "Напишите им, например, когда вы в путешествии и\nхотите отличных кадров с лучших локаций",
+                    style: PLStyle.text,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

@@ -24,6 +24,8 @@ class MapProvider with found.ChangeNotifier {
   PersistentBottomSheetController stopperController;
   bool mapLoading = true;
 
+  List<Circle> myCircles = [];
+
   @override
   void dispose() {
     locationSubscr.cancel();
@@ -36,9 +38,34 @@ class MapProvider with found.ChangeNotifier {
   }
 
   subscribeOnLocation(StreamSubscription locationSubscr) {
-    locationSubscr = ln.Location().onLocationChanged.listen((ln.LocationData currentLocation) {
-      LocationProvider().setPosition(LatLng(currentLocation.latitude, currentLocation.longitude));
-    });
+    locationSubscr = ln.Location().onLocationChanged.listen(
+      (ln.LocationData currentLocation) async {
+        LocationProvider().setPosition(LatLng(currentLocation.latitude, currentLocation.longitude));
+        for (Circle circle in myCircles) controller.removeCircle(circle);
+        myCircles = [];
+        if (controller != null) {
+          myCircles.add(
+            await controller.addCircle(
+              CircleOptions(
+                circleRadius: 17,
+                circleColor: "#FF2854",
+                circleOpacity: 0.15,
+                geometry: LatLng(currentLocation.latitude, currentLocation.longitude),
+              ),
+            ),
+          );
+          myCircles.add(
+            await controller.addCircle(
+              CircleOptions(
+                circleRadius: 7,
+                circleColor: "#FF2854",
+                geometry: LatLng(currentLocation.latitude, currentLocation.longitude),
+              ),
+            ),
+          );
+        }
+      },
+    );
   }
 
   void onMapCreate(MapboxMapController _controller) {
