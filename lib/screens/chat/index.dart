@@ -14,6 +14,7 @@ import 'widgets/accept_message.dart';
 import 'widgets/contact_message.dart';
 import 'widgets/happened_message.dart';
 import 'widgets/notification_message.dart';
+import 'widgets/photos_message.dart';
 import 'widgets/self_message.dart';
 import 'widgets/start_message.dart';
 import 'widgets/user_contract.dart';
@@ -98,6 +99,27 @@ class _ChatScreenState extends State<ChatScreen> {
                                   text:
                                       "Поздравляем с состоявшейся съёмкой! Фотограф должен прислать фотографии до 13 мая."),
                             if (happenedAccepted) AcceptMessage(text: "Вы подтвердили факт съёмки"),
+                            PhotosMessage(
+                              photographer,
+                              withEdit: [
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c180.0.1080.1080a/s640x640/89701254_200801021175235_2605263375316084526_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=psN7Sv63bDQAX-YoO4Y&oh=b646966d35b7348d8c68669fea820161&oe=5EC9FD01",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11887063_1621593114747055_1103771517_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=wAasuWpoOZ4AX93MGDs&oh=1aa2e4295a7b05d1f73eac4638c42945&oe=5EC9CE81",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11910439_106890099666189_802738302_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=r2ushnotGMgAX_3Cnt6&oh=add74983f163f4bc8f8d1fadc6f2df2e&oe=5ECBDB1B",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11250933_1632980240308491_114746405_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=M26Q-HF_qJ0AX__R2D1&oh=753dfa00c64ea5756cf59b75232742dd&oe=5ECBAF30",
+                              ],
+                              withDetalEdit: [
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c180.0.1080.1080a/s640x640/89701254_200801021175235_2605263375316084526_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=psN7Sv63bDQAX-YoO4Y&oh=b646966d35b7348d8c68669fea820161&oe=5EC9FD01",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11887063_1621593114747055_1103771517_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=wAasuWpoOZ4AX93MGDs&oh=1aa2e4295a7b05d1f73eac4638c42945&oe=5EC9CE81",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11910439_106890099666189_802738302_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=r2ushnotGMgAX_3Cnt6&oh=add74983f163f4bc8f8d1fadc6f2df2e&oe=5ECBDB1B",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11250933_1632980240308491_114746405_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=M26Q-HF_qJ0AX__R2D1&oh=753dfa00c64ea5756cf59b75232742dd&oe=5ECBAF30",
+                              ],
+                              withoutEdit: [
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c180.0.1080.1080a/s640x640/89701254_200801021175235_2605263375316084526_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=psN7Sv63bDQAX-YoO4Y&oh=b646966d35b7348d8c68669fea820161&oe=5EC9FD01",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11887063_1621593114747055_1103771517_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=wAasuWpoOZ4AX93MGDs&oh=1aa2e4295a7b05d1f73eac4638c42945&oe=5EC9CE81",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11910439_106890099666189_802738302_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=r2ushnotGMgAX_3Cnt6&oh=add74983f163f4bc8f8d1fadc6f2df2e&oe=5ECBDB1B",
+                                "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/11250933_1632980240308491_114746405_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=M26Q-HF_qJ0AX__R2D1&oh=753dfa00c64ea5756cf59b75232742dd&oe=5ECBAF30",
+                              ],
+                            ),
                           ],
                         );
                         if (provider.isLoading && index == provider.messages.length) return PLLoading();
