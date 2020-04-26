@@ -71,7 +71,7 @@ class MapWidgetState extends State<MapWidget> {
       onMapClick: (point, lat) {
         if (onMapTap != null) onMapTap();
       },
-      logoViewMargins: Point<num>(10, 360),
+      logoViewMargins: Point<num>(30, 180),
       styleString: "mapbox://styles/filatovdv/ck9elbxn62llr1itgwvm7it4x",
       trackCameraPosition: true,
       initialCameraPosition: _initialCameraPosition,
