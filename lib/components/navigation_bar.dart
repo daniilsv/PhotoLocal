@@ -34,13 +34,13 @@ class NavigationBar extends StatelessWidget {
             screen = ProfileScreen();
             break;
         }
-        Navigator.pushAndRemoveUntil(
+        Navigator.popUntil(context, (route) => route.isFirst);
+        Navigator.pushReplacement(
           context,
           PageTransition(
             child: screen,
             type: PageTransitionType.fade,
           ),
-          (route) => route.isFirst,
         );
       },
       items: [

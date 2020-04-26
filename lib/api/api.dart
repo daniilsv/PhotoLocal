@@ -6,8 +6,17 @@ import 'package:photolocal/main.dart';
 import 'package:dio/dio.dart';
 import 'package:photolocal/global/config.dart';
 import 'package:flutter/foundation.dart' as foundation;
+import 'package:photolocal/models/models.dart';
+import 'package:photolocal/models/serializers.dart';
 
 part './auth.dart';
+part './static.dart';
+part './wall.dart';
+part './photographer.dart';
+part './chat.dart';
+part './order.dart';
+part './favorite.dart';
+part './map.dart';
 
 /// base Api class
 /// Before using Api you must to:
