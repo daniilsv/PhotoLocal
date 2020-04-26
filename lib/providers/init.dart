@@ -8,6 +8,7 @@ import 'package:photolocal/models/models.dart';
 import 'package:photolocal/models/serializers.dart';
 import 'package:photolocal/screens/auth/index.dart';
 import 'package:photolocal/screens/map/index.dart';
+import 'package:photolocal/screens/profile/index.dart';
 import 'package:photolocal/screens/profile_choose/index.dart';
 import 'package:photolocal/screens/splash/index.dart';
 import 'package:photolocal/screens/wall/index.dart';
@@ -30,8 +31,7 @@ class InitProvider with ChangeNotifier {
     Map<String, dynamic> serialized;
     await Future.wait(<Future>[
       store
-          .findFirst(DataBase.db,
-              finder: Finder(filter: Filter.byKey("session")))
+          .findFirst(DataBase.db, finder: Finder(filter: Filter.byKey("session")))
           .then((value) => serialized = value?.value),
       Future.delayed(Duration(seconds: 2)) // delay for nice splash
     ]);
@@ -56,7 +56,7 @@ class InitProvider with ChangeNotifier {
         home = AuthScreen();
         break;
       case InitState.profileChoose:
-        home = ProfileChooseScreen();
+        home = ProfileScreen();
         break;
       case InitState.wallCreate:
         home = WallCreateScreen();
@@ -86,7 +86,6 @@ class InitProvider with ChangeNotifier {
   setSession(Session _session) async {
     session = _session;
     var store = stringMapStoreFactory.store("blocs");
-    await store.record("session").put(
-        DataBase.db, serializers.serializeWith(Session.serializer, session));
+    await store.record("session").put(DataBase.db, serializers.serializeWith(Session.serializer, session));
   }
 }
