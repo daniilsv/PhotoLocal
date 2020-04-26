@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:photolocal/theme/photo_local_icons.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:shimmer/shimmer.dart';
 

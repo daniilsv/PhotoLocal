@@ -24,27 +24,28 @@ class _CategoriesLineState extends State<CategoriesLine> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 5),
-          scrollDirection: Axis.horizontal,
-          child: Consumer<MapPhotographerProvider>(
-            builder: (_, provider, child) => Row(
-              children: <Widget>[
-                for (int i = 0; i < categories.length; i++)
-                  BadgeWidget(
-                    text: categories[i].name,
-                    choosed: choosed[i],
-                    onTap: () {
-                      choosed[i] = !choosed[i];
-                      setState(
-                        () {},
-                      );
-                    },
-                  ),
-              ],
-            ),
+      width: MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(left: 5),
+        scrollDirection: Axis.horizontal,
+        child: Consumer<MapPhotographerProvider>(
+          builder: (_, provider, child) => Row(
+            children: <Widget>[
+              for (int i = 0; i < categories.length; i++)
+                BadgeWidget(
+                  text: categories[i].name,
+                  choosed: choosed[i],
+                  onTap: () {
+                    choosed[i] = !choosed[i];
+                    setState(
+                      () {},
+                    );
+                  },
+                ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
