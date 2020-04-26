@@ -103,7 +103,7 @@ class MapWidgetState extends State<MapWidget> {
                   : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
               textField:
-                  "${(Utils.calculateDistance(pgItem.photographer.liveLocation, LocationProvider().position) * 1000).truncate()} М",
+                  "${Utils.calculateDistance(pgItem.photographer.liveLocation, LocationProvider().position).truncate()} КМ",
               textSize: 14,
               textColor: i == 0 ? "#000000" : "#FFFFFF",
               textOffset: Offset(0, 1.7),
