@@ -10,6 +10,8 @@ import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'providers/chat.dart';
+import 'widgets/accept_message.dart';
+import 'widgets/contact_message.dart';
 import 'widgets/self_message.dart';
 import 'widgets/start_message.dart';
 import 'widgets/user_contract.dart';
@@ -35,6 +37,8 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  bool contractAccepted = false; //move to logic
+
   @override
   Widget build(BuildContext context) {
     var user = InitProvider().session.user;
@@ -56,6 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       controller: provider.scrollController,
                       reverse: true,
                       itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
@@ -67,8 +72,16 @@ class _ChatScreenState extends State<ChatScreen> {
                             UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
                             SelfMessage("Да изи, бабки не проблема"),
-                            UserContract(photographer),
+                            UserContract(
+                              photographer,
+                              accept: () {
+                                contractAccepted = true;
+                                setState(() {});
+                              },
+                            ),
                             StartMessage(),
+                            if (contractAccepted) AcceptMessage(),
+                            if (contractAccepted) ContactMessage(),
                           ],
                         );
                         if (provider.isLoading && index == provider.messages.length) return PLLoading();
