@@ -6,7 +6,6 @@ import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';
 import 'package:photolocal/screens/chat/widgets/input.dart';
-import 'package:photolocal/screens/photographer/index.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
@@ -41,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
     var user = InitProvider().session.user;
     return ViewModelBuilder<ChatProvider>.reactive(
       viewModelBuilder: () => chatProvider,
+      disposeViewModel: false,
       onModelReady: startPooling,
       builder: (context, provider, child) => SafeArea(
         top: true,
@@ -62,14 +62,13 @@ class _ChatScreenState extends State<ChatScreen> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            StartMessage(),
                             SelfMessage("Йоу"),
-                            // SelfMessage(
-                            //     "Привет!\nМожно завтра пофотографироваться?"),
-                            // UserMessage("Йоу"),
+                            SelfMessage("Привет!\nМожно завтра пофотографироваться?"),
+                            UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
-                            // SelfMessage("Да изи, бабки не проблема"),
-                            // UserContract(photographer),
+                            SelfMessage("Да изи, бабки не проблема"),
+                            UserContract(photographer),
+                            StartMessage(),
                           ],
                         );
                         if (provider.isLoading && index == provider.messages.length) return PLLoading();
@@ -115,12 +114,10 @@ class ContractSheet extends StatefulWidget {
 }
 
 class _ContractSheetState extends State<ContractSheet> {
-  PageController _pageController;
+  PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
-    // TODO: implement initState
-    _pageController = PageController();
     super.initState();
   }
 
@@ -140,10 +137,14 @@ class _ContractSheetState extends State<ContractSheet> {
               child: PageView(
                 controller: _pageController,
                 scrollDirection: Axis.horizontal,
-                children: [PageConditions(), PageFormat(), PageLegal()],
+                children: [
+                  PageConditions(),
+                  PageFormat(),
+                  PageLegal(),
+                ],
               ),
             ),
-            Stepper(index: _pageController.page),
+            Stepper(index: _pageController.hasClients ? _pageController.page : 0),
             GestureDetector(
               onTap: () {
                 print("order");

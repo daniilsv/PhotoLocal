@@ -42,38 +42,39 @@ class UserContract extends StatelessWidget {
             style: PLStyle.button.copyWith(fontWeight: FontWeight.w700),
           ),
           SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: (){
-                  ///
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(4),
-                  child: Text(
-                    "Изменить условия",
-                    style: PLStyle.button.copyWith(fontWeight: FontWeight.w700),
-                  ),
+          Center(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                ///
+              },
+              child: Padding(
+                padding: EdgeInsets.all(4),
+                child: Text(
+                  "Изменить условия",
+                  style: PLStyle.button.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: (){
-                  ///
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(4),
-                  child: Text(
-                    "Согласиться",
-                    style: PLStyle.button.copyWith(
-                        fontWeight: FontWeight.w700, color: PLColors.accent),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
+          SizedBox(height: 20),
+          Center(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                ///
+              },
+              child: Padding(
+                padding: EdgeInsets.all(4),
+                child: Text(
+                  "Согласиться",
+                  style: PLStyle.button.copyWith(
+                      fontWeight: FontWeight.w700, color: PLColors.accent),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 12),
         ],
       ),
     );
