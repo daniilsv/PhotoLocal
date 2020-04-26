@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:flutter/material.dart';
-import 'package:photolocal/global/marker_generator.dart';
-import 'package:photolocal/models/models.dart';
 import 'package:photolocal/providers/map_photographer.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +20,7 @@ class MapWidget extends StatefulWidget {
     Key key,
     @required this.center,
     this.selfPosition,
-    this.styleAsset = 'assets/map/style.txt',
+    this.styleAsset,
     this.onCameraMove,
     this.onMapCreate,
     this.onMapTap,
@@ -73,16 +71,14 @@ class MapWidgetState extends State<MapWidget> {
       onMapClick: (point, lat) {
         if (onMapTap != null) onMapTap();
       },
-      logoViewMargins: Point<num>(10, 360),
+      logoViewMargins: Point<num>(30, 180),
       styleString: "mapbox://styles/filatovdv/ck9elbxn62llr1itgwvm7it4x",
       trackCameraPosition: true,
       initialCameraPosition: _initialCameraPosition,
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
-        mapController.addListener(() => onCameraMove != null
-            ? onCameraMove(mapController.cameraPosition)
-            : () => {});
-        
+        mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
+
         if (onMapCreate != null) onMapCreate(mapController);
         setState(() {});
       },
@@ -93,9 +89,7 @@ class MapWidgetState extends State<MapWidget> {
           var _symbol = await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
-              iconImage: i == 0
-                  ? "assets/images/map/user${i + 1}_chosen.png"
-                  : "assets/images/map/user${i + 1}.png",
+              iconImage: i == 0 ? "assets/images/map/user${i + 1}_chosen.png" : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
               textField: "200 М",
               textSize: 14,
@@ -109,10 +103,6 @@ class MapWidgetState extends State<MapWidget> {
               },
             ),
           );
-          // if (provider.photographerToPreview == photographer)
-          //   WidgetsBinding.instance.addPostFrameCallback(
-          //     (timeStamp) => provider.setSymbolAndPreview(_symbol, photographer),
-          //   );
         }
         setMapLoading(false);
       },
