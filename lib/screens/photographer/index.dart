@@ -5,15 +5,15 @@ import 'package:photolocal/models/models.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class PhotographerScreen extends StatefulWidget {
-  PhotographerScreen(this.photographer);
-  final PhotographerItem photographer;
+  PhotographerScreen(this.pgItem);
+  final PhotographerItem pgItem;
 
   @override
   _PhotographerScreenState createState() => _PhotographerScreenState();
 }
 
 class _PhotographerScreenState extends State<PhotographerScreen> {
-  PhotographerItem get photographer => widget.photographer;
+  PhotographerItem get pgItem => widget.pgItem;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   children: <Widget>[
                     Positioned.fill(
                       child: PLImage(
-                        photographer.photos.first.url,
+                        pgItem.photos?.first?.url??"",
                         borderRadius: PLBorders.all12,
                       ),
                     ),
@@ -60,7 +60,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                                 children: [
                                   Icon(Icons.star, color: PLColors.white),
                                   SizedBox(width: 2),
-                                  Text("4.8", style: PLStyle.text),
+                                  Text(pgItem.photographer.rating.toString(), style: PLStyle.text),
                                 ],
                               ),
                             ),
@@ -71,7 +71,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                               border: Border.all(color: PLColors.bg, width: 2),
                             ),
                             child: PLImage(
-                              photographer.photographer.picture,
+                              pgItem.photographer.picture,
                               width: 80,
                               height: 80,
                               borderRadius: 12,
@@ -84,7 +84,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text("8", style: PLStyle.textMed),
+                                  Text(pgItem.photographer.ordersCount.toString(), style: PLStyle.textMed),
                                   Text(" съёмок", style: PLStyle.text),
                                 ],
                               ),
@@ -98,25 +98,25 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
               ),
               SizedBox(height: 50),
               Text(
-                photographer.photographer.name,
+                pgItem.photographer.name,
                 textAlign: TextAlign.center,
                 style: PLStyle.subheader,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  spacing: 6,
-                  children: [
-                    Chip(label: Text("хороший свет")),
-                    Chip(label: Text("работа с моделями")),
-                    Chip(label: Text("зеркалка")),
-                    Chip(label: Text("разные жанры")),
-                    Chip(label: Text("зеркалка")),
-                    Chip(label: Text("KPACUBO")),
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: EdgeInsets.symmetric(horizontal: 16),
+              //   child: Wrap(
+              //     direction: Axis.horizontal,
+              //     spacing: 6,
+              //     children: [
+              //       Chip(label: Text("хороший свет")),
+              //       Chip(label: Text("работа с моделями")),
+              //       Chip(label: Text("зеркалка")),
+              //       Chip(label: Text("разные жанры")),
+              //       Chip(label: Text("зеркалка")),
+              //       Chip(label: Text("KPACUBO")),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 20),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
@@ -129,9 +129,9 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
                   itemCount: 9,
                   itemBuilder: (context, index) {
                     Widget image = PLImage(
-                      photographer.photos[index].url,
+                      pgItem.photos[index].url,
                     );
-                    if (index == 8 && photographer.photos.length > 9)
+                    if (index == 8 && pgItem.photos.length > 9)
                       image = Stack(
                         children: [
                           image,
