@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photolocal/components/image.dart';
 import 'package:photolocal/models/models.dart';
+import 'package:photolocal/screens/image/index.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class PhotosMessage extends StatefulWidget {
@@ -52,14 +54,30 @@ class _PhotosMessageState extends State<PhotosMessage> {
                   child: Row(
                     children: List.generate(
                       widget.withEdit.length,
-                      (index) => Container(
-                        padding: EdgeInsets.only(right: 10),
-                        height: 40,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4.5),
-                          child: PLImage(
-                            widget.withEdit[index],
-                            fit: BoxFit.fitHeight,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (_) => ImagePreview(
+                                heroEnding: "withEdit",
+                                images: widget.withEdit,
+                                index: index,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: widget.withEdit[index] + "withEdit",
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10),
+                            height: 40,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.5),
+                              child: PLImage(
+                                widget.withEdit[index],
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -84,14 +102,30 @@ class _PhotosMessageState extends State<PhotosMessage> {
                   child: Row(
                     children: List.generate(
                       widget.withoutEdit.length,
-                      (index) => Container(
-                        padding: EdgeInsets.only(right: 10),
-                        height: 40,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4.5),
-                          child: PLImage(
-                            widget.withoutEdit[index],
-                            fit: BoxFit.fitHeight,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (_) => ImagePreview(
+                                heroEnding: "withoutEdit",
+                                images: widget.withoutEdit,
+                                index: index,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: widget.withoutEdit[index] + "withoutEdit",
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10),
+                            height: 40,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.5),
+                              child: PLImage(
+                                widget.withoutEdit[index],
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -116,14 +150,30 @@ class _PhotosMessageState extends State<PhotosMessage> {
                   child: Row(
                     children: List.generate(
                       widget.withDetalEdit.length,
-                      (index) => Container(
-                        padding: EdgeInsets.only(right: 10),
-                        height: 40,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4.5),
-                          child: PLImage(
-                            widget.withDetalEdit[index],
-                            fit: BoxFit.fitHeight,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (_) => ImagePreview(
+                                heroEnding: "withDetalEdit",
+                                images: widget.withDetalEdit,
+                                index: index,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: widget.withDetalEdit[index] + "withDetalEdit",
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10),
+                            height: 40,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.5),
+                              child: PLImage(
+                                widget.withDetalEdit[index],
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
                         ),
                       ),
