@@ -5,6 +5,7 @@ import 'package:photolocal/screens/chats/index.dart';
 import 'package:photolocal/screens/map/index.dart';
 import 'package:photolocal/screens/profile/index.dart';
 import 'package:photolocal/screens/wall/index.dart';
+import 'package:photolocal/theme/photo_local_icons.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class NavigationBar extends StatelessWidget {
@@ -43,25 +44,26 @@ class NavigationBar extends StatelessWidget {
           ),
         );
       },
+      iconSize: 40,
       items: [
         BottomNavigationBarItem(
           backgroundColor: PLColors.bg,
-          icon: Icon(Icons.fiber_smart_record),
+          icon: Icon(PhotoLocal.wall),
           title: Text("Лента", style: PLStyle.textMed),
         ),
         BottomNavigationBarItem(
           backgroundColor: PLColors.bg,
-          icon: Icon(Icons.grid_on),
-          title: Text("Сетка", style: PLStyle.textMed),
+          icon: Icon(PhotoLocal.map),
+          title: Text("Карта", style: PLStyle.textMed),
         ),
         BottomNavigationBarItem(
           backgroundColor: PLColors.bg,
-          icon: Icon(Icons.mail),
+          icon: Icon(PhotoLocal.chat),
           title: Text("Сообщения", style: PLStyle.textMed),
         ),
         BottomNavigationBarItem(
           backgroundColor: PLColors.bg,
-          icon: Icon(Icons.face),
+          icon: Icon(PhotoLocal.profile),
           title: Text("Профиль", style: PLStyle.textMed),
         ),
       ],

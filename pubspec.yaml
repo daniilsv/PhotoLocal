@@ -76,6 +76,10 @@ flutter:
       fonts:
         - asset: assets/fonts/ny-reg-it.otf
           weight: 400
+          
+    - family:  PhotoLocal
+      fonts:
+        - asset: fonts/PhotoLocal.ttf
   assets:
     # Images
     - assets/images/logo.svg
