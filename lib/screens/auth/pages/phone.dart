@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:photolocal/components/loading.dart';
 import 'package:photolocal/components/masked_text.dart';
 
 import '../../../theme/theme.dart';
@@ -17,7 +18,8 @@ class PhonePage extends StatefulWidget {
 }
 
 class _PhonePageState extends State<PhonePage> {
-  MaskedTextController phoneController = MaskedTextController(mask: '+7 (000) 000-00-00');
+  MaskedTextController phoneController =
+      MaskedTextController(mask: '+7 (000) 000-00-00');
   MaskedTextController codeController = MaskedTextController(mask: '0000');
   FocusNode phoneFocusNode = FocusNode();
   FocusNode codeFocusNode = FocusNode();
@@ -163,11 +165,7 @@ class _PhonePageState extends State<PhonePage> {
                     ),
                   ),
                 ),
-                if (loading)
-                  SpinKitThreeBounce(
-                    color: PLColors.secondary4,
-                    size: 25.0,
-                  ),
+                if (loading) PLLoading(text: ""),
               ],
             ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/api/api.dart';
 import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/screens/auth/pages/entry_chooser.dart';
 import 'package:photolocal/screens/auth/pages/phone.dart';
@@ -77,7 +78,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         },
                       ),
                       PhonePage(
-                        next: () {
+                        next: () async {
+                          var session = await AuthApi.checkCode("", "");
+                          await InitProvider().setSession(session);
                           pageController.nextPage(
                             duration: Duration(milliseconds: 500),
                             curve: Curves.easeIn,
@@ -85,7 +88,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         },
                       ),
                       AccountTypePage(
-                        next: () => InitProvider().setState(InitState.wallCreate),
+                        next: () =>
+                            InitProvider().setState(InitState.wallCreate),
                       ),
                     ],
                   ),
