@@ -7,7 +7,8 @@ import 'tinder_card.dart';
 import '../providers/tinder.dart';
 
 class TinderWidget extends StatelessWidget {
-  const TinderWidget({Key key}) : super(key: key);
+  const TinderWidget({Key key, @required this.controller}) : super(key: key);
+  final CardController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class TinderWidget extends StatelessWidget {
       builder: (context, provider, child) => Container(
         height: MediaQuery.of(context).size.height * (provider.status == TinderStatus.answering ? 0.75 : 0),
         child: TinderSwapCard(
+          cardController: controller,
           orientation: AmassOrientation.BOTTOM,
           totalNum: provider.tinderImages.length,
           stackNum: 2,
@@ -83,7 +85,7 @@ class TinderWidget extends StatelessWidget {
           ) {
             if (orientation != CardSwipeOrientation.RECOVER)
               provider.answerTinder(
-                index,
+                // index,
                 orientation == CardSwipeOrientation.RIGHT,
               );
           },

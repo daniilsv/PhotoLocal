@@ -18,8 +18,8 @@ class TinderProvider with ChangeNotifier {
   TinderStatus status = TinderStatus.answering;
   double swipePercent = 0;
 
-  answerTinder(int index, bool answer) {
-    tinderImages[index].rebuild((_) => _..answer = answer);
+  answerTinder(bool answer) {
+    tinderImages.last.rebuild((_) => _..answer = answer);
     if (order + 1 == tinderImages.length) {
       status = TinderStatus.loading;
       notifyListeners();

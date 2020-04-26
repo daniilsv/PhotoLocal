@@ -17,10 +17,11 @@ class ImagePreview extends StatefulWidget {
 
 class _ImagePreviewState extends State<ImagePreview> {
   PageController controller;
-  int page = 0;
+  int page;
 
   @override
   void initState() {
+    page = widget.index;
     controller = PageController(initialPage: widget.index);
     controller.addListener(() {
       if (page != controller.page.floor()) {
