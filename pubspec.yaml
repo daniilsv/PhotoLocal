@@ -104,6 +104,8 @@ flutter:
     - assets/images/map/user10.png
     # Icons
 
+    - assets/icons/bookmark-plus-outline.svg
+
 flutter_icons:
   image_path_ios: icon/full_icon.png
   image_path_android: icon/full_icon.png
