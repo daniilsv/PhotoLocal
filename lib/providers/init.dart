@@ -5,10 +5,10 @@ import 'package:photolocal/api/api.dart';
 import 'package:photolocal/global/database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:photolocal/screens/auth/index.dart';
-import 'package:photolocal/screens/main/index.dart';
 import 'package:photolocal/screens/map/index.dart';
 import 'package:photolocal/screens/profile_choose/index.dart';
 import 'package:photolocal/screens/splash/index.dart';
+import 'package:photolocal/screens/wall/index.dart';
 import 'package:photolocal/screens/wall_create/index.dart';
 import 'package:sembast/sembast.dart';
 
@@ -56,7 +56,7 @@ class InitProvider with ChangeNotifier {
         home = WallCreateScreen();
         break;
       case InitState.inited:
-        home = MainScreen();
+        home = WallScreen();
         break;
     }
     home = MapScreen();

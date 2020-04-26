@@ -1,5 +1,6 @@
 import 'package:location/location.dart';
 import 'package:photolocal/components/loading.dart';
+import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/providers/location.dart';
 import 'package:photolocal/screens/map/provider.dart';
 import 'package:photolocal/screens/map/widgets/premission.dart';
@@ -41,6 +42,7 @@ class _MapScreenState extends State<MapScreen> with AutomaticKeepAliveClientMixi
     super.build(context);
     var provider = Provider.of<LocationProvider>(context);
     return Scaffold(
+      bottomNavigationBar: NavigationBar(1),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

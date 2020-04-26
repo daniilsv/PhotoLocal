@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:photolocal/screens/chats/index.dart';
+import 'package:photolocal/screens/map/index.dart';
+import 'package:photolocal/screens/profile/index.dart';
+import 'package:photolocal/screens/wall/index.dart';
 import 'package:photolocal/theme/theme.dart';
 
 class NavigationBar extends StatelessWidget {
@@ -12,6 +17,30 @@ class NavigationBar extends StatelessWidget {
       unselectedItemColor: PLColors.grey,
       showUnselectedLabels: true,
       currentIndex: currentIndex,
+      onTap: (index) {
+        Widget screen;
+        switch (index) {
+          case 0:
+            screen = WallScreen();
+            break;
+          case 1:
+            screen = MapScreen();
+            break;
+          case 2:
+            screen = ChatsScreen();
+            break;
+          case 3:
+            screen = ProfileScreen();
+            break;
+        }
+        Navigator.pushAndRemoveUntil(
+          context,
+          CupertinoPageRoute(
+            builder: (c) => screen,
+          ),
+          (route) => route.isFirst,
+        );
+      },
       items: [
         BottomNavigationBarItem(
           backgroundColor: PLColors.bg,
