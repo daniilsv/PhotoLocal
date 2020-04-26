@@ -24,7 +24,7 @@ class MapProvider with found.ChangeNotifier {
   PersistentBottomSheetController stopperController;
   bool mapLoading = true;
 
-  List<Circle> myCircles = [];
+  Set<Circle> myCircles = Set<Circle>();
 
   @override
   void dispose() {
@@ -42,7 +42,7 @@ class MapProvider with found.ChangeNotifier {
       (ln.LocationData currentLocation) async {
         LocationProvider().setPosition(LatLng(currentLocation.latitude, currentLocation.longitude));
         for (Circle circle in myCircles) controller.removeCircle(circle);
-        myCircles = [];
+        myCircles = Set<Circle>();
         if (controller != null) {
           myCircles.add(
             await controller.addCircle(
