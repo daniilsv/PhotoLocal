@@ -1,9 +1,23 @@
 part of api;
 
 class AuthApi {
-  static Future login(String code) async {
-    return await Api.dio.get("/").then((res) {
-      // return serializers.deserializeWith(Home.serializer, res.data['value'][0]);
-    });
+  static Future sendCode(String phone) async {
+    return Api.dio.post(
+      "auth/sendCode",
+      data: {
+        "phone": phone,
+      },
+    );
+  }
+
+  static Future<Session> checkCode(String phone, String code) async {
+    var res = await Api.dio.post(
+      "auth/checkCode",
+      data: {
+        "phone": phone,
+        "code": code,
+      },
+    );
+    return serializers.deserializeWith(Session.serializer, res.data);
   }
 }
