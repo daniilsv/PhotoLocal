@@ -1,11 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:photolocal/api/api.dart';
 import 'package:photolocal/models/models.dart';
+import 'package:photolocal/providers/init.dart';
 
 class ChatProvider extends ChangeNotifier {
   // this.reportProvider
-  ChatProvider() {
+  ChatProvider(this.chatItem) {
     scrollController.addListener(_scrollListener);
   }
+  final ChatItem chatItem;
   // ReportProvider reportProvider;
 
   TextEditingController inputController = TextEditingController();
@@ -21,19 +24,17 @@ class ChatProvider extends ChangeNotifier {
       ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
 
   loadLast() async {
-    // messages = await ChatApi.getMessages(
-    //     reportProvider.code, reportProvider.report.uuid);
+    messages = await ChatApi.get(chatItem.chat.id);
     notifyListeners();
     loadPrevious();
   }
 
   loadNext() async {
-    // List<Message> _messages = await ChatApi.getMessages(
-    //     reportProvider.code, reportProvider.report.uuid,
-    //     firstId: lastId);
-    // messages.removeWhere((element) => element.id == -1);
-    // messages = _messages + messages;
-    // if (messages.length != 0) lastId = messages.first.id;
+    List<Message> _messages =
+        await ChatApi.get(chatItem.chat.id, firstId: lastId);
+    messages.removeWhere((element) => element.id == -1);
+    messages = _messages + messages;
+    if (messages.length != 0) lastId = messages.first.id;
     notifyListeners();
   }
 
@@ -41,14 +42,13 @@ class ChatProvider extends ChangeNotifier {
     if (isLoading) return;
     if (firstId != -1) return;
     setLoading(true);
-    // List<Message> _messages = await ChatApi.getMessages(
-    //     reportProvider.code, reportProvider.report.uuid,
-    //     lastId: messages.length != 0 ? messages?.last?.id ?? 0 : 0);
-    // messages.addAll(_messages);
-    // if (messages.length != 0) lastId = messages.first.id;
-    // if (_messages.length == 0)
-    //   firstId = messages.length != 0 ? messages?.last?.id ?? -1 : -1;
-    // else if (_messages.length < 20) firstId = _messages.last.id;
+    List<Message> _messages = await ChatApi.get(chatItem.chat.id,
+        lastId: messages.length != 0 ? messages?.last?.id ?? 0 : 0);
+    messages.addAll(_messages);
+    if (messages.length != 0) lastId = messages.first.id;
+    if (_messages.length == 0)
+      firstId = messages.length != 0 ? messages?.last?.id ?? -1 : -1;
+    else if (_messages.length < 10) firstId = _messages.last.id;
     setLoading(false);
   }
 
@@ -72,19 +72,18 @@ class ChatProvider extends ChangeNotifier {
     String message = inputController.text;
     if (message.length == 0) return;
     inputController.text = "";
-    // messages.insert(
-    //     0,
-    //     (MessageBuilder()
-    //           ..id = -1
-    //           ..isMyMessage = 1
-    //           ..message = message
-    //           ..dtMsg = DateTime.now())
-    //         .build());
+    messages.insert(
+        0,
+        (MessageBuilder()
+              ..id = -1
+              ..userId = InitProvider().session.user.id
+              ..message = message
+              ..createdAt = DateTime.now())
+            .build());
     notifyListeners();
     int newId;
     try {
-      // newId = await ChatApi.send(
-      //     reportProvider.code, reportProvider.report.uuid, message);
+      newId = await ChatApi.send(chatItem.chat.id, message);
     } catch (e) {}
     if (newId == null) return;
     loadNext();
