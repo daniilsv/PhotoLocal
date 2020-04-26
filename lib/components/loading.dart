@@ -30,6 +30,7 @@ class PLLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: Container(
         child: SafeArea(
           child: Column(
@@ -46,13 +47,14 @@ class PLLoading extends StatelessWidget {
                       color: PLColors.secondary4,
                       size: 25.0,
                     ),
-                  Container(
-                    margin: EdgeInsets.only(top: 24),
-                    child: Text(
-                      text ?? "Loading... please wait".i18n,
-                      style: PLStyle.textMed,
-                    ),
-                  )
+                  if (text != null && text != "")
+                    Container(
+                      margin: EdgeInsets.only(top: 24),
+                      child: Text(
+                        text ?? "Loading... please wait".i18n,
+                        style: PLStyle.textMed,
+                      ),
+                    )
                 ],
               )
             ],
