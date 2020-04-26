@@ -2,6 +2,21 @@ part of api;
 
 class ChatApi {
   static Future<List<ChatItem>> all() async {
+    return [
+      (ChatItemBuilder()
+            ..photographer = photographers[0].toBuilder()
+            ..chat = (ChatBuilder()
+              ..id = 1
+              ..createdAt = DateTime.now()
+              ..photographerId = "0"
+              ..userId = "1")
+            ..lastMessage = (MessageBuilder()
+              ..chatId = 1
+              ..createdAt = DateTime.now()
+              ..message = "hello world"
+              ..orderId = 1))
+          .build()
+    ];
     var res = await Api.dio.get("chat/all");
     return res.data
         .map((_) => serializers.deserializeWith(ChatItem.serializer, _));
@@ -12,6 +27,7 @@ class ChatApi {
     int firstId = 0,
     int lastId = 0,
   }) async {
+    return [];
     var res = await Api.dio.get(
       "chat/$chatId/get",
       queryParameters: {

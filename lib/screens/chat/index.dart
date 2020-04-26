@@ -40,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
     var user = InitProvider().session.user;
     return ViewModelBuilder<ChatProvider>.reactive(
       viewModelBuilder: () => chatProvider,
+      disposeViewModel: false,
       onModelReady: startPooling,
       builder: (context, provider, child) => SafeArea(
         top: true,
@@ -60,17 +61,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       itemCount:
                           10, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
-                        // return Column(
-                        //   children: [
-                        //     SelfMessage("Йоу"),
-                        //     SelfMessage(
-                        //         "Привет!\nМожно завтра пофотографироваться?"),
-                        //     UserMessage("Йоу"),
-                        //     UserMessage("Готов платить бабки?"),
-                        //     SelfMessage("Да изи, бабки не проблема"),
-                        //     UserContract(photographer),
-                        //   ],
-                        // );
+                        return Column(
+                          children: [
+                            SelfMessage("Йоу"),
+                            SelfMessage(
+                                "Привет!\nМожно завтра пофотографироваться?"),
+                            UserMessage("Йоу"),
+                            UserMessage("Готов платить бабки?"),
+                            SelfMessage("Да изи, бабки не проблема"),
+                            UserContract(photographer),
+                          ],
+                        );
                         if (provider.isLoading &&
                             index == provider.messages.length)
                           return PLLoading();
@@ -85,13 +86,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   GestureDetector(
                     onTap: () => {
                       showCupertinoModalPopup(
-                        context: context,
-                        // isScrollControlled: true,
-                        // backgroundColor: Colors.transparent,
-                        builder: (context) {
-                          return ContractSheet();
-                        }
-                      )
+                          context: context,
+                          // isScrollControlled: true,
+                          // backgroundColor: Colors.transparent,
+                          builder: (context) {
+                            return ContractSheet();
+                          })
                     },
                     child: ContractButton(),
                   ),
@@ -118,13 +118,10 @@ class ContractSheet extends StatefulWidget {
 }
 
 class _ContractSheetState extends State<ContractSheet> {
-
-  PageController _pageController;
+  PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
-    // TODO: implement initState
-    _pageController = PageController();
     super.initState();
   }
 
@@ -144,16 +141,15 @@ class _ContractSheetState extends State<ContractSheet> {
               child: PageView(
                 controller: _pageController,
                 scrollDirection: Axis.horizontal,
-                
                 children: [
-                PageConditions(),
-                PageFormat(),
-                PageLegal()
-              ],),
+                  PageConditions(),
+                  PageFormat(),
+                  PageLegal(),
+                ],
+              ),
             ),
             Stepper(
-              index: _pageController.page
-            ),
+                index: _pageController.hasClients ? _pageController.page : 0),
             GestureDetector(
               onTap: () {
                 print("order");
@@ -194,9 +190,13 @@ class PageConditions extends StatelessWidget {
         Text(
             'Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
             style: PLStyle.text),
-        _InputLabel(title: 'Номер телефона',),
+        _InputLabel(
+          title: 'Номер телефона',
+        ),
         StringField(),
-        _InputLabel(title: 'Номер телефона',),
+        _InputLabel(
+          title: 'Номер телефона',
+        ),
         Row(
           children: [
             Flexible(
@@ -211,9 +211,13 @@ class PageConditions extends StatelessWidget {
             ),
           ],
         ),
-        _InputLabel(title: 'Место съёмки',),
+        _InputLabel(
+          title: 'Место съёмки',
+        ),
         StringField(),
-        _InputLabel(title: 'Цена съёмки',),
+        _InputLabel(
+          title: 'Цена съёмки',
+        ),
         StringField(),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,13 +237,21 @@ class PageFormat extends StatelessWidget {
         Text(
             'Укажите количество и формат фотографий, которые  хотите получить.',
             style: PLStyle.text),
-        _InputLabel(title: 'Сколько фото с обработкой?',),
+        _InputLabel(
+          title: 'Сколько фото с обработкой?',
+        ),
         StringField(),
-        _InputLabel(title: 'Сколько фото без обработки?',),
+        _InputLabel(
+          title: 'Сколько фото без обработки?',
+        ),
         StringField(),
-        _InputLabel(title: 'Сколько фото в детальной обработке?',),
+        _InputLabel(
+          title: 'Сколько фото в детальной обработке?',
+        ),
         StringField(),
-        _InputLabel(title: 'Формат доставки фотографий',),
+        _InputLabel(
+          title: 'Формат доставки фотографий',
+        ),
         StringField(),
         Text(
             'Совет: Укажите количество 10+ , если вы хотите получить не менее 10 фотографий.',
@@ -262,7 +274,9 @@ class PageLegal extends StatelessWidget {
         Text(
             'Укажите важные детали съёмки, которые необходимо соблюсти и права фотографа.\n\n',
             style: PLStyle.text),
-        _InputLabel(title: 'Идея  и важные детали съёмки?',),
+        _InputLabel(
+          title: 'Идея  и важные детали съёмки?',
+        ),
         StringField(),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,34 +285,39 @@ class PageLegal extends StatelessWidget {
 }
 
 class Stepper extends StatelessWidget {
-  const Stepper({
-    Key key,
-    this.index
-  }) : super(key: key);
+  const Stepper({Key key, this.index}) : super(key: key);
   final double index;
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      for (var i = 0; i < 4; i++) i == index 
-        ? Container(width: 34, height: 8, margin: EdgeInsets.symmetric(horizontal: 4), decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8)
-          ),)
-        : Container(width: 8, height: 8, margin: EdgeInsets.symmetric(horizontal: 4),
-            decoration: BoxDecoration(
-              color: Colors.white54,
-              borderRadius: BorderRadius.circular(8)
-            ),
-          )
-    ],);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (var i = 0; i < 4; i++)
+          i == index
+              ? Container(
+                  width: 34,
+                  height: 8,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                )
+              : Container(
+                  width: 8,
+                  height: 8,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                      color: Colors.white54,
+                      borderRadius: BorderRadius.circular(8)),
+                )
+      ],
+    );
   }
 }
 
 class _InputLabel extends StatelessWidget {
-  const _InputLabel({
-    Key key, this.title
-  }) : super(key: key);
+  const _InputLabel({Key key, this.title}) : super(key: key);
 
   final String title;
 

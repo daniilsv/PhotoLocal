@@ -24,35 +24,23 @@ class _$ChatSerializer implements StructuredSerializer<Chat> {
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
     }
-    if (object.chatId != null) {
-      result
-        ..add('chatId')
-        ..add(serializers.serialize(object.chatId,
-            specifiedType: const FullType(String)));
-    }
-    if (object.ownerUserId != null) {
-      result
-        ..add('ownerUserId')
-        ..add(serializers.serialize(object.ownerUserId,
-            specifiedType: const FullType(int)));
-    }
-    if (object.orderId != null) {
-      result
-        ..add('orderId')
-        ..add(serializers.serialize(object.orderId,
-            specifiedType: const FullType(int)));
-    }
-    if (object.message != null) {
-      result
-        ..add('message')
-        ..add(serializers.serialize(object.message,
-            specifiedType: const FullType(String)));
-    }
     if (object.createdAt != null) {
       result
-        ..add('createdAt')
+        ..add('created_at')
         ..add(serializers.serialize(object.createdAt,
             specifiedType: const FullType(DateTime)));
+    }
+    if (object.photographerId != null) {
+      result
+        ..add('photographer_id')
+        ..add(serializers.serialize(object.photographerId,
+            specifiedType: const FullType(String)));
+    }
+    if (object.userId != null) {
+      result
+        ..add('user_id')
+        ..add(serializers.serialize(object.userId,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -72,25 +60,17 @@ class _$ChatSerializer implements StructuredSerializer<Chat> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'chatId':
-          result.chatId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'ownerUserId':
-          result.ownerUserId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'orderId':
-          result.orderId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'message':
-          result.message = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'createdAt':
+        case 'created_at':
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'photographer_id':
+          result.photographerId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'user_id':
+          result.userId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -103,26 +83,16 @@ class _$Chat extends Chat {
   @override
   final int id;
   @override
-  final String chatId;
-  @override
-  final int ownerUserId;
-  @override
-  final int orderId;
-  @override
-  final String message;
-  @override
   final DateTime createdAt;
+  @override
+  final String photographerId;
+  @override
+  final String userId;
 
   factory _$Chat([void Function(ChatBuilder) updates]) =>
       (new ChatBuilder()..update(updates)).build();
 
-  _$Chat._(
-      {this.id,
-      this.chatId,
-      this.ownerUserId,
-      this.orderId,
-      this.message,
-      this.createdAt})
+  _$Chat._({this.id, this.createdAt, this.photographerId, this.userId})
       : super._();
 
   @override
@@ -137,34 +107,26 @@ class _$Chat extends Chat {
     if (identical(other, this)) return true;
     return other is Chat &&
         id == other.id &&
-        chatId == other.chatId &&
-        ownerUserId == other.ownerUserId &&
-        orderId == other.orderId &&
-        message == other.message &&
-        createdAt == other.createdAt;
+        createdAt == other.createdAt &&
+        photographerId == other.photographerId &&
+        userId == other.userId;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, id.hashCode), chatId.hashCode),
-                    ownerUserId.hashCode),
-                orderId.hashCode),
-            message.hashCode),
-        createdAt.hashCode));
+        $jc($jc($jc(0, id.hashCode), createdAt.hashCode),
+            photographerId.hashCode),
+        userId.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Chat')
           ..add('id', id)
-          ..add('chatId', chatId)
-          ..add('ownerUserId', ownerUserId)
-          ..add('orderId', orderId)
-          ..add('message', message)
-          ..add('createdAt', createdAt))
+          ..add('createdAt', createdAt)
+          ..add('photographerId', photographerId)
+          ..add('userId', userId))
         .toString();
   }
 }
@@ -176,36 +138,27 @@ class ChatBuilder implements Builder<Chat, ChatBuilder> {
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
-  String _chatId;
-  String get chatId => _$this._chatId;
-  set chatId(String chatId) => _$this._chatId = chatId;
-
-  int _ownerUserId;
-  int get ownerUserId => _$this._ownerUserId;
-  set ownerUserId(int ownerUserId) => _$this._ownerUserId = ownerUserId;
-
-  int _orderId;
-  int get orderId => _$this._orderId;
-  set orderId(int orderId) => _$this._orderId = orderId;
-
-  String _message;
-  String get message => _$this._message;
-  set message(String message) => _$this._message = message;
-
   DateTime _createdAt;
   DateTime get createdAt => _$this._createdAt;
   set createdAt(DateTime createdAt) => _$this._createdAt = createdAt;
+
+  String _photographerId;
+  String get photographerId => _$this._photographerId;
+  set photographerId(String photographerId) =>
+      _$this._photographerId = photographerId;
+
+  String _userId;
+  String get userId => _$this._userId;
+  set userId(String userId) => _$this._userId = userId;
 
   ChatBuilder();
 
   ChatBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
-      _chatId = _$v.chatId;
-      _ownerUserId = _$v.ownerUserId;
-      _orderId = _$v.orderId;
-      _message = _$v.message;
       _createdAt = _$v.createdAt;
+      _photographerId = _$v.photographerId;
+      _userId = _$v.userId;
       _$v = null;
     }
     return this;
@@ -229,11 +182,9 @@ class ChatBuilder implements Builder<Chat, ChatBuilder> {
     final _$result = _$v ??
         new _$Chat._(
             id: id,
-            chatId: chatId,
-            ownerUserId: ownerUserId,
-            orderId: orderId,
-            message: message,
-            createdAt: createdAt);
+            createdAt: createdAt,
+            photographerId: photographerId,
+            userId: userId);
     replace(_$result);
     return _$result;
   }

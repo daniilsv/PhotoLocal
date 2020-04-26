@@ -13,24 +13,16 @@ abstract class Chat implements Built<Chat, ChatBuilder> {
   int get id;
 
   @nullable
-  @BuiltValueField(wireName: 'chatId')
-  String get chatId;
-
-  @nullable
-  @BuiltValueField(wireName: 'ownerUserId')
-  int get ownerUserId;
-
-  @nullable
-  @BuiltValueField(wireName: 'orderId')
-  int get orderId;
-
-  @nullable
-  @BuiltValueField(wireName: 'message')
-  String get message;
-
-  @nullable
-  @BuiltValueField(wireName: 'createdAt')
+  @BuiltValueField(wireName: 'created_at')
   DateTime get createdAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'photographer_id')
+  String get photographerId;
+
+  @nullable
+  @BuiltValueField(wireName: 'user_id')
+  String get userId;
 
   static Serializer<Chat> get serializer => _$chatSerializer;
 }
