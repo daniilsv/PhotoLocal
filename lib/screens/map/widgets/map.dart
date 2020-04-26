@@ -79,17 +79,23 @@ class MapWidgetState extends State<MapWidget> {
       initialCameraPosition: _initialCameraPosition,
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
-        mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
-        mapController.setMapLanguage("name_ru");
+        mapController.addListener(() => onCameraMove != null
+            ? onCameraMove(mapController.cameraPosition)
+            : () => {});
+        
         if (onMapCreate != null) onMapCreate(mapController);
+        setState(() {});
       },
       onStyleLoadedCallback: () async {
+        mapController.setMapLanguage("name_ru");
         // for (Photographer photographer in provider.photographers) {
         for (int i = 0; i < 10; i++) {
           var _symbol = await mapController.addSymbol(
             SymbolOptions(
               // iconImage: provider.photographerToPreview == PhotographLocation
-              iconImage: i == 0 ? "assets/images/map/user${i + 1}_chosen.png" : "assets/images/map/user${i + 1}.png",
+              iconImage: i == 0
+                  ? "assets/images/map/user${i + 1}_chosen.png"
+                  : "assets/images/map/user${i + 1}.png",
               iconSize: .75,
               textField: "200 М",
               textSize: 14,
