@@ -149,7 +149,7 @@ class _PhotographerScreenState extends State<PhotographerScreen> {
               SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     PageTransition(
                       child: ChatScreen(
