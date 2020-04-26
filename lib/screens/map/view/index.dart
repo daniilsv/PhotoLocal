@@ -44,7 +44,7 @@ class _MapViewState extends State<MapView> {
             ),
           ),
           Positioned(
-            bottom: 10 + MediaQuery.of(context).viewPadding.bottom,
+            bottom: 16 + MediaQuery.of(context).viewPadding.bottom,
             child: CategoriesLine(),
           ),
           Positioned(
