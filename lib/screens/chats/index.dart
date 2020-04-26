@@ -5,6 +5,7 @@ import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/models/models.dart';
 import 'package:photolocal/screens/chat/index.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
+import 'package:photolocal/screens/public_chat/index.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
@@ -59,7 +60,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                         child: GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             CupertinoPageRoute(
-                              builder: (_) => ChatScreen(
+                              builder: (_) => PublicChatScreen(
                                 chatProvider: provider.getChatProvider(
                                   provider.chats[index],
                                 ),
