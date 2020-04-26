@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:photolocal/screens/chats/index.dart';
 import 'package:photolocal/screens/map/index.dart';
 import 'package:photolocal/screens/profile/index.dart';
@@ -35,8 +36,9 @@ class NavigationBar extends StatelessWidget {
         }
         Navigator.pushAndRemoveUntil(
           context,
-          CupertinoPageRoute(
-            builder: (c) => screen,
+          PageTransition(
+            child: screen,
+            type: PageTransitionType.fade,
           ),
           (route) => route.isFirst,
         );
