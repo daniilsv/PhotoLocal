@@ -12,6 +12,7 @@ import 'package:stacked/stacked.dart';
 
 import 'providers/chat.dart';
 import 'widgets/self_message.dart';
+import 'widgets/start_message.dart';
 import 'widgets/user_contract.dart';
 import 'widgets/user_message.dart';
 
@@ -57,26 +58,23 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: ListView.builder(
                       controller: provider.scrollController,
                       reverse: true,
-                      itemCount:
-                          10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
-                        // return Column(
-                        //   children: [
-                        //     SelfMessage("Йоу"),
-                        //     SelfMessage(
-                        //         "Привет!\nМожно завтра пофотографироваться?"),
-                        //     UserMessage("Йоу"),
-                        //     UserMessage("Готов платить бабки?"),
-                        //     SelfMessage("Да изи, бабки не проблема"),
-                        //     UserContract(photographer),
-                        //   ],
-                        // );
-                        if (provider.isLoading &&
-                            index == provider.messages.length)
-                          return PLLoading();
+                        return Column(
+                          children: [
+                            StartMessage(),
+                            SelfMessage("Йоу"),
+                            // SelfMessage(
+                            //     "Привет!\nМожно завтра пофотографироваться?"),
+                            // UserMessage("Йоу"),
+                            UserMessage("Готов платить бабки?"),
+                            // SelfMessage("Да изи, бабки не проблема"),
+                            // UserContract(photographer),
+                          ],
+                        );
+                        if (provider.isLoading && index == provider.messages.length) return PLLoading();
                         Message msg = provider.messages[index];
-                        if (msg.userId == user.id)
-                          return SelfMessage(msg.message);
+                        if (msg.userId == user.id) return SelfMessage(msg.message);
                         return UserMessage(msg.message);
                       },
                     ),
@@ -85,13 +83,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   GestureDetector(
                     onTap: () => {
                       showCupertinoModalPopup(
-                        context: context,
-                        // isScrollControlled: true,
-                        // backgroundColor: Colors.transparent,
-                        builder: (context) {
-                          return ContractSheet();
-                        }
-                      )
+                          context: context,
+                          // isScrollControlled: true,
+                          // backgroundColor: Colors.transparent,
+                          builder: (context) {
+                            return ContractSheet();
+                          })
                     },
                     child: ContractButton(),
                   ),
@@ -118,7 +115,6 @@ class ContractSheet extends StatefulWidget {
 }
 
 class _ContractSheetState extends State<ContractSheet> {
-
   PageController _pageController;
 
   @override
@@ -144,16 +140,10 @@ class _ContractSheetState extends State<ContractSheet> {
               child: PageView(
                 controller: _pageController,
                 scrollDirection: Axis.horizontal,
-                
-                children: [
-                PageConditions(),
-                PageFormat(),
-                PageLegal()
-              ],),
+                children: [PageConditions(), PageFormat(), PageLegal()],
+              ),
             ),
-            Stepper(
-              index: _pageController.page
-            ),
+            Stepper(index: _pageController.page),
             GestureDetector(
               onTap: () {
                 print("order");
@@ -191,12 +181,15 @@ class PageConditions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
+        Text('Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
             style: PLStyle.text),
-        _InputLabel(title: 'Номер телефона',),
+        _InputLabel(
+          title: 'Номер телефона',
+        ),
         StringField(),
-        _InputLabel(title: 'Номер телефона',),
+        _InputLabel(
+          title: 'Номер телефона',
+        ),
         Row(
           children: [
             Flexible(
@@ -211,9 +204,13 @@ class PageConditions extends StatelessWidget {
             ),
           ],
         ),
-        _InputLabel(title: 'Место съёмки',),
+        _InputLabel(
+          title: 'Место съёмки',
+        ),
         StringField(),
-        _InputLabel(title: 'Цена съёмки',),
+        _InputLabel(
+          title: 'Цена съёмки',
+        ),
         StringField(),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,20 +227,24 @@ class PageFormat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Укажите количество и формат фотографий, которые  хотите получить.',
-            style: PLStyle.text),
-        _InputLabel(title: 'Сколько фото с обработкой?',),
+        Text('Укажите количество и формат фотографий, которые  хотите получить.', style: PLStyle.text),
+        _InputLabel(
+          title: 'Сколько фото с обработкой?',
+        ),
         StringField(),
-        _InputLabel(title: 'Сколько фото без обработки?',),
+        _InputLabel(
+          title: 'Сколько фото без обработки?',
+        ),
         StringField(),
-        _InputLabel(title: 'Сколько фото в детальной обработке?',),
+        _InputLabel(
+          title: 'Сколько фото в детальной обработке?',
+        ),
         StringField(),
-        _InputLabel(title: 'Формат доставки фотографий',),
+        _InputLabel(
+          title: 'Формат доставки фотографий',
+        ),
         StringField(),
-        Text(
-            'Совет: Укажите количество 10+ , если вы хотите получить не менее 10 фотографий.',
-            style: PLStyle.text),
+        Text('Совет: Укажите количество 10+ , если вы хотите получить не менее 10 фотографий.', style: PLStyle.text),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
     );
@@ -259,10 +260,10 @@ class PageLegal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Укажите важные детали съёмки, которые необходимо соблюсти и права фотографа.\n\n',
-            style: PLStyle.text),
-        _InputLabel(title: 'Идея  и важные детали съёмки?',),
+        Text('Укажите важные детали съёмки, которые необходимо соблюсти и права фотографа.\n\n', style: PLStyle.text),
+        _InputLabel(
+          title: 'Идея  и важные детали съёмки?',
+        ),
         StringField(),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,34 +272,35 @@ class PageLegal extends StatelessWidget {
 }
 
 class Stepper extends StatelessWidget {
-  const Stepper({
-    Key key,
-    this.index
-  }) : super(key: key);
+  const Stepper({Key key, this.index}) : super(key: key);
   final double index;
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      for (var i = 0; i < 4; i++) i == index 
-        ? Container(width: 34, height: 8, margin: EdgeInsets.symmetric(horizontal: 4), decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8)
-          ),)
-        : Container(width: 8, height: 8, margin: EdgeInsets.symmetric(horizontal: 4),
-            decoration: BoxDecoration(
-              color: Colors.white54,
-              borderRadius: BorderRadius.circular(8)
-            ),
-          )
-    ],);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (var i = 0; i < 4; i++)
+          i == index
+              ? Container(
+                  width: 34,
+                  height: 8,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+                )
+              : Container(
+                  width: 8,
+                  height: 8,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(color: Colors.white54, borderRadius: BorderRadius.circular(8)),
+                )
+      ],
+    );
   }
 }
 
 class _InputLabel extends StatelessWidget {
-  const _InputLabel({
-    Key key, this.title
-  }) : super(key: key);
+  const _InputLabel({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -322,8 +324,7 @@ class StringField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoTextField(
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.white, width: 1))),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white, width: 1))),
       padding: EdgeInsets.symmetric(vertical: 6),
       style: PLStyle.textMed.copyWith(fontSize: 20),
     );
