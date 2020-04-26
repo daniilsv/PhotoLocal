@@ -67,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       controller: provider.scrollController,
                       reverse: true,
-                      itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemCount: 1, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         return Column(
                           children: [

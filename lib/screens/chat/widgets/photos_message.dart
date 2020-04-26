@@ -44,6 +44,7 @@ class _PhotosMessageState extends State<PhotosMessage> {
           SizedBox(height: 25),
           if (widget.withEdit?.isNotEmpty != null)
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "С обработкой:",
@@ -92,6 +93,7 @@ class _PhotosMessageState extends State<PhotosMessage> {
           SizedBox(height: 25),
           if (widget.withoutEdit?.isNotEmpty != null)
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Без обработки:",
@@ -140,6 +142,7 @@ class _PhotosMessageState extends State<PhotosMessage> {
           SizedBox(height: 25),
           if (widget.withDetalEdit?.isNotEmpty != null)
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "В детальной обработке:",
