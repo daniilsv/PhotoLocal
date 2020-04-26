@@ -109,6 +109,7 @@ flutter:
     # Icons
 
     - assets/icons/bookmark-plus-outline.svg
+    - assets/icons/safe_contract.svg
 
 flutter_icons:
   image_path_ios: icon/full_icon.png

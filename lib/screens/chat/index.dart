@@ -6,12 +6,16 @@ import 'package:photolocal/providers/init.dart';
 import 'package:photolocal/screens/chat/widgets/app_bar.dart';
 import 'package:photolocal/screens/chat/widgets/button.dart';
 import 'package:photolocal/screens/chat/widgets/input.dart';
-import 'package:photolocal/screens/photographer/index.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'providers/chat.dart';
+import 'widgets/accept_message.dart';
+import 'widgets/contact_message.dart';
+import 'widgets/happened_message.dart';
+import 'widgets/notification_message.dart';
 import 'widgets/self_message.dart';
+import 'widgets/start_message.dart';
 import 'widgets/user_contract.dart';
 import 'widgets/user_message.dart';
 
@@ -35,6 +39,9 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  bool contractAccepted = false; //move to logic
+  bool happenedAccepted = false; //move to logic
+
   @override
   Widget build(BuildContext context) {
     var user = InitProvider().session.user;
@@ -56,28 +63,46 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       controller: provider.scrollController,
                       reverse: true,
-                      itemCount:
-                          10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
                             SelfMessage("Йоу"),
-                            SelfMessage(
-                                "Привет!\nМожно завтра пофотографироваться?"),
+                            SelfMessage("Привет!\nМожно завтра пофотографироваться?"),
                             UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
                             SelfMessage("Да изи, бабки не проблема"),
-                            UserContract(photographer),
+                            UserContract(
+                              photographer,
+                              accept: () {
+                                contractAccepted = true;
+                                setState(() {});
+                              },
+                            ),
+                            StartMessage(),
+                            if (contractAccepted) AcceptMessage(text: "🌟 ️Вы подтвердили съёмку"),
+                            if (contractAccepted) ContactMessage(),
+                            NotificationMessage(text: "Напоминаем вам, что у вас сегодня\nсъёмка! 🌟"),
+                            if (!happenedAccepted)
+                              HappenedMessage(
+                                accept: () {
+                                  happenedAccepted = true;
+                                  setState(() {});
+                                },
+                              ),
+                            if (happenedAccepted)
+                              NotificationMessage(
+                                  text:
+                                      "Поздравляем с состоявшейся съёмкой! Фотограф должен прислать фотографии до 13 мая."),
+                            if (happenedAccepted) AcceptMessage(text: "Вы подтвердили факт съёмки"),
                           ],
                         );
-                        if (provider.isLoading &&
-                            index == provider.messages.length)
-                          return PLLoading();
+                        if (provider.isLoading && index == provider.messages.length) return PLLoading();
                         Message msg = provider.messages[index];
-                        if (msg.userId == user.id)
-                          return SelfMessage(msg.message);
+                        if (msg.userId == user.id) return SelfMessage(msg.message);
                         return UserMessage(msg.message);
                       },
                     ),
@@ -148,8 +173,7 @@ class _ContractSheetState extends State<ContractSheet> {
                 ],
               ),
             ),
-            Stepper(
-                index: _pageController.hasClients ? _pageController.page : 0),
+            Stepper(index: _pageController.hasClients ? _pageController.page : 0),
             GestureDetector(
               onTap: () {
                 print("order");
@@ -187,8 +211,7 @@ class PageConditions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
+        Text('Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
             style: PLStyle.text),
         _InputLabel(
           title: 'Номер телефона',
@@ -234,9 +257,7 @@ class PageFormat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Укажите количество и формат фотографий, которые  хотите получить.',
-            style: PLStyle.text),
+        Text('Укажите количество и формат фотографий, которые  хотите получить.', style: PLStyle.text),
         _InputLabel(
           title: 'Сколько фото с обработкой?',
         ),
@@ -253,9 +274,7 @@ class PageFormat extends StatelessWidget {
           title: 'Формат доставки фотографий',
         ),
         StringField(),
-        Text(
-            'Совет: Укажите количество 10+ , если вы хотите получить не менее 10 фотографий.',
-            style: PLStyle.text),
+        Text('Совет: Укажите количество 10+ , если вы хотите получить не менее 10 фотографий.', style: PLStyle.text),
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
     );
@@ -271,9 +290,7 @@ class PageLegal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-            'Укажите важные детали съёмки, которые необходимо соблюсти и права фотографа.\n\n',
-            style: PLStyle.text),
+        Text('Укажите важные детали съёмки, которые необходимо соблюсти и права фотографа.\n\n', style: PLStyle.text),
         _InputLabel(
           title: 'Идея  и важные детали съёмки?',
         ),
@@ -299,17 +316,13 @@ class Stepper extends StatelessWidget {
                   width: 34,
                   height: 8,
                   margin: EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
                 )
               : Container(
                   width: 8,
                   height: 8,
                   margin: EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                      color: Colors.white54,
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.white54, borderRadius: BorderRadius.circular(8)),
                 )
       ],
     );
@@ -341,8 +354,7 @@ class StringField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoTextField(
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.white, width: 1))),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.white, width: 1))),
       padding: EdgeInsets.symmetric(vertical: 6),
       style: PLStyle.textMed.copyWith(fontSize: 20),
     );
