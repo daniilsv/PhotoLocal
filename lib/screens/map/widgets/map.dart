@@ -59,7 +59,10 @@ class MapWidgetState extends State<MapWidget> {
 
   @override
   void initState() {
-    _initialCameraPosition = CameraPosition(target: center, zoom: centerZoom != null ? centerZoom : 11.1);
+    _initialCameraPosition = CameraPosition(
+      target: center,
+      zoom: centerZoom != null ? centerZoom : 11.1,
+    );
     super.initState();
   }
 
@@ -77,6 +80,7 @@ class MapWidgetState extends State<MapWidget> {
       onMapCreated: (MapboxMapController _controller) async {
         mapController = _controller;
         mapController.addListener(() => onCameraMove != null ? onCameraMove(mapController.cameraPosition) : () => {});
+        mapController.setMapLanguage("name_ru");
         if (onMapCreate != null) onMapCreate(mapController);
       },
       onStyleLoadedCallback: () async {
