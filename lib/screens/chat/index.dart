@@ -53,19 +53,23 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: ListView.builder(
                       controller: provider.scrollController,
                       reverse: true,
-                      itemCount: 10, //provider.messages.length +(provider.isLoading ? 1 : 0),
+                      itemCount:
+                          10, //provider.messages.length +(provider.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
                             SelfMessage("Йоу"),
-                            SelfMessage("Привет!\nМожно завтра пофотографироваться?"),
+                            SelfMessage(
+                                "Привет!\nМожно завтра пофотографироваться?"),
                             UserMessage("Йоу"),
                             UserMessage("Готов платить бабки?"),
                             SelfMessage("Да изи, бабки не проблема"),
                             UserContract(photographer),
                           ],
                         );
-                        if (provider.isLoading && index == provider.messages.length) return PLLoading();
+                        if (provider.isLoading &&
+                            index == provider.messages.length)
+                          return PLLoading();
                         Message msg = provider.messages[index];
                         // if (msg.isMyMessage == true) return SelfMessage(msg.message);
                         return UserMessage(msg.message);
@@ -73,7 +77,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   SizedBox(height: 2),
-                  ContractButton(),
+                  GestureDetector(
+                    onTap: () => (showCupertinoModalPopup(
+                      context: context,
+                      builder: (context) => (ContractSheet()),
+                    )),
+                    child: ContractButton(),
+                  ),
                   SizedBox(height: 8),
                   ChatInput(),
                   SizedBox(height: 20),
@@ -83,6 +93,93 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ContractSheet extends StatelessWidget {
+  const ContractSheet({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 60),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        color: PLColors.bg,
+        child: Column(
+          children: [
+            Text(
+              'Создание контракта',
+              style: PLStyle.title,
+            ),
+            Column(
+              children: [
+                Text(
+                    'Зафиксируйте условия съёмки в контракте, чтобы в процессе съёмки не было разногласий с клиентом.',
+                    style: PLStyle.text),
+                _InputLabel(title: 'Номер телефона',),
+                StringField(),
+                _InputLabel(title: 'Номер телефона',),
+                Row(
+                  children: [
+                    Flexible(
+                      child: StringField(),
+                    ),
+                    Padding(
+                      child: Text('и'),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    ),
+                    Flexible(
+                      child: StringField(),
+                    ),
+                  ],
+                ),
+                _InputLabel(title: 'Место съёмки',),
+                StringField(),
+                _InputLabel(title: 'Цена съёмки',),
+                StringField(),
+              ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          ],
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ));
+  }
+}
+
+class _InputLabel extends StatelessWidget {
+  const _InputLabel({
+    Key key, this.title
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 15),
+      child: Text(
+        this.title,
+        style: PLStyle.textFieldHeader,
+      ),
+    );
+  }
+}
+
+class StringField extends StatelessWidget {
+  const StringField({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTextField(
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.white, width: 1))),
+      padding: EdgeInsets.symmetric(vertical: 6),
+      style: PLStyle.textMed.copyWith(fontSize: 24),
     );
   }
 }
