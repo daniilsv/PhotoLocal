@@ -11,12 +11,14 @@ class WallCard extends StatelessWidget {
     this.minutes,
     this.url,
     this.savedCount,
+    this.avatarUrl,
   }) : super(key: key);
 
   final String name;
   final int km;
   final int minutes;
   final String url;
+  final String avatarUrl;
   final int savedCount;
 
   @override
@@ -33,7 +35,7 @@ class WallCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: PLImage(
-                    url,
+                    avatarUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
