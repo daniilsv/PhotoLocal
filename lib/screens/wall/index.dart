@@ -1,5 +1,8 @@
+import 'package:page_transition/page_transition.dart';
 import 'package:photolocal/components/navigation_bar.dart';
+import 'package:photolocal/mock/generator.dart';
 import 'package:photolocal/providers/init.dart';
+import 'package:photolocal/screens/photographer/index.dart';
 import 'package:photolocal/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +15,7 @@ class WallScreen extends StatefulWidget {
 }
 
 class _WallScreenState extends State<WallScreen> {
+  var items = genWallItems();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +45,8 @@ class _WallScreenState extends State<WallScreen> {
                       showModalBottomSheet(
                         context: context,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(24)),
                         ),
                         elevation: 10,
                         backgroundColor: Color(0xFF0F0F0F),
@@ -87,14 +92,28 @@ class _WallScreenState extends State<WallScreen> {
                   horizontal: 30,
                   vertical: 10,
                 ),
+                itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return WallCard(
-                    name: "Станислава Викторова",
-                    km: 5,
-                    minutes: 5,
-                    savedCount: 14,
-                    url:
-                        "https://instagram.frix2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.129.1034.1034a/s640x640/94011600_685952345524211_1845270508491306997_n.jpg?_nc_ht=instagram.frix2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=n0cT8oDG44MAX8uLSTc&oh=5a9d43dab72cfc5308986e39ef43cde1&oe=5EC9D4BD",
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          child: PhotographerScreen(genPhotographerItems()
+                              .firstWhere((element) =>
+                                  element.photographer.id ==
+                                  items[index].photographer.id)),
+                          type: PageTransitionType.fade,
+                        ),
+                      );
+                    },
+                    child: WallCard(
+                      name: items[index].photographer.name,
+                      km: 5,
+                      minutes: 5,
+                      savedCount: items[index].likeCount,
+                      url: items[index].photos.first.url,
+                    ),
                   );
                 },
               ),

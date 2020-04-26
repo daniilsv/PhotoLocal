@@ -47,7 +47,7 @@ class WallCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Станислава Викторова",
+                      name,
                       style: PLStyle.create(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
