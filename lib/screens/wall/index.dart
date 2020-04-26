@@ -1,3 +1,4 @@
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:photolocal/components/navigation_bar.dart';
 import 'package:photolocal/global/utils.dart';
@@ -110,7 +111,10 @@ class _WallScreenState extends State<WallScreen> {
                     },
                     child: WallCard(
                       name: items[index].photographer.name,
-                      km: Utils.calculateDistance(provider.position, items[index].photographer.liveLocation).floor(),
+                      km: Utils.calculateDistance(
+                        provider.position ?? LatLng(59.914143, 30.317016),
+                        items[index].photographer.liveLocation,
+                      ).floor(),
                       minutes: items[index].photographer.userId,
                       savedCount: items[index].likeCount,
                       url: items[index].photos.first.url,
