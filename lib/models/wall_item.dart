@@ -12,8 +12,8 @@ abstract class WallItem implements Built<WallItem, WallItemBuilder> {
   factory WallItem([updates(WallItemBuilder b)]) = _$WallItem;
 
   @nullable
-  @BuiltValueField(wireName: 'token')
-  String get token;
+  @BuiltValueField(wireName: 'photographer')
+  Photographer get photographer;
 
   @nullable
   @BuiltValueField(wireName: 'photos')

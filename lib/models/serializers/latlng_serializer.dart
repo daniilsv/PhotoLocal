@@ -8,14 +8,22 @@ class LatLngSerializer implements PrimitiveSerializer<LatLng> {
   final Iterable<Type> types = new BuiltList<Type>([LatLng]);
 
   @override
-  Object serialize(Serializers serializers, LatLng latLng, {FullType specifiedType: FullType.unspecified}) {
-    return [latLng.latitude.toString(), latLng.longitude.toString()];
+  Object serialize(Serializers serializers, LatLng latLng,
+      {FullType specifiedType: FullType.unspecified}) {
+    return [
+      "latitude",
+      latLng.latitude.toString(),
+      "latitude",
+      latLng.longitude.toString()
+    ];
   }
 
   @override
-  LatLng deserialize(Serializers serializers, Object serialized, {FullType specifiedType: FullType.unspecified}) {
+  LatLng deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType: FullType.unspecified}) {
     List<dynamic> toSerialize = serialized as List<dynamic>;
-    return LatLng(double.tryParse(toSerialize[0].toString()), double.tryParse(toSerialize[1].toString()));
+    return LatLng(double.tryParse(toSerialize[1].toString()),
+        double.tryParse(toSerialize[3].toString()));
   }
 
   @override

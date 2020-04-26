@@ -26,13 +26,13 @@ class _$PhotoSerializer implements StructuredSerializer<Photo> {
     }
     if (object.photographerId != null) {
       result
-        ..add('photographerId')
+        ..add('photographer_id')
         ..add(serializers.serialize(object.photographerId,
             specifiedType: const FullType(int)));
     }
     if (object.categoryId != null) {
       result
-        ..add('categoryId')
+        ..add('category_id')
         ..add(serializers.serialize(object.categoryId,
             specifiedType: const FullType(int)));
     }
@@ -66,11 +66,11 @@ class _$PhotoSerializer implements StructuredSerializer<Photo> {
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'photographerId':
+        case 'photographer_id':
           result.photographerId = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'categoryId':
+        case 'category_id':
           result.categoryId = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;

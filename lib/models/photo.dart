@@ -13,11 +13,11 @@ abstract class Photo implements Built<Photo, PhotoBuilder> {
   int get id;
 
   @nullable
-  @BuiltValueField(wireName: 'photographerId')
+  @BuiltValueField(wireName: 'photographer_id')
   int get photographerId;
 
   @nullable
-  @BuiltValueField(wireName: 'categoryId')
+  @BuiltValueField(wireName: 'category_id')
   int get categoryId;
 
   @nullable

@@ -18,11 +18,11 @@ class _$WallItemSerializer implements StructuredSerializer<WallItem> {
   Iterable<Object> serialize(Serializers serializers, WallItem object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.token != null) {
+    if (object.photographer != null) {
       result
-        ..add('token')
-        ..add(serializers.serialize(object.token,
-            specifiedType: const FullType(String)));
+        ..add('photographer')
+        ..add(serializers.serialize(object.photographer,
+            specifiedType: const FullType(Photographer)));
     }
     if (object.photos != null) {
       result
@@ -51,9 +51,9 @@ class _$WallItemSerializer implements StructuredSerializer<WallItem> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'token':
-          result.token = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'photographer':
+          result.photographer.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Photographer)) as Photographer);
           break;
         case 'photos':
           result.photos.replace(serializers.deserialize(value,
@@ -74,7 +74,7 @@ class _$WallItemSerializer implements StructuredSerializer<WallItem> {
 
 class _$WallItem extends WallItem {
   @override
-  final String token;
+  final Photographer photographer;
   @override
   final BuiltList<Photo> photos;
   @override
@@ -83,7 +83,7 @@ class _$WallItem extends WallItem {
   factory _$WallItem([void Function(WallItemBuilder) updates]) =>
       (new WallItemBuilder()..update(updates)).build();
 
-  _$WallItem._({this.token, this.photos, this.likeCount}) : super._();
+  _$WallItem._({this.photographer, this.photos, this.likeCount}) : super._();
 
   @override
   WallItem rebuild(void Function(WallItemBuilder) updates) =>
@@ -96,21 +96,21 @@ class _$WallItem extends WallItem {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is WallItem &&
-        token == other.token &&
+        photographer == other.photographer &&
         photos == other.photos &&
         likeCount == other.likeCount;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, token.hashCode), photos.hashCode), likeCount.hashCode));
+    return $jf($jc($jc($jc(0, photographer.hashCode), photos.hashCode),
+        likeCount.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('WallItem')
-          ..add('token', token)
+          ..add('photographer', photographer)
           ..add('photos', photos)
           ..add('likeCount', likeCount))
         .toString();
@@ -120,9 +120,11 @@ class _$WallItem extends WallItem {
 class WallItemBuilder implements Builder<WallItem, WallItemBuilder> {
   _$WallItem _$v;
 
-  String _token;
-  String get token => _$this._token;
-  set token(String token) => _$this._token = token;
+  PhotographerBuilder _photographer;
+  PhotographerBuilder get photographer =>
+      _$this._photographer ??= new PhotographerBuilder();
+  set photographer(PhotographerBuilder photographer) =>
+      _$this._photographer = photographer;
 
   ListBuilder<Photo> _photos;
   ListBuilder<Photo> get photos => _$this._photos ??= new ListBuilder<Photo>();
@@ -136,7 +138,7 @@ class WallItemBuilder implements Builder<WallItem, WallItemBuilder> {
 
   WallItemBuilder get _$this {
     if (_$v != null) {
-      _token = _$v.token;
+      _photographer = _$v.photographer?.toBuilder();
       _photos = _$v.photos?.toBuilder();
       _likeCount = _$v.likeCount;
       _$v = null;
@@ -163,10 +165,14 @@ class WallItemBuilder implements Builder<WallItem, WallItemBuilder> {
     try {
       _$result = _$v ??
           new _$WallItem._(
-              token: token, photos: _photos?.build(), likeCount: likeCount);
+              photographer: _photographer?.build(),
+              photos: _photos?.build(),
+              likeCount: likeCount);
     } catch (_) {
       String _$failedField;
       try {
+        _$failedField = 'photographer';
+        _photographer?.build();
         _$failedField = 'photos';
         _photos?.build();
       } catch (e) {
