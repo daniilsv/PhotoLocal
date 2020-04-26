@@ -12,6 +12,8 @@ import 'package:stacked/stacked.dart';
 import 'providers/chat.dart';
 import 'widgets/accept_message.dart';
 import 'widgets/contact_message.dart';
+import 'widgets/happened_message.dart';
+import 'widgets/notification_message.dart';
 import 'widgets/self_message.dart';
 import 'widgets/start_message.dart';
 import 'widgets/user_contract.dart';
@@ -38,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   bool contractAccepted = false; //move to logic
+  bool happenedAccepted = false; //move to logic
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +83,21 @@ class _ChatScreenState extends State<ChatScreen> {
                               },
                             ),
                             StartMessage(),
-                            if (contractAccepted) AcceptMessage(),
+                            if (contractAccepted) AcceptMessage(text: "🌟 ️Вы подтвердили съёмку"),
                             if (contractAccepted) ContactMessage(),
+                            NotificationMessage(text: "Напоминаем вам, что у вас сегодня\nсъёмка! 🌟"),
+                            if (!happenedAccepted)
+                              HappenedMessage(
+                                accept: () {
+                                  happenedAccepted = true;
+                                  setState(() {});
+                                },
+                              ),
+                            if (happenedAccepted)
+                              NotificationMessage(
+                                  text:
+                                      "Поздравляем с состоявшейся съёмкой! Фотограф должен прислать фотографии до 13 мая."),
+                            if (happenedAccepted) AcceptMessage(text: "Вы подтвердили факт съёмки"),
                           ],
                         );
                         if (provider.isLoading && index == provider.messages.length) return PLLoading();

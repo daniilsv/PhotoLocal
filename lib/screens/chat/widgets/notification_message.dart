@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photolocal/theme/theme.dart';
 
-class AcceptMessage extends StatelessWidget {
-  const AcceptMessage({Key key, @required this.text}) : super(key: key);
+class NotificationMessage extends StatelessWidget {
+  const NotificationMessage({Key key, @required this.text}) : super(key: key);
 
   final String text;
 
@@ -18,7 +18,7 @@ class AcceptMessage extends StatelessWidget {
             horizontal: 12,
           ),
           decoration: BoxDecoration(
-            borderRadius: PLBorders.all12,
+            borderRadius: PLBorders.all16,
             border: Border.all(
               width: 0.5,
               color: Color(0xFF979797),
@@ -30,7 +30,7 @@ class AcceptMessage extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: PLStyle.text.copyWith(color: Color(0xFF979797)),
+            style: PLStyle.text.copyWith(fontSize: 16),
             textAlign: TextAlign.start,
           ),
         ),
